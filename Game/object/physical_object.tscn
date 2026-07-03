@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://degatcchdorff"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgocy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8lrlu"]
+size = Vector3(20, 20, 1)
+
+[node name="physical_object" type="RigidBody2D" unique_id=1206997064]
+collision_layer = 8
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=538437365]
+shape = SubResource("RectangleShape2D_tgocy")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1198644767]
+mesh = SubResource("BoxMesh_8lrlu")
