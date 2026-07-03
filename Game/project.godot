@@ -34,6 +34,7 @@ window/stretch/mode="canvas_items"
 2d_navigation/layer_2="敌人"
 2d_physics/layer_3="敌人"
 2d_navigation/layer_3="UI"
+2d_physics/layer_4="杂项物体"
 
 [physics]
 
