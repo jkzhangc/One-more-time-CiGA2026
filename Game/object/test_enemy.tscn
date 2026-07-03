@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://c86y1klet3inr"]
 
-[ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://enemy_instance.gd" id="1_cxgnt"]
+[ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://object/enemy_instance.gd" id="1_cxgnt"]
 [ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="2_dbqsi"]
+[ext_resource type="Script" uid="uid://c5qgebvhj7fj7" path="res://object/EnemyNormalState.gd" id="3_dbqsi"]
+[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://object/StateMachine.gd" id="3_uk2a8"]
+[ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://object/EnemyFreezeState.gd" id="5_jyqfw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y0ml6"]
 
@@ -21,3 +24,14 @@ position = Vector2(0.5625701, -12.499998)
 scale = Vector2(20.89853, 23.000006)
 mesh = SubResource("SphereMesh_jmx6n")
 texture = ExtResource("2_dbqsi")
+
+[node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=1310945081 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_uk2a8")
+initial_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="EnemyInstance/StateMachine" unique_id=1066849773]
+script = ExtResource("3_dbqsi")
+
+[node name="Freeze" type="Node" parent="EnemyInstance/StateMachine" unique_id=1188638923]
+script = ExtResource("5_jyqfw")
+consistenceFrame = 3.0
