@@ -22,7 +22,7 @@ animations = [{
 size = Vector2(34, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12epm"]
-size = Vector2(34, 50)
+size = Vector2(45, 58)
 
 [node name="Player" type="CharacterBody2D" unique_id=2063613206]
 collision_layer = 2
@@ -59,8 +59,15 @@ script = ExtResource("5_12epm")
 script = ExtResource("6_qi7d8")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1452118209]
+light_mask = 4
+visibility_layer = 4
+collision_layer = 2
+collision_mask = 13
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1202186947]
+light_mask = 4
+visibility_layer = 4
 shape = SubResource("RectangleShape2D_12epm")
 debug_color = Color(0.92444134, 0, 0.103666924, 0.41960785)
 

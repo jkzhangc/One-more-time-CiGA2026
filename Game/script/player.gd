@@ -34,7 +34,34 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# 这里做玩家触碰的效果
-	hit.emit() # 发送hit信号
+	print("玩家触碰了",body)
+	
+	# 获取敌人状态机
+	var enemyStateMachine = null
+	if body:
+		for child in body.get_children():
+			if child as StateMachine:
+				enemyStateMachine = child;
+	
+	if enemyStateMachine:
+		# 成功获取了敌人状态机
+		print(enemyStateMachine.current_state,enemyStateMachine.current_state.name)
+		if enemyStateMachine.current_state.name == "Freeze":
+		# 如果敌人状态处于时停状态
+			print("#{body.name}正在时停状态")
+			if body.name == "平台类怪物":
+				print("#{body.name}是平台类怪物")
+			if body.name == "形态类怪物":
+				print("#{body.name}是形态类怪物")
+			if body.name == "冲锋类怪物":
+				print("#{body.name}是冲锋类怪物")
+		else:
+		# 如果敌人状态不处于时停状态
+			hit.emit() # 发送hit信号
+			hide() # 隐藏玩家
+			#$CollisionShape2D.set_deferred("disabled", true) # 取消碰撞体效果
+		
+		
 
 # 重置玩家的状态
 func start(pos):

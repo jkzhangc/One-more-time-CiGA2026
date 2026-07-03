@@ -10,16 +10,22 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_qxvux"]
 
-[node name="Enemy1" type="Node2D" unique_id=1084164698]
+[node name="平台类怪物" type="Node2D" unique_id=1084164698]
 
 [node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=1253495461]
+collision_layer = 4
+collision_mask = 11
 script = ExtResource("1_quyqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=1922425590]
+light_mask = 8
+visibility_layer = 8
 position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_72u10")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="EnemyInstance" unique_id=1848888422]
+light_mask = 8
+visibility_layer = 8
 position = Vector2(0.5625701, -12.499998)
 scale = Vector2(20.89853, 23.000006)
 mesh = SubResource("SphereMesh_qxvux")
@@ -27,7 +33,7 @@ texture = ExtResource("2_ueuno")
 
 [node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=868414888 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_lktgr")
-initial_state = NodePath("Normal")
+initial_state = NodePath("Freeze")
 
 [node name="Normal" type="Node" parent="EnemyInstance/StateMachine" unique_id=761863467]
 script = ExtResource("4_quyqi")

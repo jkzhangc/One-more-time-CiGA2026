@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="1_okf0i"]
 [ext_resource type="PackedScene" uid="uid://degatcchdorff" path="res://object/physical_object.tscn" id="2_pa2i8"]
+[ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/Enemy1.tscn" id="3_b0kse"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3n7"]
 size = Vector2(1000, 20)
@@ -31,3 +32,6 @@ position = Vector2(0, -44)
 
 [node name="physical_object" parent="." unique_id=1206997064 instance=ExtResource("2_pa2i8")]
 position = Vector2(-59, -57)
+
+[node name="Enemy1" parent="." unique_id=1084164698 instance=ExtResource("3_b0kse")]
+position = Vector2(45, -16)
