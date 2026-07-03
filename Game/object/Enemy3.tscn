@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dculo3tl7tqc3"]
+
+[ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://object/enemy_instance.gd" id="1_e272c"]
+[ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="2_e68gl"]
+[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://object/StateMachine.gd" id="3_w2mri"]
+[ext_resource type="Script" uid="uid://chx6382v4qyt5" path="res://object/Enemy3_NormalState.gd" id="4_e272c"]
+[ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://object/EnemyFreezeState.gd" id="5_g1k7d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3fuib"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ccj8v"]
+
+[node name="Enemy3" type="Node2D" unique_id=1721056165]
+
+[node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=2112780339]
+script = ExtResource("1_e272c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=1570007641]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_3fuib")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="EnemyInstance" unique_id=755084365]
+position = Vector2(0.5625701, -12.499998)
+scale = Vector2(20.89853, 23.000006)
+mesh = SubResource("SphereMesh_ccj8v")
+texture = ExtResource("2_e68gl")
+
+[node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=1622328813 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_w2mri")
+initial_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="EnemyInstance/StateMachine" unique_id=1194749343]
+script = ExtResource("4_e272c")
+speed = 100.0
+
+[node name="Freeze" type="Node" parent="EnemyInstance/StateMachine" unique_id=1136029442]
+script = ExtResource("5_g1k7d")
+consistenceFrame = 4.0

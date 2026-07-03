@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhrt21y273kx4"]
 
-[ext_resource type="PackedScene" uid="uid://c86y1klet3inr" path="res://object/test_enemy.tscn" id="1_7lh84"]
+[ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/Enemy1.tscn" id="1_7lh84"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_th3oh"]
 size = Vector2(1000, 20)
@@ -9,10 +9,6 @@ size = Vector2(1000, 20)
 size = Vector3(1000, 20, 1)
 
 [node name="EnemyScene" type="Node2D" unique_id=301920835]
-
-[node name="EnemyTest" parent="." unique_id=163953998 instance=ExtResource("1_7lh84")]
-position = Vector2(550, 240)
-rotation = -0.009082137
 
 [node name="Node2D" type="Node2D" parent="." unique_id=607004727]
 position = Vector2(550, 250)
@@ -29,3 +25,6 @@ shape = SubResource("RectangleShape2D_th3oh")
 light_mask = 2
 visibility_layer = 2
 mesh = SubResource("BoxMesh_8kxfd")
+
+[node name="Enemy1" parent="." unique_id=1084164698 instance=ExtResource("1_7lh84")]
+position = Vector2(551, 238)
