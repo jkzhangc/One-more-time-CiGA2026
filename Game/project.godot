@@ -11,8 +11,29 @@ config_version=5
 [application]
 
 config/name="One-more-time-CiGA2026-Game"
+run/main_scene="uid://bkdq6y118d36y"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=480
+window/stretch/mode="canvas_items"
+
+[layer_names]
+
+2d_render/layer_1="背景"
+2d_render/layer_2="图块"
+2d_render/layer_3="玩家"
+2d_render/layer_4="敌人"
+2d_render/layer_5="UI"
+2d_physics/layer_1="图块"
+2d_navigation/layer_1="玩家"
+2d_physics/layer_2="玩家"
+2d_navigation/layer_2="敌人"
+2d_physics/layer_3="敌人"
+2d_navigation/layer_3="UI"
 
 [physics]
 

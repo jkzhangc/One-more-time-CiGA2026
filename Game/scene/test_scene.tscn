@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bkdq6y118d36y"]
+
+[ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="1_okf0i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3n7"]
+size = Vector2(1000, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_okf0i"]
+size = Vector3(1000, 20, 1)
+
+[node name="test_scene" type="Node" unique_id=171193293]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1584641411]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D" unique_id=1660759796]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=1908470549]
+light_mask = 2
+visibility_layer = 2
+shape = SubResource("RectangleShape2D_sg3n7")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/StaticBody2D" unique_id=1463880536]
+light_mask = 2
+visibility_layer = 2
+mesh = SubResource("BoxMesh_okf0i")
+
+[node name="Player" parent="." unique_id=381143770 instance=ExtResource("1_okf0i")]
+position = Vector2(0, -44)

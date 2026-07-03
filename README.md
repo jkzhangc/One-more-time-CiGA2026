@@ -5,7 +5,7 @@ CiGA2026比赛项目
 
 # 项目结构
 - Game 游戏项目文件夹
-  * img 图片资源
+  * art 图片资源
   * object 物体
   * scene 场景
   * script 脚本代码

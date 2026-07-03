@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://coahwxlgfiws3"]
+
+[ext_resource type="Texture2D" uid="uid://bfx0x0ff4cl34" path="res://art/Player-待机-1.png" id="1_5amv0"]
+[ext_resource type="Script" uid="uid://bts48jlykuruo" path="res://script/player.gd" id="1_o1wbr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1wbr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5amv0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onh3l"]
+size = Vector2(34, 50)
+
+[node name="Player" type="CharacterBody2D" unique_id=2063613206]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_o1wbr")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=740548800]
+light_mask = 4
+visibility_layer = 4
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_o1wbr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1202186947]
+shape = SubResource("RectangleShape2D_onh3l")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=759915741]
+light_mask = 15
+visibility_layer = 31
+position_smoothing_speed = 50.0
+rotation_smoothing_speed = 50.0
