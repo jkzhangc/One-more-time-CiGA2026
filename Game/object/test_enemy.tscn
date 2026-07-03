@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c86y1klet3inr"]
+
+[ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://enemy_instance.gd" id="1_cxgnt"]
+[ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="2_dbqsi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y0ml6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_jmx6n"]
+
+[node name="Node2D" type="Node2D" unique_id=163953998]
+
+[node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=2059292666]
+script = ExtResource("1_cxgnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=1298815949]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_y0ml6")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="EnemyInstance" unique_id=474840033]
+position = Vector2(0.5625701, -12.499998)
+scale = Vector2(20.89853, 23.000006)
+mesh = SubResource("SphereMesh_jmx6n")
+texture = ExtResource("2_dbqsi")
