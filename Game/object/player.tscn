@@ -2,6 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bfx0x0ff4cl34" path="res://art/Player-待机-1.png" id="1_5amv0"]
 [ext_resource type="Script" uid="uid://bts48jlykuruo" path="res://script/player.gd" id="1_o1wbr"]
+[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://object/StateMachine.gd" id="3_qbh5c"]
+[ext_resource type="Script" uid="uid://c6iv8aep2k42n" path="res://script/PlayerIdleState.gd" id="4_qi7d8"]
+[ext_resource type="Script" uid="uid://b86ek0j6nbqq1" path="res://object/PlayerWalkState.gd" id="5_12epm"]
+[ext_resource type="Script" uid="uid://o6kaxstnwn0f" path="res://object/PlayerJumpState.gd" id="6_qi7d8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o1wbr"]
 animations = [{
@@ -17,6 +21,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onh3l"]
 size = Vector2(34, 50)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12epm"]
+size = Vector2(34, 50)
+
 [node name="Player" type="CharacterBody2D" unique_id=2063613206]
 collision_layer = 2
 collision_mask = 5
@@ -29,7 +36,7 @@ visibility_layer = 4
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_o1wbr")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1202186947]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=597629648]
 shape = SubResource("RectangleShape2D_onh3l")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=759915741]
@@ -37,3 +44,24 @@ light_mask = 15
 visibility_layer = 31
 position_smoothing_speed = 50.0
 rotation_smoothing_speed = 50.0
+
+[node name="StateMachine" type="Node" parent="." unique_id=1501323818 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_qbh5c")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1673467789]
+script = ExtResource("4_qi7d8")
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=450166258]
+script = ExtResource("5_12epm")
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=393917102]
+script = ExtResource("6_qi7d8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1452118209]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1202186947]
+shape = SubResource("RectangleShape2D_12epm")
+debug_color = Color(0.92444134, 0, 0.103666924, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -14,7 +14,6 @@ func enter() -> void:
 func exit() -> void:
 	pass
 	
-
 func process_update(delta :float) -> void:
 	pass
 	

@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+signal hit
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -23,3 +23,15 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	# 这里做玩家触碰的效果
+	hit.emit() # 发送hit信号
+
+# 重置玩家的状态
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
+	$StateMachine._on_transition_requested("Idle")
