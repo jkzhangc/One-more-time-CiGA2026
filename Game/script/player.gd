@@ -197,6 +197,8 @@ func _handle_morph_enemy_collision(body: Node2D, sm: StateMachine) -> void:
 # --- 默认碰撞（未知敌人类型兜底）---
 
 func _handle_default_collision(body: Node2D, sm: StateMachine) -> void:
+	if sm.character.get_parent().name == "Board":
+		return
 	var current_name = sm.current_state.name
 
 	if current_name == "Freeze":

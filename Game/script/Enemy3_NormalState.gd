@@ -3,6 +3,7 @@ extends State
 const JUMP_VELOCITY = -400.0
 
 @export var speed : float;
+@export var distRange: float;
 
 
 var direction = Vector2(0.0,0.0);
@@ -23,14 +24,8 @@ func process_update(delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
-	# Add the gravity.
-	if not character.is_on_floor():
-		character.velocity += character.get_gravity() * delta
+	var d = Vector2(character.get_parent().player.position.x - character.position.x,character.get_parent().player.position.y - character.position.y);
+	var dist = sqrt(d.dot(d));
 
-	character.move_and_slide()
-	
-	frameCount += delta
-
-	if frameCount > 3.0:
-		frameCount -= 3.0;
-		character.velocity.x *= -1.0;
+	if dist < distRange + 1e-7:
+		transition_requested.emit("Locate");

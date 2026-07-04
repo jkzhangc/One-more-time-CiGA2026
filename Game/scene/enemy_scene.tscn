@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bhrt21y273kx4"]
 
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="1_7lh84"]
+[ext_resource type="PackedScene" uid="uid://dculo3tl7tqc3" path="res://object/Enemy3.tscn" id="2_8kxfd"]
+[ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="3_qjknn"]
+[ext_resource type="PackedScene" uid="uid://b7xokg0748xx6" path="res://object/board.tscn" id="4_qjknn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_th3oh"]
 size = Vector2(1000, 20)
@@ -28,3 +31,13 @@ mesh = SubResource("BoxMesh_8kxfd")
 
 [node name="Enemy1" parent="." unique_id=1084164698 instance=ExtResource("1_7lh84")]
 position = Vector2(551, 238)
+
+[node name="Enemy3" parent="." unique_id=1721056165 node_paths=PackedStringArray("player") instance=ExtResource("2_8kxfd")]
+position = Vector2(172, 215)
+player = NodePath("../Player")
+
+[node name="Player" parent="." unique_id=2063613206 instance=ExtResource("3_qjknn")]
+position = Vector2(405, 211)
+
+[node name="Board" parent="." unique_id=1118613711 instance=ExtResource("4_qjknn")]
+position = Vector2(678, 239)
