@@ -3,11 +3,15 @@ extends Node2D
 @export var mouse_mask_radius: float = 40.0
 @export var fixed_mask_radius: float = 75.0
 @export_range(0.1, 2.0) var indicator_scale_factor: float = 1.9
+@export var mask_expand_duration: float = 0.2
+@export var mask_strobe_duration: float = 0.5
+@export var mask_shrink_duration: float = 0.2
+@export var strobe_interval: float = 0.08
 @onready var button: Button = $UI/Button
 @onready var color_rect: ColorRect = $GrayEffectLayer/ColorRect
 @onready var indicator: Sprite2D = $GrayEffectLayer/Indicator
 var is_active: bool = false
-var fixed_masks: Array[Vector2] = []
+var fixed_masks: Array[Dictionary] = []
 func _ready() -> void:
 	button.pressed.connect(_on_button_pressed)
 	color_rect.material.set_shader_parameter("is_active", false)
@@ -50,24 +54,59 @@ func _update_indicator_pos() -> void:
 func _update_mouse_shader_pos() -> void:
 	color_rect.material.set_shader_parameter("mouse_pos", get_viewport().get_mouse_position())
 func create_fixed_mask(world_pos: Vector2, screen_pos: Vector2) -> void:
-	if fixed_masks.size() < 3:
-		fixed_masks.append(screen_pos)
-		_update_fixed_masks()
-		_detect_and_modify_state(world_pos, fixed_mask_radius, mask_duration)
-		await get_tree().create_timer(mask_duration).timeout
-		fixed_masks.erase(screen_pos)
-		_update_fixed_masks()
+	if fixed_masks.size() >= 3:
+		return
+	var mask: Dictionary = {"pos": screen_pos, "radius_scale": 0.0, "tween": null}
+	fixed_masks.append(mask)
+	_update_fixed_masks()
+	_detect_and_modify_state(world_pos, fixed_mask_radius, mask_duration)
+
+	var steady: float = maxf(mask_duration - mask_expand_duration - mask_strobe_duration - mask_shrink_duration, 0.0)
+	var tween: Tween = create_tween()
+	mask["tween"] = tween
+
+	# 1. 扩展动画 0 -> 1
+	tween.tween_method(_apply_scale.bind(mask), 0.0, 1.0, mask_expand_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	# 2. 持续静止
+	if steady > 0.0:
+		tween.tween_interval(steady)
+	# 3. 频闪（整轮 on/off 循环，结束时停在可见状态）
+	var flashes: int = int(mask_strobe_duration / (strobe_interval * 2.0))
+	for i in range(flashes):
+		tween.tween_callback(_apply_scale.bind(0.0, mask))
+		tween.tween_interval(strobe_interval)
+		tween.tween_callback(_apply_scale.bind(1.0, mask))
+		tween.tween_interval(strobe_interval)
+	tween.tween_callback(_apply_scale.bind(1.0, mask))
+	# 4. 收缩动画 1 -> 0
+	tween.tween_method(_apply_scale.bind(mask), 1.0, 0.0, mask_shrink_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	# 5. 移除
+	tween.tween_callback(_remove_mask.bind(mask))
+func _apply_scale(value: float, mask: Dictionary) -> void:
+	mask["radius_scale"] = value
+	_update_fixed_masks()
+
+func _remove_mask(mask: Dictionary) -> void:
+	for i in range(fixed_masks.size()):
+		if is_same(fixed_masks[i], mask):
+			fixed_masks.remove_at(i)
+			break
+	_update_fixed_masks()
+
 func _update_fixed_masks() -> void:
-	var default_pos = Vector2(-10000, -10000)
-	var p1 = default_pos
-	var p2 = default_pos
-	var p3 = default_pos
-	if fixed_masks.size() > 0: p1 = fixed_masks[0]
-	if fixed_masks.size() > 1: p2 = fixed_masks[1]
-	if fixed_masks.size() > 2: p3 = fixed_masks[2]
-	color_rect.material.set_shader_parameter("fixed_pos_1", p1)
-	color_rect.material.set_shader_parameter("fixed_pos_2", p2)
-	color_rect.material.set_shader_parameter("fixed_pos_3", p3)
+	var default_pos := Vector2(-10000, -10000)
+	var positions: Array[Vector2] = [default_pos, default_pos, default_pos]
+	var scales: Array[float] = [0.0, 0.0, 0.0]
+	for i in range(min(fixed_masks.size(), 3)):
+		positions[i] = fixed_masks[i]["pos"]
+		scales[i] = fixed_masks[i]["radius_scale"]
+	var mat: ShaderMaterial = color_rect.material
+	mat.set_shader_parameter("fixed_pos_1", positions[0])
+	mat.set_shader_parameter("fixed_pos_2", positions[1])
+	mat.set_shader_parameter("fixed_pos_3", positions[2])
+	mat.set_shader_parameter("fixed_scale_1", scales[0])
+	mat.set_shader_parameter("fixed_scale_2", scales[1])
+	mat.set_shader_parameter("fixed_scale_3", scales[2])
 func _detect_and_modify_state(center_pos: Vector2, radius: float, duration: float) -> void:
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsShapeQueryParameters2D.new()

@@ -22,6 +22,9 @@ shader_parameter/fixed_pos_1 = Vector2(-10000, -10000)
 shader_parameter/fixed_pos_2 = Vector2(-10000, -10000)
 shader_parameter/fixed_pos_3 = Vector2(-10000, -10000)
 shader_parameter/fixed_radius = 75.0
+shader_parameter/fixed_scale_1 = 1.0
+shader_parameter/fixed_scale_2 = 1.0
+shader_parameter/fixed_scale_3 = 1.0
 shader_parameter/border_color = Color(0.2, 0.6, 1, 1)
 shader_parameter/border_width = 3.0
 
@@ -42,9 +45,6 @@ shape = SubResource("RectangleShape2D_sg3n7")
 light_mask = 2
 visibility_layer = 2
 mesh = SubResource("BoxMesh_okf0i")
-
-[node name="Player" parent="." unique_id=381143770 instance=ExtResource("1_okf0i")]
-position = Vector2(0, -44)
 
 [node name="physical_object" parent="." unique_id=1206997064 instance=ExtResource("2_pa2i8")]
 position = Vector2(-59, -57)
@@ -85,3 +85,6 @@ offset_top = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "时间锚点(Q)"
+
+[node name="Player" parent="." unique_id=381143770 instance=ExtResource("1_okf0i")]
+position = Vector2(0, -44)
