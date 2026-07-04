@@ -20,7 +20,8 @@ func process_update(delta: float) -> void:
 	if framePassed > 1e-7:
 		framePassed -= delta;
 	else:
-		transition_requested.emit(last_state); # 回到之前的状态
+		if last_state:
+			transition_requested.emit(last_state.name); # 回到之前的状态
 		
 		
 func physics_update(delta: float) -> void:

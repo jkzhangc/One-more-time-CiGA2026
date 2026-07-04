@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bfx0x0ff4cl34" path="res://art/Player-待机-1.png" id="1_5amv0"]
 [ext_resource type="Script" uid="uid://bts48jlykuruo" path="res://script/player.gd" id="1_o1wbr"]
-[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://object/StateMachine.gd" id="3_qbh5c"]
+[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://script/StateMachine.gd" id="3_qi7d8"]
 [ext_resource type="Script" uid="uid://c6iv8aep2k42n" path="res://script/PlayerIdleState.gd" id="4_qi7d8"]
-[ext_resource type="Script" uid="uid://b86ek0j6nbqq1" path="res://object/PlayerWalkState.gd" id="5_12epm"]
-[ext_resource type="Script" uid="uid://o6kaxstnwn0f" path="res://object/PlayerJumpState.gd" id="6_qi7d8"]
+[ext_resource type="Script" uid="uid://b86ek0j6nbqq1" path="res://script/PlayerWalkState.gd" id="5_ctmjg"]
+[ext_resource type="Script" uid="uid://o6kaxstnwn0f" path="res://script/PlayerJumpState.gd" id="6_un65h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o1wbr"]
 animations = [{
@@ -50,17 +50,17 @@ position_smoothing_speed = 50.0
 rotation_smoothing_speed = 50.0
 
 [node name="StateMachine" type="Node" parent="." unique_id=1501323818 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_qbh5c")
+script = ExtResource("3_qi7d8")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1673467789]
 script = ExtResource("4_qi7d8")
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=450166258]
-script = ExtResource("5_12epm")
+script = ExtResource("5_ctmjg")
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=393917102]
-script = ExtResource("6_qi7d8")
+script = ExtResource("6_un65h")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1452118209]
 light_mask = 4
