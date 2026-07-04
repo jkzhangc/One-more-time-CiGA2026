@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var anim_sprite = $AnimatedSprite2D
+@onready var anim_sprite: Node = get_node_or_null("AnimatedSprite2D")
 @onready var mode: int = 0
 @export var typename: String
 
