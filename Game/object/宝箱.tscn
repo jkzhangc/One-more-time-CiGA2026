@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bth3krfldwjfw"]
+
+[ext_resource type="Texture2D" uid="uid://ci2g36i3l54d6" path="res://art/宝箱-未开启.png" id="1_0yodo"]
+[ext_resource type="Texture2D" uid="uid://3p7ag2ialm0k" path="res://art/宝箱-已开启.png" id="2_wd3hb"]
+[ext_resource type="Script" uid="uid://bxr7k8md3f2a1" path="res://script/chest.gd" id="3_chest"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_of3u6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0yodo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wd3hb")
+}],
+"loop": true,
+"name": &"开启状态",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leauc"]
+size = Vector2(48, 45)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_proximity"]
+radius = 55.0
+
+[node name="宝箱" type="Node2D" unique_id=1926730259]
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("3_chest")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=47523549]
+collision_layer = 8
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=1293576331]
+light_mask = 2
+visibility_layer = 2
+z_index = -1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_of3u6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=781332647]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_leauc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=3810452712]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2860034152]
+shape = SubResource("CircleShape2D_proximity")
+debug_color = Color(1, 0.95, 0.4, 0.3)

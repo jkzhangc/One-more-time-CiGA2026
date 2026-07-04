@@ -19,10 +19,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onh3l"]
-size = Vector2(34, 50)
+size = Vector2(26, 66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12epm"]
-size = Vector2(45, 58)
+size = Vector2(30, 67)
 
 [node name="Player" type="CharacterBody2D" unique_id=2063613206]
 light_mask = 4
@@ -37,10 +37,12 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=740548800]
 light_mask = 4
 visibility_layer = 4
-scale = Vector2(1.5, 1.5)
+position = Vector2(-4, -14)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_o1wbr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=597629648]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_onh3l")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=759915741]
@@ -72,6 +74,7 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1202186947]
 light_mask = 4
 visibility_layer = 4
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_12epm")
 debug_color = Color(0.92444134, 0, 0.103666924, 0.41960785)
 

@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="4_w1wvs"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="6_302jv"]
 [ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="6_g7awx"]
+[ext_resource type="PackedScene" uid="uid://bth3krfldwjfw" path="res://object/宝箱.tscn" id="9_ent7c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3n7"]
 size = Vector2(1000, 20)
@@ -110,3 +111,6 @@ offset_top = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "时间锚点(Q)"
+
+[node name="宝箱" parent="." unique_id=1926730259 instance=ExtResource("9_ent7c")]
+position = Vector2(-464, -32)
