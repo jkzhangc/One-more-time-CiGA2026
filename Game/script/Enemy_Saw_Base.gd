@@ -5,6 +5,7 @@ extends Node2D
 @export var max_distance: float = 200.0
 @export_range(0.0, 1.0) var initial_percent: float = 0.0
 @export var speed: float = 100.0
+@export var rotate_speed: float = 6.0
 @export_enum("全部", "上", "下", "左", "右") var contact_direction: int = 0
 
 
@@ -26,8 +27,20 @@ func _ready() -> void:
 		normal.max_distance = max_distance
 		normal.initial_percent = initial_percent
 		normal.speed = speed
+		normal.rotate_speed = rotate_speed
 
 	_apply_contact_shape(instance)
+	_apply_sprite_mask(instance)
+
+
+func _apply_sprite_mask(instance: Node2D) -> void:
+	var sprite: CanvasItem = instance.get_node_or_null("Sprite2D")
+	if not sprite:
+		return
+	if sprite.material is ShaderMaterial:
+		var mat: ShaderMaterial = (sprite.material as ShaderMaterial).duplicate()
+		mat.set_shader_parameter("dir", contact_direction)
+		sprite.material = mat
 
 
 func _apply_contact_shape(instance: Node2D) -> void:

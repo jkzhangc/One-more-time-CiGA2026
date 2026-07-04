@@ -7,7 +7,7 @@ extends Node2D
 @export var mask_strobe_duration: float = 0.5
 @export var mask_shrink_duration: float = 0.2
 @export var strobe_interval: float = 0.08
-@export var max_anchors: int = 3
+@export var max_anchors: int = 1
 
 signal anchor_count_changed(current: int, max_count: int)
 

@@ -2,77 +2,18 @@
 
 [ext_resource type="Script" uid="uid://c1ruoxlhnkbk4" path="res://script/Enemy_Saw_Base.gd" id="1_pnuvf"]
 [ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://script/enemy_instance.gd" id="2_vk0q4"]
-[ext_resource type="Texture2D" uid="uid://dquxc8bbfd1s6" path="res://art/Suriken.png" id="3_pnuvf"]
+[ext_resource type="Shader" uid="uid://b2tnhvgbj344a" path="res://shader/Sprite_Mask.gdshader" id="3_jqr75"]
+[ext_resource type="Texture2D" uid="uid://cjdj6tlr1v2it" path="res://art/旗子和机关/Layer 3 copy.png" id="3_pnuvf"]
 [ext_resource type="Script" uid="uid://dfx5hikg5dw6u" path="res://script/Enemy_Saw_NormalState.gd" id="5_jqr75"]
 [ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://script/StateMachine.gd" id="15_vk0q4"]
 [ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://script/EnemyFreezeState.gd" id="17_vk0q4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_re7k2"]
-atlas = ExtResource("3_pnuvf")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_34fvo"]
-atlas = ExtResource("3_pnuvf")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xfgwq"]
-atlas = ExtResource("3_pnuvf")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fo2if"]
-atlas = ExtResource("3_pnuvf")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f5nh8"]
-atlas = ExtResource("3_pnuvf")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7kmd"]
-atlas = ExtResource("3_pnuvf")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_brfig"]
-atlas = ExtResource("3_pnuvf")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xyjia"]
-atlas = ExtResource("3_pnuvf")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_62kyf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_re7k2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_34fvo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xfgwq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fo2if")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f5nh8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v7kmd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_brfig")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xyjia")
-}],
-"loop": true,
-"name": &"default",
-"speed": 45.0
-}]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_re7k2"]
+shader = ExtResource("3_jqr75")
+shader_parameter/dir = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkk3g"]
-size = Vector2(32, 32)
+size = Vector2(32, 39.387413)
 
 [node name="电锯" type="Node2D" unique_id=463665746]
 script = ExtResource("1_pnuvf")
@@ -82,11 +23,14 @@ collision_mask = 11
 script = ExtResource("2_vk0q4")
 typename = "电锯"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyInstance" unique_id=1288836411]
-sprite_frames = SubResource("SpriteFrames_62kyf")
-frame_progress = 0.7132788
+[node name="Sprite2D" type="Sprite2D" parent="EnemyInstance" unique_id=286156643]
+material = SubResource("ShaderMaterial_re7k2")
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("3_pnuvf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=854017101]
+rotation = 3.1415925
+scale = Vector2(2.246, -1.8)
 shape = SubResource("RectangleShape2D_qkk3g")
 
 [node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=1261681124 node_paths=PackedStringArray("initial_state")]

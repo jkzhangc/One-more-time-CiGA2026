@@ -80,10 +80,12 @@ position = Vector2(-7, -77)
 position = Vector2(-138, -39)
 
 [node name="电锯" parent="." unique_id=463665746 instance=ExtResource("6_h37h8")]
-position = Vector2(-471, -33)
+position = Vector2(-471, -14)
+contact_direction = 1
 
 [node name="电锯2" parent="." unique_id=820412316 instance=ExtResource("6_h37h8")]
-position = Vector2(-950, -122)
+position = Vector2(-929, -133)
+contact_direction = 2
 
 [node name="Door" parent="." unique_id=691006439 instance=ExtResource("7_ccngs")]
 position = Vector2(288.00003, -146.00002)
