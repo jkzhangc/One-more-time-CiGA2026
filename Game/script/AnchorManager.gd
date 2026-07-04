@@ -44,6 +44,7 @@ func toggle_indicator() -> void:
 		_update_indicator_pos()
 func _process(_delta: float) -> void:
 	_update_fixed_masks()
+	_detect_masks()
 	if is_active:
 		_update_indicator_pos()
 		_update_mouse_shader_pos()
@@ -56,10 +57,16 @@ func _update_mouse_shader_pos() -> void:
 func create_fixed_mask(world_pos: Vector2) -> void:
 	if fixed_masks.size() >= 3:
 		return
-	var mask: Dictionary = {"world_pos": world_pos, "radius_scale": 0.0, "tween": null}
+	var mask: Dictionary = {
+		"world_pos": world_pos,
+		"radius_scale": 0.0,
+		"tween": null,
+		"start_time": Time.get_ticks_msec() / 1000.0,
+		"total_duration": mask_duration,
+		"triggered": [],
+	}
 	fixed_masks.append(mask)
 	_update_fixed_masks()
-	_detect_and_modify_state(world_pos, fixed_mask_radius, mask_duration)
 
 	var steady: float = maxf(mask_duration - mask_expand_duration - mask_strobe_duration - mask_shrink_duration, 0.0)
 	var tween: Tween = create_tween()
@@ -110,17 +117,29 @@ func _update_fixed_masks() -> void:
 	mat.set_shader_parameter("fixed_scale_2", scales[1])
 	mat.set_shader_parameter("fixed_scale_3", scales[2])
 	mat.set_shader_parameter("fixed_radius", fixed_mask_radius * zoom_scale)
-func _detect_and_modify_state(center_pos: Vector2, radius: float, duration: float) -> void:
+func _detect_masks() -> void:
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsShapeQueryParameters2D.new()
-	var circle_shape = CircleShape2D.new()
-	circle_shape.radius = radius
-	query.shape = circle_shape
-	query.transform = Transform2D(0, center_pos)
-	query.collide_with_areas = true
-	query.collide_with_bodies = true
-	var results = space_state.intersect_shape(query)
-	for result in results:
-		var collider = result.collider
-		if collider.has_method("apply_anchor_state"):
-			collider.apply_gray_state(duration)
+	var now: float = Time.get_ticks_msec() / 1000.0
+	for mask in fixed_masks:
+		var eff_radius: float = fixed_mask_radius * mask.radius_scale
+		if eff_radius <= 0.001:
+			continue
+		var remaining: float = mask.total_duration - (now - mask.start_time)
+		if remaining <= 0.0:
+			continue
+		var query := PhysicsShapeQueryParameters2D.new()
+		var circle_shape := CircleShape2D.new()
+		circle_shape.radius = eff_radius
+		query.shape = circle_shape
+		query.transform = Transform2D(0, mask.world_pos)
+		query.collide_with_areas = true
+		query.collide_with_bodies = true
+		var results = space_state.intersect_shape(query)
+		var triggered: Array = mask.triggered
+		for result in results:
+			var collider: Node = result.collider
+			if triggered.has(collider):
+				continue
+			if collider.has_method("apply_anchor_state"):
+				collider.apply_anchor_state(remaining)
+				triggered.append(collider)

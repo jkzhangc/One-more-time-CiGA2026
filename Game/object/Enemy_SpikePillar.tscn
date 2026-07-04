@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://cplibwxwb752n"]
+
+[ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://script/enemy_instance.gd" id="1_5oq66"]
+[ext_resource type="Texture2D" uid="uid://b2mgiyi58uuir" path="res://art/尖刺柱-1.png" id="2_hixao"]
+[ext_resource type="Texture2D" uid="uid://pi64rlxq0nuc" path="res://art/尖刺柱-2.png" id="3_402q6"]
+[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://script/StateMachine.gd" id="4_ixmpn"]
+[ext_resource type="Script" uid="uid://5hyvvmv83n1j" path="res://script/SpikePillar_normaState.gd" id="5_e1mvs"]
+[ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://script/EnemyFreezeState.gd" id="6_83exj"]
+[ext_resource type="Script" uid="uid://kx8p7ushdu78" path="res://script/SpikePillar_spikeState.gd" id="6_hixao"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6sdh1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hixao")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_402q6")
+}],
+"loop": true,
+"name": &"尖刺状态",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fefp"]
+size = Vector2(32, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2728"]
+size = Vector2(32, 20)
+
+[node name="尖刺柱" type="Node2D" unique_id=1721056165]
+
+[node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=2112780339]
+script = ExtResource("1_5oq66")
+typename = "尖刺柱"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyInstance" unique_id=417405732]
+sprite_frames = SubResource("SpriteFrames_6sdh1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=1570007641]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_4fefp")
+
+[node name="Area2D" type="Area2D" parent="EnemyInstance" unique_id=683790686]
+position = Vector2(0, -36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance/Area2D" unique_id=561000819]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_l2728")
+debug_color = Color(0.99999994, 0.004542869, 0.086550035, 0.41960785)
+
+[node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=1622328813 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_ixmpn")
+initial_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="EnemyInstance/StateMachine" unique_id=1194749343]
+script = ExtResource("5_e1mvs")
+
+[node name="Spike" type="Node" parent="EnemyInstance/StateMachine" unique_id=542122630]
+script = ExtResource("6_hixao")
+
+[node name="Freeze" type="Node" parent="EnemyInstance/StateMachine" unique_id=1136029442]
+script = ExtResource("6_83exj")
+consistenceFrame = 4.0
