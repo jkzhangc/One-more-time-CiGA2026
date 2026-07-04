@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://7n2212ud0f1s"]
+
+[ext_resource type="Script" uid="uid://hvgs8wtgenm7" path="res://script/终点.gd" id="1_fpi3d"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fme7q"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_fpi3d"]
+_limits = [0.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9946809, 96.62921), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_y6yqo"]
+_data = [Vector2(0.010638304, 0), 0.0, 0.0, 0, 0, Vector2(0.9574468, 0.92134833), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fme7q"]
+size = Vector2(80, 143.5)
+
+[node name="终点" type="Node2D" unique_id=1870043307]
+script = ExtResource("1_fpi3d")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=1746586759]
+material = SubResource("CanvasItemMaterial_fme7q")
+position = Vector2(-13, -2)
+amount = 10
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector2(0, -980)
+angular_velocity_min = -285.15
+angular_velocity_max = 299.41
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+color = Color(0.9372549, 0.78431374, 0.2784314, 0.8352941)
+anim_speed_max = 15.21
+anim_speed_curve = SubResource("Curve_fpi3d")
+anim_offset_max = 0.1089
+anim_offset_curve = SubResource("Curve_y6yqo")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=220997363]
+material = SubResource("CanvasItemMaterial_fme7q")
+amount = 10
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector2(0, -980)
+angular_velocity_min = -285.15
+angular_velocity_max = 299.41
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+color = Color(0.9372549, 0.78431374, 0.2784314, 0.8352941)
+anim_speed_max = 15.21
+anim_speed_curve = SubResource("Curve_fpi3d")
+anim_offset_max = 0.1089
+anim_offset_curve = SubResource("Curve_y6yqo")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="." unique_id=1428922724]
+material = SubResource("CanvasItemMaterial_fme7q")
+position = Vector2(12, -2)
+amount = 10
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector2(0, -980)
+angular_velocity_min = -285.15
+angular_velocity_max = 299.41
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+color = Color(0.9372549, 0.78431374, 0.2784314, 0.8352941)
+anim_speed_max = 15.21
+anim_speed_curve = SubResource("Curve_fpi3d")
+anim_offset_max = 0.1089
+anim_offset_curve = SubResource("Curve_y6yqo")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1687537306]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1739562756]
+position = Vector2(-1, -71.25)
+shape = SubResource("RectangleShape2D_fme7q")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

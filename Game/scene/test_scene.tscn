@@ -8,7 +8,9 @@
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="4_w1wvs"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="6_302jv"]
 [ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="6_g7awx"]
+[ext_resource type="PackedScene" uid="uid://dculo3tl7tqc3" path="res://object/Enemy3.tscn" id="6_nuccc"]
 [ext_resource type="PackedScene" uid="uid://kuouomxxlutd" path="res://object/Enemy_Saw.tscn" id="7_ent7c"]
+[ext_resource type="PackedScene" uid="uid://bth3krfldwjfw" path="res://object/宝箱.tscn" id="9_ent7c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3n7"]
 size = Vector2(1000, 20)
@@ -85,7 +87,9 @@ position = Vector2(-59, -57)
 [node name="形态类怪物" parent="." unique_id=463665746 instance=ExtResource("4_urr70")]
 position = Vector2(73, -65)
 
-[node name="尖刺柱" parent="." unique_id=1721056165 instance=ExtResource("6_302jv")]
+[node name="Enemy3" parent="." unique_id=1721056165 instance=ExtResource("6_nuccc")]
+
+[node name="尖刺柱" parent="." unique_id=465900749 instance=ExtResource("6_302jv")]
 position = Vector2(-280, -72)
 
 [node name="尖刺柱2" parent="." unique_id=372221146 instance=ExtResource("6_302jv")]
@@ -107,6 +111,10 @@ position = Vector2(408, -70)
 max_distance = 100.0
 speed = 50.0
 contact_direction = 2
+
+[node name="宝箱" parent="." unique_id=1926730259 instance=ExtResource("9_ent7c")]
+position = Vector2(-102, -34)
+mode = "内容2"
 
 [node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=834165342]
 layer = 2

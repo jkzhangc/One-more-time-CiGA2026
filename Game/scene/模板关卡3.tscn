@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://ijcqcwc3xcfy"]
+
+[ext_resource type="Texture2D" uid="uid://bwctbklylai2r" path="res://art/门、宝箱、地等2项文件/背景/80763a6e-2733-486e-bdf1-55ef71d5119e.png" id="1_5junv"]
+[ext_resource type="Texture2D" uid="uid://btkuey4y6rytl" path="res://art/门、宝箱、地等2项文件/背景/地面/Layer 15.png" id="2_5junv"]
+[ext_resource type="Texture2D" path="res://art/门、宝箱、地等2项文件/背景/地面/Layer 7.png" id="3_5junv"]
+[ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="3_l6drx"]
+[ext_resource type="PackedScene" uid="uid://bth3krfldwjfw" path="res://object/宝箱.tscn" id="5_l6drx"]
+[ext_resource type="PackedScene" uid="uid://kuouomxxlutd" path="res://object/Enemy_Saw.tscn" id="6_h37h8"]
+[ext_resource type="PackedScene" uid="uid://dalvijlb8ahwy" path="res://object/door.tscn" id="7_ccngs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6drx"]
+size = Vector2(1618, 101)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uaeuu"]
+size = Vector2(223.46931, 58)
+
+[node name="模板关卡1" type="Node2D" unique_id=700300208]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1537510746]
+z_index = -10
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1955859039]
+position = Vector2(29, -209)
+texture = ExtResource("1_5junv")
+
+[node name="平台" type="StaticBody2D" parent="." unique_id=62931939]
+z_index = -1
+position = Vector2(1, 34)
+scale = Vector2(1.960001, 1)
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="平台" unique_id=736024318]
+texture = ExtResource("2_5junv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="平台" unique_id=2095291282]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(2, 3.5)
+shape = SubResource("RectangleShape2D_l6drx")
+
+[node name="平台2" type="StaticBody2D" parent="." unique_id=1743560688]
+z_index = -1
+position = Vector2(-354, -167)
+scale = Vector2(1.960001, 1)
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="平台2" unique_id=1847610609]
+texture = ExtResource("3_5junv")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="平台2" unique_id=1014907600]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-0.5102234, 1)
+shape = SubResource("RectangleShape2D_uaeuu")
+
+[node name="Player" parent="." unique_id=2063613206 instance=ExtResource("3_l6drx")]
+position = Vector2(-7, -77)
+
+[node name="宝箱" parent="." unique_id=1926730259 instance=ExtResource("5_l6drx")]
+position = Vector2(-138, -39)
+
+[node name="电锯" parent="." unique_id=463665746 instance=ExtResource("6_h37h8")]
+position = Vector2(-471, -33)
+
+[node name="电锯2" parent="." unique_id=820412316 instance=ExtResource("6_h37h8")]
+position = Vector2(-555, -121)
+
+[node name="Door" parent="." unique_id=691006439 instance=ExtResource("7_ccngs")]
+position = Vector2(288.00003, -146.00002)

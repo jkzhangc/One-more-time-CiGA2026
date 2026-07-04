@@ -2,18 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cns2wh5arqowa" path="res://script/enemy_1_base.gd" id="1_37tj6"]
 [ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://script/enemy_instance.gd" id="2_37tj6"]
-[ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="2_ueuno"]
+[ext_resource type="Texture2D" uid="uid://dpq4ksj21j2l1" path="res://art/门、宝箱、地等2项文件/背景/地面/Layer 17.png" id="3_37tj6"]
 [ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://script/StateMachine.gd" id="4_37tj6"]
 [ext_resource type="Script" uid="uid://cih6esisjkciw" path="res://script/Enemy1_Move_updown_State.gd" id="5_ueuno"]
 [ext_resource type="Script" uid="uid://c2qmgta34unv1" path="res://script/Enemy1_Move_leftright_State.gd" id="6_ueuno"]
 [ext_resource type="Script" uid="uid://b5g0ao4dawot0" path="res://script/Enemy1_Move_Circumference.gd" id="7_5q5oq"]
 [ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://script/EnemyFreezeState.gd" id="8_37tj6"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_quyqi"]
-size = Vector3(5, 2, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueuno"]
-size = Vector2(105, 47)
+size = Vector2(160, 80)
 
 [node name="移动平台" type="Node2D" unique_id=1084164698]
 script = ExtResource("1_37tj6")
@@ -28,18 +25,12 @@ platform_wall_layers = 6
 script = ExtResource("2_37tj6")
 typename = "移动平台"
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="EnemyInstance" unique_id=1848888422]
-light_mask = 8
-visibility_layer = 8
-position = Vector2(0.5625701, -12.499998)
-scale = Vector2(20.89853, 23.000006)
-mesh = SubResource("BoxMesh_quyqi")
-texture = ExtResource("2_ueuno")
+[node name="Sprite2D" type="Sprite2D" parent="EnemyInstance" unique_id=719822691]
+texture = ExtResource("3_37tj6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=1922425590]
 light_mask = 8
 visibility_layer = 8
-position = Vector2(0.5, -12.5)
 shape = SubResource("RectangleShape2D_ueuno")
 
 [node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=868414888 node_paths=PackedStringArray("initial_state")]

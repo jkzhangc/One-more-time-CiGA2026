@@ -1,3 +1,45 @@
 [gd_scene format=3 uid="uid://dalvijlb8ahwy"]
 
+[ext_resource type="Script" uid="uid://dgf10r7he26so" path="res://script/door.gd" id="1_k77ac"]
+[ext_resource type="Texture2D" uid="uid://db7s0sdaj7qhp" path="res://art/门、宝箱、地等2项文件/门、宝箱、地/Layer 10.png" id="1_ogikq"]
+[ext_resource type="Texture2D" uid="uid://cbiclyamcvkwa" path="res://art/门、宝箱、地等2项文件/门、宝箱、地/Layer 9.png" id="2_8xwr3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k77ac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ogikq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8xwr3")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogikq"]
+size = Vector2(170, 259.5)
+
 [node name="Door" type="Node2D" unique_id=691006439]
+z_index = -1
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_k77ac")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1628984575]
+sprite_frames = SubResource("SpriteFrames_k77ac")
+animation = &"open"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=573353686]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1244687257]
+position = Vector2(-3, 56.75)
+shape = SubResource("RectangleShape2D_ogikq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

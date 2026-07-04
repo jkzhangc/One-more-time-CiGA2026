@@ -49,10 +49,10 @@ sprite_frames = SubResource("SpriteFrames_of3u6")
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_leauc")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=3810452712]
+[node name="Area2D" type="Area2D" parent="." unique_id=-484514584]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2860034152]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=-1434933144]
 shape = SubResource("CircleShape2D_proximity")
 debug_color = Color(1, 0.95, 0.4, 0.3)

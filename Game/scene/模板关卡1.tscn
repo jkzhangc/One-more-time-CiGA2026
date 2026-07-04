@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cxprmsvcie507"]
+
+[ext_resource type="Texture2D" uid="uid://bwctbklylai2r" path="res://art/门、宝箱、地等2项文件/背景/80763a6e-2733-486e-bdf1-55ef71d5119e.png" id="1_inkcr"]
+[ext_resource type="Texture2D" uid="uid://btkuey4y6rytl" path="res://art/门、宝箱、地等2项文件/背景/地面/Layer 15.png" id="2_inkcr"]
+[ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="2_inse3"]
+[ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="5_77ltu"]
+[ext_resource type="PackedScene" uid="uid://7n2212ud0f1s" path="res://object/终点.tscn" id="5_inkcr"]
+[ext_resource type="PackedScene" uid="uid://du2inhfv5j1v2" path="res://scene/模板关卡2.tscn" id="6_inkcr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uaeuu"]
+size = Vector2(1618, 101)
+
+[node name="模板关卡1" type="Node2D" unique_id=700300208]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1515617940]
+z_index = -10
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1939504928]
+position = Vector2(29, -209)
+texture = ExtResource("1_inkcr")
+
+[node name="Player" parent="." unique_id=2063613206 instance=ExtResource("2_inse3")]
+position = Vector2(-7, -77)
+
+[node name="平台" type="StaticBody2D" parent="." unique_id=779864089]
+z_index = -1
+position = Vector2(1, 23)
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="平台" unique_id=152517020]
+texture = ExtResource("2_inkcr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="平台" unique_id=1710070253]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(2, 3.5)
+shape = SubResource("RectangleShape2D_uaeuu")
+
+[node name="移动平台" parent="." unique_id=364758674 instance=ExtResource("5_77ltu")]
+position = Vector2(-328, -157)
+
+[node name="终点" parent="." unique_id=1870043307 instance=ExtResource("5_inkcr")]
+position = Vector2(335, -25)
+next_level = ExtResource("6_inkcr")

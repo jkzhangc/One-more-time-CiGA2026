@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://du2inhfv5j1v2"]
+
+[ext_resource type="Texture2D" uid="uid://bwctbklylai2r" path="res://art/门、宝箱、地等2项文件/背景/80763a6e-2733-486e-bdf1-55ef71d5119e.png" id="1_pdp8k"]
+[ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="3_3f7os"]
+[ext_resource type="Texture2D" uid="uid://btkuey4y6rytl" path="res://art/门、宝箱、地等2项文件/背景/地面/Layer 15.png" id="3_pdp8k"]
+[ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="4_fyirc"]
+[ext_resource type="PackedScene" uid="uid://7n2212ud0f1s" path="res://object/终点.tscn" id="5_hfpkw"]
+[ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="5_pdp8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3f7os"]
+size = Vector2(1618, 101)
+
+[node name="模板关卡1" type="Node2D" unique_id=700300208]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1137163546]
+z_index = -10
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=742636980]
+position = Vector2(29, -209)
+texture = ExtResource("1_pdp8k")
+
+[node name="Player" parent="." unique_id=2063613206 instance=ExtResource("3_3f7os")]
+position = Vector2(-7, -77)
+
+[node name="平台" type="StaticBody2D" parent="." unique_id=1406552582]
+z_index = -1
+position = Vector2(1, 23)
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="平台" unique_id=466877641]
+texture = ExtResource("3_pdp8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="平台" unique_id=1673529326]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(2, 3.5)
+shape = SubResource("RectangleShape2D_3f7os")
+
+[node name="尖刺柱" parent="." unique_id=1721056165 instance=ExtResource("4_fyirc")]
+position = Vector2(-294, -79)
+
+[node name="形态类怪物" parent="." unique_id=463665746 instance=ExtResource("5_pdp8k")]
+position = Vector2(-145, -61)
+
+[node name="终点" parent="." unique_id=1870043307 instance=ExtResource("5_hfpkw")]
+position = Vector2(335, -25)
