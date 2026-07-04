@@ -1,29 +1,95 @@
 [gd_scene format=3 uid="uid://pbwqx2stft1k"]
 
+[ext_resource type="Script" uid="uid://7yuv5my66xff" path="res://object/enemy_2_base.gd" id="1_li2r7"]
 [ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://object/enemy_instance.gd" id="1_ljshq"]
-[ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="2_670ds"]
+[ext_resource type="Texture2D" uid="uid://b2rgsd355ggxq" path="res://art/形态类敌人-2.png" id="2_tk1hw"]
 [ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://object/StateMachine.gd" id="3_7nsf5"]
+[ext_resource type="Texture2D" uid="uid://bgr020tvpjxrt" path="res://art/形态类敌人-1.png" id="3_li2r7"]
+[ext_resource type="Texture2D" uid="uid://byrkqsyx7pylm" path="res://art/形态类敌人-3.png" id="4_jjx1r"]
 [ext_resource type="Script" uid="uid://dnur0crlaqicb" path="res://object/Enemy2_NormalState.gd" id="4_ljshq"]
 [ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://object/EnemyFreezeState.gd" id="5_okspp"]
+[ext_resource type="Texture2D" uid="uid://cpl7qkfl6nn2m" path="res://art/形态类敌人-4.png" id="5_vk0q4"]
+[ext_resource type="Texture2D" uid="uid://hksymwxy1lfv" path="res://art/形态类敌人-5.png" id="6_ne3l3"]
+[ext_resource type="Texture2D" uid="uid://dq1j532xgom7u" path="res://art/形态类敌人-6.png" id="7_dq34g"]
+[ext_resource type="Texture2D" uid="uid://d1uhsrlnvgmwn" path="res://art/形态类敌人-7.png" id="8_q0aoc"]
+[ext_resource type="Texture2D" uid="uid://bpsool251wlwn" path="res://art/形态类敌人-8.png" id="9_ml4hp"]
+[ext_resource type="Texture2D" uid="uid://dx8y3cph1xt5h" path="res://art/形态类敌人-9.png" id="10_6xscr"]
+[ext_resource type="Texture2D" uid="uid://e725d6e8n117" path="res://art/形态类敌人-10.png" id="11_tie14"]
+[ext_resource type="Texture2D" uid="uid://7fnudjvyvrmo" path="res://art/形态类敌人-11.png" id="12_b5hgw"]
+[ext_resource type="Texture2D" uid="uid://b0cmuyf0qe31f" path="res://art/形态类敌人-12.png" id="13_5jign"]
+[ext_resource type="Script" uid="uid://d4xbiv47a21o" path="res://script/enemy2_middle_jump.gd" id="18_jjx1r"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_deldt"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_62kyf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tk1hw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_5jign")
+}],
+"loop": true,
+"name": &"中形态",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("3_li2r7")
+}, {
+"duration": 0.2,
+"texture": ExtResource("4_jjx1r")
+}, {
+"duration": 0.2,
+"texture": ExtResource("5_vk0q4")
+}, {
+"duration": 0.2,
+"texture": ExtResource("6_ne3l3")
+}, {
+"duration": 0.2,
+"texture": ExtResource("7_dq34g")
+}, {
+"duration": 0.2,
+"texture": ExtResource("8_q0aoc")
+}, {
+"duration": 0.2,
+"texture": ExtResource("9_ml4hp")
+}, {
+"duration": 0.2,
+"texture": ExtResource("10_6xscr")
+}, {
+"duration": 0.2,
+"texture": ExtResource("11_tie14")
+}, {
+"duration": 0.2,
+"texture": ExtResource("12_b5hgw")
+}, {
+"duration": 0.2,
+"texture": ExtResource("13_5jign")
+}],
+"loop": false,
+"name": &"形态切换动画",
+"speed": 5.0
+}]
 
-[sub_resource type="SphereMesh" id="SphereMesh_fchwi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkk3g"]
+size = Vector2(32, 32)
 
 [node name="Enemy2" type="Node2D" unique_id=463665746]
+script = ExtResource("1_li2r7")
 
 [node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=187424754]
 script = ExtResource("1_ljshq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=854017101]
-position = Vector2(0, -13)
-shape = SubResource("CircleShape2D_deldt")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyInstance" unique_id=1288836411]
+sprite_frames = SubResource("SpriteFrames_62kyf")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="EnemyInstance" unique_id=452717102]
-position = Vector2(0.5625701, -12.499998)
-scale = Vector2(20.89853, 23.000006)
-mesh = SubResource("SphereMesh_fchwi")
-texture = ExtResource("2_670ds")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=854017101]
+shape = SubResource("RectangleShape2D_qkk3g")
 
 [node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=1261681124 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_7nsf5")
@@ -38,5 +104,6 @@ script = ExtResource("5_okspp")
 consistenceFrame = 4.0
 
 [node name="MiddleJump" type="Node" parent="EnemyInstance/StateMachine" unique_id=1038410943]
+script = ExtResource("18_jjx1r")
 
 [node name="HighJump" type="Node" parent="EnemyInstance/StateMachine" unique_id=837736937]

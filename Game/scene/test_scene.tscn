@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="1_okf0i"]
 [ext_resource type="PackedScene" uid="uid://degatcchdorff" path="res://object/physical_object.tscn" id="2_pa2i8"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="3_b0kse"]
+[ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="4_urr70"]
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="4_w1wvs"]
 [ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="6_g7awx"]
 
@@ -57,8 +58,10 @@ initial_state = "Move_leftright"
 [node name="移动平台" parent="." unique_id=335580897 instance=ExtResource("3_b0kse")]
 position = Vector2(296, -88)
 
-[node name="Player" parent="." unique_id=381143770 instance=ExtResource("1_okf0i")]
+[node name="Player2" parent="." unique_id=381143770 instance=ExtResource("1_okf0i")]
 position = Vector2(0, -44)
+
+[node name="Enemy2" parent="." unique_id=463665746 instance=ExtResource("4_urr70")]
 
 [node name="physical_object" parent="." unique_id=1206997064 instance=ExtResource("2_pa2i8")]
 position = Vector2(-59, -57)
@@ -96,6 +99,3 @@ offset_top = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "时间锚点(Q)"
-
-[node name="Player" parent="." unique_id=381143770 instance=ExtResource("1_okf0i")]
-position = Vector2(0, -44)
