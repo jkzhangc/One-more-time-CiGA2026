@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cvcoxybgnip2d" path="res://art/Player_jump_3.png" id="7_5bnha"]
 [ext_resource type="Texture2D" uid="uid://d1u1ksngy8gsx" path="res://art/Player_walk_1.png" id="8_q1vnj"]
 [ext_resource type="Texture2D" uid="uid://ca1ni6wubnllt" path="res://art/Player_walk_2.png" id="9_hf241"]
+[ext_resource type="Texture2D" uid="uid://bx6kt43vjq07q" path="res://art/Player_使用锚点时间.png" id="10_r7m1a"]
+[ext_resource type="Script" uid="uid://clobr5obv5p07" path="res://script/施法.gd" id="15_hkwkf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o1wbr"]
 animations = [{
@@ -64,6 +66,17 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_r7m1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r7m1a")
+}],
+"loop": false,
+"name": &"施法",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onh3l"]
@@ -88,7 +101,9 @@ visibility_layer = 4
 position = Vector2(-4, -14)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_o1wbr")
-animation = &"idle"
+animation = &"施法"
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=597629648]
 position = Vector2(0, 2)
@@ -109,9 +124,14 @@ script = ExtResource("4_qi7d8")
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=450166258]
 script = ExtResource("5_ctmjg")
+speed = 200.0
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=393917102]
 script = ExtResource("6_un65h")
+jump_velocity = -550.0
+
+[node name="施法" type="Node" parent="StateMachine" unique_id=1593950503]
+script = ExtResource("15_hkwkf")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1452118209]
 light_mask = 4

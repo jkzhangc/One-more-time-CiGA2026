@@ -101,6 +101,7 @@ func _update_mouse_shader_pos() -> void:
 func create_fixed_mask(world_pos: Vector2) -> void:
 	if _placed_count >= max_anchors:
 		return
+		
 	var mask: Dictionary = {
 		"world_pos": world_pos,
 		"radius_scale": 0.0,
@@ -130,6 +131,10 @@ func create_fixed_mask(world_pos: Vector2) -> void:
 	tween.tween_callback(_apply_scale.bind(1.0, mask))
 	tween.tween_method(_apply_scale.bind(mask), 1.0, 0.0, mask_shrink_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	tween.tween_callback(_remove_mask.bind(mask))
+	for child in get_children():
+		if child.name == "Player":
+			#print(child,child.get_children())
+			child.get_children()[3]._on_transition_requested("施法")
 
 func _apply_scale(value: float, mask: Dictionary) -> void:
 	mask["radius_scale"] = value

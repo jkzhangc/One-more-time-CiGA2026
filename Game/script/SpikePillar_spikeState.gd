@@ -3,11 +3,12 @@ extends State
 const JUMP_VELOCITY = -400.0
 
 @export var speed : float;
-
+# 尖刺消失随机时长 x=最小随机数,y=最大随机数
+@export var spike_hied_rate: Vector2 = Vector2(0.0,10.0);
 
 var direction = Vector2(0.0,0.0);
 var count = 0;
-
+var random_float = 0.0;
 var frameCount = 0.0;
 
 func random_direction() -> Vector2:
@@ -21,6 +22,7 @@ func enter() -> void:
 			area2D = child
 	if area2D:
 		area2D.get_children()[0].set_deferred("disabled", false)
+	random_float = randf_range(spike_hied_rate.x, spike_hied_rate.y)
 
 func exit() -> void:
 	# 不在 exit 关闭刺碰撞体——

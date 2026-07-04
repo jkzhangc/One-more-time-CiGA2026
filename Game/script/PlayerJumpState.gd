@@ -3,9 +3,11 @@ extends State
 @export var jump_velocity: float = -450.0
 # 空中移动速度
 @export var jump_move_velocity: float = 150.0
+# 重力
+@export var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # 从项目设置里获取全局重力，这样代码更具移植性
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func enter() -> void:
 	print("进入jump状态，播放动画")
