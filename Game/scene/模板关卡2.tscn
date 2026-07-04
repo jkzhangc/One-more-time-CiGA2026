@@ -1,16 +1,35 @@
 [gd_scene format=3 uid="uid://du2inhfv5j1v2"]
 
+[ext_resource type="Script" uid="uid://bk5ogmcd4eji1" path="res://script/AnchorManager.gd" id="1_3f7os"]
 [ext_resource type="Texture2D" uid="uid://bwctbklylai2r" path="res://art/门、宝箱、地等2项文件/背景/80763a6e-2733-486e-bdf1-55ef71d5119e.png" id="1_pdp8k"]
 [ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="3_3f7os"]
 [ext_resource type="Texture2D" uid="uid://btkuey4y6rytl" path="res://art/门、宝箱、地等2项文件/背景/地面/Layer 15.png" id="3_pdp8k"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="4_fyirc"]
 [ext_resource type="PackedScene" uid="uid://7n2212ud0f1s" path="res://object/终点.tscn" id="5_hfpkw"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="5_pdp8k"]
+[ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="8_hfpkw"]
+[ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="9_y1vhc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f7os"]
 size = Vector2(1618, 101)
 
-[node name="模板关卡1" type="Node2D" unique_id=700300208]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24ftb"]
+shader = ExtResource("8_hfpkw")
+shader_parameter/is_active = false
+shader_parameter/mouse_pos = Vector2(-10000, -10000)
+shader_parameter/mouse_radius = 40.0
+shader_parameter/fixed_pos_1 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_2 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_3 = Vector2(-10000, -10000)
+shader_parameter/fixed_radius = 75.0
+shader_parameter/fixed_scale_1 = 1.0
+shader_parameter/fixed_scale_2 = 1.0
+shader_parameter/fixed_scale_3 = 1.0
+shader_parameter/border_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/border_width = 3.0
+
+[node name="模板关卡2" type="Node2D" unique_id=700300208]
+script = ExtResource("1_3f7os")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1137163546]
 z_index = -10
@@ -44,3 +63,49 @@ position = Vector2(-145, -61)
 
 [node name="终点" parent="." unique_id=1870043307 instance=ExtResource("5_hfpkw")]
 position = Vector2(335, -25)
+
+[node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=496154659]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="GrayEffectLayer" unique_id=1003687827]
+material = SubResource("ShaderMaterial_24ftb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.0092218)
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Indicator" type="Sprite2D" parent="GrayEffectLayer" unique_id=2079479460]
+texture = ExtResource("9_y1vhc")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=777213415]
+layer = 3
+
+[node name="Button" type="Button" parent="UI" unique_id=1742155772]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "时间锚点(Q)"
+
+[node name="DeathZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(0, 350)
+shape = SubResource("RectangleShape2D_3f7os")
+
+[connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]

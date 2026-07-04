@@ -5,6 +5,7 @@ var input_axis: float = 0.0
 
 func enter() -> void:
 	print("进入walk状态，播放动画")
+	character.anim_sprite.play("walk")
 	
 func process_update(delta :float) -> void:
 	input_axis = Input.get_axis("left","right")

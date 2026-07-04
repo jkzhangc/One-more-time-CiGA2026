@@ -8,7 +8,6 @@
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="4_w1wvs"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="6_302jv"]
 [ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="6_g7awx"]
-[ext_resource type="PackedScene" uid="uid://dculo3tl7tqc3" path="res://object/Enemy3.tscn" id="6_nuccc"]
 [ext_resource type="PackedScene" uid="uid://kuouomxxlutd" path="res://object/Enemy_Saw.tscn" id="7_ent7c"]
 [ext_resource type="PackedScene" uid="uid://bth3krfldwjfw" path="res://object/宝箱.tscn" id="9_ent7c"]
 
@@ -87,8 +86,6 @@ position = Vector2(-59, -57)
 [node name="形态类怪物" parent="." unique_id=463665746 instance=ExtResource("4_urr70")]
 position = Vector2(73, -65)
 
-[node name="Enemy3" parent="." unique_id=1721056165 instance=ExtResource("6_nuccc")]
-
 [node name="尖刺柱" parent="." unique_id=465900749 instance=ExtResource("6_302jv")]
 position = Vector2(-280, -72)
 
@@ -132,6 +129,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1.0092218)
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Indicator" type="Sprite2D" parent="GrayEffectLayer" unique_id=881821473]
 texture = ExtResource("6_g7awx")
@@ -150,3 +148,4 @@ offset_top = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "时间锚点(Q)"
+metadata/_edit_use_anchors_ = true

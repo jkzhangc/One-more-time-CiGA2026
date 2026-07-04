@@ -188,3 +188,10 @@ func _detect_masks() -> void:
 			if collider.has_method("apply_anchor_state"):
 				collider.apply_anchor_state(remaining)
 				triggered.append(collider)
+
+
+# 死亡区域回调（关卡底部 Area2D 连接到此方法）
+func _on_death_zone_body_entered(body: Node2D) -> void:
+	if body.has_method("take_damage"):
+		print("玩家掉入死亡区域！")
+		get_tree().reload_current_scene()

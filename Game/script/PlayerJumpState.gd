@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func enter() -> void:
 	print("进入jump状态，播放动画")
+	character.anim_sprite.play("jump")
 	character.velocity.y = jump_velocity
 		
 func physics_update(delta: float) -> void:

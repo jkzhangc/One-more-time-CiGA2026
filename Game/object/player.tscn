@@ -2,19 +2,67 @@
 
 [ext_resource type="Texture2D" uid="uid://bfx0x0ff4cl34" path="res://art/Player-待机-1.png" id="1_5amv0"]
 [ext_resource type="Script" uid="uid://bts48jlykuruo" path="res://script/player.gd" id="1_o1wbr"]
+[ext_resource type="Texture2D" uid="uid://csc46ifejxirg" path="res://art/Player_死亡.png" id="2_akims"]
 [ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://script/StateMachine.gd" id="3_qi7d8"]
+[ext_resource type="Texture2D" uid="uid://c86k6g1t6yfx1" path="res://art/Player_受伤.png" id="3_r7m1a"]
 [ext_resource type="Script" uid="uid://c6iv8aep2k42n" path="res://script/PlayerIdleState.gd" id="4_qi7d8"]
 [ext_resource type="Script" uid="uid://b86ek0j6nbqq1" path="res://script/PlayerWalkState.gd" id="5_ctmjg"]
+[ext_resource type="Texture2D" uid="uid://duorholkjedvy" path="res://art/Player_jump_1.png" id="5_hkwkf"]
+[ext_resource type="Texture2D" uid="uid://duu5u8xsi2g82" path="res://art/Player_jump_2.png" id="6_sw1d2"]
 [ext_resource type="Script" uid="uid://o6kaxstnwn0f" path="res://script/PlayerJumpState.gd" id="6_un65h"]
+[ext_resource type="Texture2D" uid="uid://cvcoxybgnip2d" path="res://art/Player_jump_3.png" id="7_5bnha"]
+[ext_resource type="Texture2D" uid="uid://d1u1ksngy8gsx" path="res://art/Player_walk_1.png" id="8_q1vnj"]
+[ext_resource type="Texture2D" uid="uid://ca1ni6wubnllt" path="res://art/Player_walk_2.png" id="9_hf241"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o1wbr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_akims")
+}],
+"loop": true,
+"name": &"dei",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("3_r7m1a")
+}],
+"loop": false,
+"name": &"hut",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_5amv0")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.5,
+"texture": ExtResource("5_hkwkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sw1d2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5bnha")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_q1vnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hf241")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -40,6 +88,7 @@ visibility_layer = 4
 position = Vector2(-4, -14)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_o1wbr")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=597629648]
 position = Vector2(0, 2)

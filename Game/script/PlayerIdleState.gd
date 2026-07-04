@@ -4,14 +4,16 @@ extends State
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func enter() -> void:
-	character.velocity = Vector2.ZERO
 	print(character.name)
 	print("进入idle状态")
+	character.velocity = Vector2.ZERO
+	
 	
 func exit() -> void:
 	print("离开idle状态")
 
 func process_update(delta :float) -> void:
+	character.anim_sprite.play("idle")
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		transition_requested.emit("Walk")
 		return

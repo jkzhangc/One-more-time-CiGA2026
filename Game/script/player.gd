@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var anim_sprite = $AnimatedSprite2D
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const MAX_HP = 3
@@ -19,6 +21,11 @@ var _hp_label: Label = null
 func _ready() -> void:
 	$Area2D.body_exited.connect(_on_area_2d_body_exited)
 	_create_hp_ui()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("reset"):
+		get_tree().reload_current_scene()
 
 
 func _create_hp_ui() -> void:
