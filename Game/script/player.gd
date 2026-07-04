@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var anim_sprite = $AnimatedSprite2D
 
-const SPEED = 300.0
+const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 const MAX_HP = 3
 const INVULNERABLE_TIME = 1.5  # 受伤后无敌时间（秒）

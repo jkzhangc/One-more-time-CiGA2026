@@ -69,6 +69,7 @@ initial_state = NodePath("Normal")
 
 [node name="Normal" type="Node" parent="EnemyInstance/StateMachine" unique_id=1194749343]
 script = ExtResource("5_e1mvs")
+spike_show_rate = Vector2(1, 2)
 
 [node name="Spike" type="Node" parent="EnemyInstance/StateMachine" unique_id=542122630]
 script = ExtResource("6_hixao")

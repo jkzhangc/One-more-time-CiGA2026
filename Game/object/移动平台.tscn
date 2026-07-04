@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://script/EnemyFreezeState.gd" id="8_37tj6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueuno"]
-size = Vector2(160, 80)
+size = Vector2(153, 67)
 
 [node name="移动平台" type="Node2D" unique_id=1084164698]
 script = ExtResource("1_37tj6")
@@ -31,6 +31,7 @@ texture = ExtResource("3_37tj6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=1922425590]
 light_mask = 8
 visibility_layer = 8
+position = Vector2(-3.5, 6.5)
 shape = SubResource("RectangleShape2D_ueuno")
 
 [node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=868414888 node_paths=PackedStringArray("initial_state")]
