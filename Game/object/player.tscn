@@ -70,7 +70,7 @@ animations = [{
 size = Vector2(26, 66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12epm"]
-size = Vector2(30, 67)
+size = Vector2(30, 68)
 
 [node name="Player" type="CharacterBody2D" unique_id=2063613206]
 light_mask = 4
@@ -123,7 +123,7 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1202186947]
 light_mask = 4
 visibility_layer = 4
-position = Vector2(0, 1.5)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_12epm")
 debug_color = Color(0.92444134, 0, 0.103666924, 0.41960785)
 

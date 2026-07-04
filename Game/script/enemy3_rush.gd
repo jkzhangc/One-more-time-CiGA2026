@@ -23,4 +23,5 @@ func physics_update(delta: float) -> void:
 	character.move_and_slide();
 	frameCount += delta;
 	if frameCount > frameCountmax + 1e-7:
+		character.anim_sprite.play("default")
 		transition_requested.emit("Normal");

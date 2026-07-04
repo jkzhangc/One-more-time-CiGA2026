@@ -197,6 +197,13 @@ func _physics_process(delta: float) -> void:
 	for body in to_remove:
 		_frozen_overlap.erase(body)
 
+	# 移动方向翻转 AnimatedSprite2D
+	var input_dir = Input.get_axis("left", "right")
+	if input_dir < 0:
+		$AnimatedSprite2D.flip_h = true
+	elif input_dir > 0:
+		$AnimatedSprite2D.flip_h = false
+
 
 # --- 辅助 ---
 
@@ -226,7 +233,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("敌人状态: ", enemy_state_name)
 
 	var enemy_type: String = body.get("typename") if body.get("typename") else ""
-
+	
 	match enemy_type:
 		"移动平台":
 			# 移动平台：无论是否冻结，玩家都不受影响

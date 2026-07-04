@@ -4,6 +4,7 @@ const JUMP_VELOCITY = -400.0
 
 @export var speed : float;
 
+@export var spike_show_rate: Vector2 = Vector2(0.0,10.0);
 
 var direction = Vector2(0.0,0.0);
 var count = 0;

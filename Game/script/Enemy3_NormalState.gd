@@ -24,8 +24,12 @@ func process_update(delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
+	
 	var d = Vector2(character.get_parent().player.position.x - character.position.x,character.get_parent().player.position.y - character.position.y);
 	var dist = sqrt(d.dot(d));
 
 	if dist < distRange + 1e-7:
+		character.anim_sprite.play("冲刺预备")
+		await character.anim_sprite.animation_finished
+		character.anim_sprite.play("冲刺")
 		transition_requested.emit("Locate");
