@@ -12,12 +12,16 @@ func process_update(delta :float) -> void:
 	if is_zero_approx(input_axis):
 		transition_requested.emit("Idle")
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_pressed("jump"):
 		transition_requested.emit("Jump")
 		
 func physics_update(delta: float) -> void:
 	# 执行移动
 	character.velocity.x = input_axis * speed
+	
+	if not character.is_on_floor():
+		character.velocity += character.get_gravity() * delta
+	
 	character.move_and_slide()
 
 func exit() -> void:

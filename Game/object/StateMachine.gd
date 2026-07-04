@@ -5,6 +5,7 @@ class_name StateMachine extends Node
 var states: Dictionary = {}
 var current_state: State
 var character: CharacterBody2D
+var last_state: State
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,7 +36,9 @@ func _on_transition_requested(nxtState : String) -> void:
 	
 	if current_state:
 		current_state.exit();
-		
+		last_state = current_state
+	
 	current_state = states[nxtState]
 	if current_state:
+		current_state.last_state = last_state
 		current_state.enter()

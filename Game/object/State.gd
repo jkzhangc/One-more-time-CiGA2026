@@ -1,6 +1,7 @@
 class_name State extends Node
 
 var character : CharacterBody2D;
+var last_state: State
 
 signal transition_requested(nxtState : String);
 

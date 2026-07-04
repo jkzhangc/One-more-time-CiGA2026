@@ -1,6 +1,6 @@
 extends State
 # 跳跃起速度
-@export var jump_velocity: float = -350.0
+@export var jump_velocity: float = -450.0
 # 空中移动速度
 @export var jump_move_velocity: float = 150.0
 

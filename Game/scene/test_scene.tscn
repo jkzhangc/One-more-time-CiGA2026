@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bk5ogmcd4eji1" path="res://script/AnchorManager.gd" id="1_g7awx"]
 [ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="1_okf0i"]
 [ext_resource type="PackedScene" uid="uid://degatcchdorff" path="res://object/physical_object.tscn" id="2_pa2i8"]
-[ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/Enemy1.tscn" id="3_b0kse"]
+[ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="3_b0kse"]
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="4_w1wvs"]
 [ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="6_g7awx"]
 
@@ -43,14 +43,22 @@ light_mask = 2
 visibility_layer = 2
 mesh = SubResource("BoxMesh_okf0i")
 
+[node name="移动平台3" parent="." unique_id=1084164698 instance=ExtResource("3_b0kse")]
+position = Vector2(-160, -216)
+initial_state = "Move_circumference"
+
+[node name="移动平台2" parent="." unique_id=217429920 instance=ExtResource("3_b0kse")]
+position = Vector2(144, -152)
+initial_state = "Move_leftright"
+
+[node name="移动平台" parent="." unique_id=335580897 instance=ExtResource("3_b0kse")]
+position = Vector2(296, -88)
+
 [node name="Player" parent="." unique_id=381143770 instance=ExtResource("1_okf0i")]
 position = Vector2(0, -44)
 
 [node name="physical_object" parent="." unique_id=1206997064 instance=ExtResource("2_pa2i8")]
 position = Vector2(-59, -57)
-
-[node name="Enemy1" parent="." unique_id=1084164698 instance=ExtResource("3_b0kse")]
-position = Vector2(45, -16)
 
 [node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=834165342]
 layer = 2
