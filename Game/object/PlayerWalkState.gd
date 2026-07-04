@@ -7,12 +7,12 @@ func enter() -> void:
 	print("进入walk状态，播放动画")
 	
 func process_update(delta :float) -> void:
-	input_axis = Input.get_axis("ui_left","ui_right")
+	input_axis = Input.get_axis("left","right")
 	
 	if is_zero_approx(input_axis):
 		transition_requested.emit("Idle")
 	
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("jump"):
 		transition_requested.emit("Jump")
 		
 func physics_update(delta: float) -> void:

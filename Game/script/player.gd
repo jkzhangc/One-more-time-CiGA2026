@@ -12,24 +12,25 @@ func collision_check(delta :float) -> void:
 		
 	
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	collision_check(delta);
-	move_and_slide()
+	pass
+	## Add the gravity.
+	#if not is_on_floor():
+		#velocity += get_gravity() * delta
+#
+	## Handle jump.
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+#
+	## Get the input direction and handle the movement/deceleration.
+	## As good practice, you should replace UI actions with custom gameplay actions.
+	#var direction := Input.get_axis("ui_left", "ui_right")
+	#if direction:
+		#velocity.x = direction * SPEED
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, SPEED)
+	#
+	#collision_check(delta);
+	#move_and_slide()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -57,8 +58,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				print("#{body.name}是冲锋类怪物")
 		else:
 		# 如果敌人状态不处于时停状态
-			hit.emit() # 发送hit信号
-			hide() # 隐藏玩家
+			if body.name == "移动平台":
+				print("#{body.name}是移动平台")
+			if body.name == "形态类怪物":
+				print("#{body.name}是形态类怪物")
+				hit.emit() # 发送hit信号
+				hide() # 隐藏玩家
+			if body.name == "冲锋类怪物":
+				print("#{body.name}是冲锋类怪物")
+				
 			#$CollisionShape2D.set_deferred("disabled", true) # 取消碰撞体效果
 		
 		

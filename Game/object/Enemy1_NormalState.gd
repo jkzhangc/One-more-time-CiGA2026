@@ -23,14 +23,11 @@ func process_update(delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
-	# Add the gravity.
-	if not character.is_on_floor():
-		character.velocity += character.get_gravity() * delta
 
-	character.move_and_slide()
-	
 	frameCount += delta
 
 	if frameCount > 3.0:
 		frameCount -= 3.0;
 		character.velocity.x *= -1.0;
+	
+	character.move_and_slide()

@@ -25,8 +25,12 @@ size = Vector2(34, 50)
 size = Vector2(45, 58)
 
 [node name="Player" type="CharacterBody2D" unique_id=2063613206]
+light_mask = 4
+visibility_layer = 4
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
+platform_floor_layers = 4294967053
+platform_wall_layers = 13
 script = ExtResource("1_o1wbr")
 metadata/_edit_group_ = true
 

@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://bkdq6y118d36y"]
 
+[ext_resource type="Script" uid="uid://bk5ogmcd4eji1" path="res://script/AnchorManager.gd" id="1_g7awx"]
 [ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="1_okf0i"]
 [ext_resource type="PackedScene" uid="uid://degatcchdorff" path="res://object/physical_object.tscn" id="2_pa2i8"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/Enemy1.tscn" id="3_b0kse"]
+[ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="4_w1wvs"]
+[ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="6_g7awx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3n7"]
 size = Vector2(1000, 20)
@@ -10,7 +13,20 @@ size = Vector2(1000, 20)
 [sub_resource type="BoxMesh" id="BoxMesh_okf0i"]
 size = Vector3(1000, 20, 1)
 
-[node name="test_scene" type="Node" unique_id=171193293]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7awx"]
+shader = ExtResource("4_w1wvs")
+shader_parameter/is_active = false
+shader_parameter/mouse_pos = Vector2(-10000, -10000)
+shader_parameter/mouse_radius = 40.0
+shader_parameter/fixed_pos_1 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_2 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_3 = Vector2(-10000, -10000)
+shader_parameter/fixed_radius = 75.0
+shader_parameter/border_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/border_width = 3.0
+
+[node name="test_scene" type="Node2D" unique_id=1676512622]
+script = ExtResource("1_g7awx")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1584641411]
 
@@ -35,3 +51,37 @@ position = Vector2(-59, -57)
 
 [node name="Enemy1" parent="." unique_id=1084164698 instance=ExtResource("3_b0kse")]
 position = Vector2(45, -16)
+
+[node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=834165342]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="GrayEffectLayer" unique_id=1002758783]
+material = SubResource("ShaderMaterial_g7awx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Indicator" type="Sprite2D" parent="GrayEffectLayer" unique_id=881821473]
+texture = ExtResource("6_g7awx")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1773572363]
+layer = 3
+
+[node name="Button" type="Button" parent="UI" unique_id=392353564]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "时间锚点(Q)"

@@ -14,7 +14,7 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	character.velocity.y += gravity * delta
 	
-	var input_axis = Input.get_axis("ui_left","ui_right")
+	var input_axis = Input.get_axis("left","right")
 	character.velocity.x = input_axis * jump_move_velocity
 	
 	character.move_and_slide()

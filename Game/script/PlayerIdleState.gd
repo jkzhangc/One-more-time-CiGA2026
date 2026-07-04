@@ -11,12 +11,13 @@ func exit() -> void:
 	print("离开idle状态")
 
 func process_update(delta :float) -> void:
-	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
 		transition_requested.emit("Walk")
 		return
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("jump"):
 		transition_requested.emit("Jump")
 		
 func physics_update(delta: float) -> void:
-	if character.is_on_floor():
-		character.velocity.y = gravity
+	if not character.is_on_floor():
+		character.velocity.y += gravity * delta
+	character.move_and_slide()

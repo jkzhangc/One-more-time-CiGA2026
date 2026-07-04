@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2coah58shtq1"
-path="res://.godot/imported/subdirectory_arrow_right-white-18dp.svg-09b2961410e6b2c0e48e0cf1138c3548.ctex"
+uid="uid://cfkyp8yxcw5y1"
+path="res://.godot/imported/indicator.png-600af37738ef3c195d411b59752c2058.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/imjp94.yafsm/assets/icons/subdirectory_arrow_right-white-18dp.svg"
-dest_files=["res://.godot/imported/subdirectory_arrow_right-white-18dp.svg-09b2961410e6b2c0e48e0cf1138c3548.ctex"]
+source_file="res://art/indicator.png"
+dest_files=["res://.godot/imported/indicator.png-600af37738ef3c195d411b59752c2058.ctex"]
 
 [params]
 
@@ -31,13 +31,10 @@ process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
 process/channel_remap/alpha=3
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
