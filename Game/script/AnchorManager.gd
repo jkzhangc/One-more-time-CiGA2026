@@ -33,9 +33,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == KEY_Q and event.pressed and not event.echo:
 		toggle_indicator()
 	elif is_active and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var screen_pos = event.position 
 		var world_pos = get_global_mouse_position()
-		create_fixed_mask(world_pos, screen_pos)
+		create_fixed_mask(world_pos)
 func toggle_indicator() -> void:
 	is_active = not is_active
 	indicator.visible = is_active
@@ -44,6 +43,7 @@ func toggle_indicator() -> void:
 	if is_active:
 		_update_indicator_pos()
 func _process(_delta: float) -> void:
+	_update_fixed_masks()
 	if is_active:
 		_update_indicator_pos()
 		_update_mouse_shader_pos()
@@ -53,10 +53,10 @@ func _update_indicator_pos() -> void:
 # 更新着色器鼠标位置（使用屏幕坐标）
 func _update_mouse_shader_pos() -> void:
 	color_rect.material.set_shader_parameter("mouse_pos", get_viewport().get_mouse_position())
-func create_fixed_mask(world_pos: Vector2, screen_pos: Vector2) -> void:
+func create_fixed_mask(world_pos: Vector2) -> void:
 	if fixed_masks.size() >= 3:
 		return
-	var mask: Dictionary = {"pos": screen_pos, "radius_scale": 0.0, "tween": null}
+	var mask: Dictionary = {"world_pos": world_pos, "radius_scale": 0.0, "tween": null}
 	fixed_masks.append(mask)
 	_update_fixed_masks()
 	_detect_and_modify_state(world_pos, fixed_mask_radius, mask_duration)
@@ -97,8 +97,10 @@ func _update_fixed_masks() -> void:
 	var default_pos := Vector2(-10000, -10000)
 	var positions: Array[Vector2] = [default_pos, default_pos, default_pos]
 	var scales: Array[float] = [0.0, 0.0, 0.0]
+	var canvas_xf: Transform2D = get_viewport().get_canvas_transform()
+	var zoom_scale: float = canvas_xf.get_scale().x
 	for i in range(min(fixed_masks.size(), 3)):
-		positions[i] = fixed_masks[i]["pos"]
+		positions[i] = canvas_xf * fixed_masks[i]["world_pos"]
 		scales[i] = fixed_masks[i]["radius_scale"]
 	var mat: ShaderMaterial = color_rect.material
 	mat.set_shader_parameter("fixed_pos_1", positions[0])
@@ -107,6 +109,7 @@ func _update_fixed_masks() -> void:
 	mat.set_shader_parameter("fixed_scale_1", scales[0])
 	mat.set_shader_parameter("fixed_scale_2", scales[1])
 	mat.set_shader_parameter("fixed_scale_3", scales[2])
+	mat.set_shader_parameter("fixed_radius", fixed_mask_radius * zoom_scale)
 func _detect_and_modify_state(center_pos: Vector2, radius: float, duration: float) -> void:
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsShapeQueryParameters2D.new()
