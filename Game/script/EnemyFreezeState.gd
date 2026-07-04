@@ -10,10 +10,14 @@ func _ready() -> void:
 	
 func enter() -> void:
 	framePassed = consistenceFrame;
-	pass
-	
+	var sprite: AnimatedSprite2D = character.get_node_or_null("AnimatedSprite2D")
+	if sprite:
+		sprite.speed_scale = 0.0
+
 func exit() -> void:
-	pass
+	var sprite: AnimatedSprite2D = character.get_node_or_null("AnimatedSprite2D")
+	if sprite:
+		sprite.speed_scale = 1.0
 
 
 func process_update(delta: float) -> void:

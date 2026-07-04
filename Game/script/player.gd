@@ -234,6 +234,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			_handle_spike_pillar_collision(body, enemyStateMachine)
 			return
 
+		"电锯":
+			_handle_saw_collision(body, enemyStateMachine)
+			return
+
 		_:
 			_handle_default_collision(body, enemyStateMachine)
 
@@ -254,6 +258,14 @@ func _handle_spike_pillar_collision(body: Node2D, sm: StateMachine) -> void:
 
 	# Normal / Spike 状态碰到柱子本体 → 无伤害（伤害在刺 Area2D）
 	print("尖刺柱本体触碰，无伤害 (state=%s)" % current_name)
+
+
+# --- 锯齿陷阱 ---
+# 无论是否冻结，触碰锯齿都会掉血
+
+func _handle_saw_collision(body: Node2D, _sm: StateMachine) -> void:
+	print("玩家触碰电锯，受到伤害！")
+	take_damage(1)
 
 
 # --- 形态类怪物 ---
@@ -289,6 +301,8 @@ func _handle_morph_enemy_collision(body: Node2D, sm: StateMachine) -> void:
 # --- 默认碰撞（未知敌人类型兜底）---
 
 func _handle_default_collision(body: Node2D, sm: StateMachine) -> void:
+	if sm.character.get_parent().name == "Board":
+		return
 	var current_name = sm.current_state.name
 
 	if current_name == "Freeze":

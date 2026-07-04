@@ -8,7 +8,7 @@
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="4_w1wvs"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="6_302jv"]
 [ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="6_g7awx"]
-[ext_resource type="PackedScene" uid="uid://bth3krfldwjfw" path="res://object/宝箱.tscn" id="9_ent7c"]
+[ext_resource type="PackedScene" uid="uid://kuouomxxlutd" path="res://object/Enemy_Saw.tscn" id="7_ent7c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3n7"]
 size = Vector2(1000, 20)
@@ -36,7 +36,23 @@ script = ExtResource("1_g7awx")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1584641411]
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="Node2D" unique_id=1109276222]
+position = Vector2(467, -86)
+scale = Vector2(0.16000003, 1)
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D2" unique_id=1384035960]
+light_mask = 2
+visibility_layer = 2
+shape = SubResource("RectangleShape2D_sg3n7")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/StaticBody2D2" unique_id=1715664943]
+light_mask = 2
+visibility_layer = 2
+mesh = SubResource("BoxMesh_okf0i")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="Node2D" unique_id=1660759796]
+scale = Vector2(1.4000003, 1)
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=1908470549]
@@ -58,7 +74,7 @@ position = Vector2(144, -152)
 initial_state = "Move_leftright"
 
 [node name="移动平台" parent="." unique_id=335580897 instance=ExtResource("3_b0kse")]
-position = Vector2(296, -88)
+position = Vector2(296, -84)
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("1_okf0i")]
 position = Vector2(1, -64)
@@ -67,7 +83,7 @@ position = Vector2(1, -64)
 position = Vector2(-59, -57)
 
 [node name="形态类怪物" parent="." unique_id=463665746 instance=ExtResource("4_urr70")]
-position = Vector2(72, -64)
+position = Vector2(73, -65)
 
 [node name="尖刺柱" parent="." unique_id=1721056165 instance=ExtResource("6_302jv")]
 position = Vector2(-280, -72)
@@ -77,6 +93,20 @@ position = Vector2(-248, -72)
 
 [node name="尖刺柱3" parent="." unique_id=2116315342 instance=ExtResource("6_302jv")]
 position = Vector2(-216, -72)
+
+[node name="电锯" parent="." unique_id=112706107 instance=ExtResource("7_ent7c")]
+z_index = -1
+position = Vector2(223, -10)
+max_distance = 100.0
+speed = 70.0
+contact_direction = 1
+
+[node name="电锯2" parent="." unique_id=555206013 instance=ExtResource("7_ent7c")]
+z_index = -1
+position = Vector2(408, -70)
+max_distance = 100.0
+speed = 50.0
+contact_direction = 2
 
 [node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=834165342]
 layer = 2
@@ -92,6 +122,7 @@ offset_right = 1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 1.0092218)
 mouse_filter = 2
 
 [node name="Indicator" type="Sprite2D" parent="GrayEffectLayer" unique_id=881821473]
@@ -111,6 +142,3 @@ offset_top = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "时间锚点(Q)"
-
-[node name="宝箱" parent="." unique_id=1926730259 instance=ExtResource("9_ent7c")]
-position = Vector2(-464, -32)

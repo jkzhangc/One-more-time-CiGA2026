@@ -1,16 +1,106 @@
 [gd_scene format=3 uid="uid://dculo3tl7tqc3"]
 
-[ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://object/enemy_instance.gd" id="1_e272c"]
+[ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://script/enemy_instance.gd" id="1_e272c"]
+[ext_resource type="Script" uid="uid://bev8txsed6xig" path="res://script/enemy_3.gd" id="1_g1k7d"]
 [ext_resource type="Texture2D" uid="uid://oya8wpn6jmc8" path="res://icon.svg" id="2_e68gl"]
-[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://object/StateMachine.gd" id="3_w2mri"]
-[ext_resource type="Script" uid="uid://chx6382v4qyt5" path="res://object/Enemy3_NormalState.gd" id="4_e272c"]
-[ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://object/EnemyFreezeState.gd" id="5_g1k7d"]
+[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://script/StateMachine.gd" id="3_w2mri"]
+[ext_resource type="Script" uid="uid://chx6382v4qyt5" path="res://script/Enemy3_NormalState.gd" id="4_e272c"]
+[ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://script/EnemyFreezeState.gd" id="5_g1k7d"]
+[ext_resource type="Script" uid="uid://cb6hmf4h4mfb8" path="res://script/enemy3_rush.gd" id="6_w2mri"]
+[ext_resource type="Script" uid="uid://csb4vedr8iopm" path="res://script/enemy3_locate.gd" id="7_tfef5"]
+[ext_resource type="Script" uid="uid://4ncuxcjm0d7s" path="res://script/enemy3_area_trigger.gd" id="8_tfef5"]
+[ext_resource type="Texture2D" uid="uid://b2rgsd355ggxq" path="res://art/形态类敌人-2.png" id="10_fr54n"]
+[ext_resource type="Texture2D" uid="uid://dq1j532xgom7u" path="res://art/形态类敌人-6.png" id="11_maihv"]
+[ext_resource type="Texture2D" uid="uid://bgr020tvpjxrt" path="res://art/形态类敌人-1.png" id="12_j53md"]
+[ext_resource type="Texture2D" uid="uid://byrkqsyx7pylm" path="res://art/形态类敌人-3.png" id="13_nwcbf"]
+[ext_resource type="Texture2D" uid="uid://cpl7qkfl6nn2m" path="res://art/形态类敌人-4.png" id="14_loxb1"]
+[ext_resource type="Texture2D" uid="uid://hksymwxy1lfv" path="res://art/形态类敌人-5.png" id="15_ulliv"]
+[ext_resource type="Texture2D" uid="uid://b0cmuyf0qe31f" path="res://art/形态类敌人-12.png" id="16_qhosl"]
+[ext_resource type="Texture2D" uid="uid://d1uhsrlnvgmwn" path="res://art/形态类敌人-7.png" id="17_jigiw"]
+[ext_resource type="Texture2D" uid="uid://bpsool251wlwn" path="res://art/形态类敌人-8.png" id="18_srfly"]
+[ext_resource type="Texture2D" uid="uid://dx8y3cph1xt5h" path="res://art/形态类敌人-9.png" id="19_1bhay"]
+[ext_resource type="Texture2D" uid="uid://e725d6e8n117" path="res://art/形态类敌人-10.png" id="20_a61se"]
+[ext_resource type="Texture2D" uid="uid://7fnudjvyvrmo" path="res://art/形态类敌人-11.png" id="21_m56od"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3fuib"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ccj8v"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w2mri"]
+radius = 17.464249
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2fmte"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_fr54n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_maihv")
+}],
+"loop": true,
+"name": &"中形态",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("12_j53md")
+}, {
+"duration": 0.2,
+"texture": ExtResource("13_nwcbf")
+}, {
+"duration": 0.2,
+"texture": ExtResource("14_loxb1")
+}, {
+"duration": 0.2,
+"texture": ExtResource("15_ulliv")
+}, {
+"duration": 0.2,
+"texture": ExtResource("11_maihv")
+}],
+"loop": false,
+"name": &"中形态切换动画",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_qhosl")
+}],
+"loop": true,
+"name": &"高形态",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("17_jigiw")
+}, {
+"duration": 0.2,
+"texture": ExtResource("18_srfly")
+}, {
+"duration": 0.2,
+"texture": ExtResource("19_1bhay")
+}, {
+"duration": 0.2,
+"texture": ExtResource("20_a61se")
+}, {
+"duration": 0.2,
+"texture": ExtResource("21_m56od")
+}, {
+"duration": 0.2,
+"texture": ExtResource("16_qhosl")
+}],
+"loop": false,
+"name": &"高形态切换动画",
+"speed": 5.0
+}]
+
 [node name="Enemy3" type="Node2D" unique_id=1721056165]
+script = ExtResource("1_g1k7d")
 
 [node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=2112780339]
 script = ExtResource("1_e272c")
@@ -32,7 +122,28 @@ initial_state = NodePath("Normal")
 [node name="Normal" type="Node" parent="EnemyInstance/StateMachine" unique_id=1194749343]
 script = ExtResource("4_e272c")
 speed = 100.0
+distRange = 250.0
 
 [node name="Freeze" type="Node" parent="EnemyInstance/StateMachine" unique_id=1136029442]
 script = ExtResource("5_g1k7d")
 consistenceFrame = 4.0
+
+[node name="Rush" type="Node" parent="EnemyInstance/StateMachine" unique_id=222642828]
+script = ExtResource("6_w2mri")
+speed = 200.0
+frameCountmax = 2.0
+
+[node name="Locate" type="Node" parent="EnemyInstance/StateMachine" unique_id=1548088477]
+script = ExtResource("7_tfef5")
+
+[node name="Area2D" type="Area2D" parent="EnemyInstance" unique_id=188140760]
+script = ExtResource("8_tfef5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance/Area2D" unique_id=49027560]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_w2mri")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyInstance" unique_id=1336488555]
+sprite_frames = SubResource("SpriteFrames_2fmte")
+
+[connection signal="body_entered" from="EnemyInstance/Area2D" to="EnemyInstance" method="_on_body_entered"]
