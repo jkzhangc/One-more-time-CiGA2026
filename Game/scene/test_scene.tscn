@@ -74,7 +74,7 @@ position = Vector2(144, -152)
 initial_state = "Move_leftright"
 
 [node name="移动平台" parent="." unique_id=335580897 instance=ExtResource("3_b0kse")]
-position = Vector2(296, -88)
+position = Vector2(296, -84)
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("1_okf0i")]
 position = Vector2(1, -64)
@@ -83,7 +83,7 @@ position = Vector2(1, -64)
 position = Vector2(-59, -57)
 
 [node name="形态类怪物" parent="." unique_id=463665746 instance=ExtResource("4_urr70")]
-position = Vector2(72, -64)
+position = Vector2(73, -65)
 
 [node name="尖刺柱" parent="." unique_id=1721056165 instance=ExtResource("6_302jv")]
 position = Vector2(-280, -72)
