@@ -1,5 +1,6 @@
 extends State
 
+const JUMP_VELOCITY = -400.0
 
 @export var speed : float;
 
@@ -29,15 +30,8 @@ func physics_update(delta: float) -> void:
 
 	if frameCount > 3.0:
 		frameCount -= 3.0;
-		if character.mode == 1:
-			character.mode = 0
-			character.anim_sprite.play_backwards("中形态切换动画")
-			await character.anim_sprite.animation_finished
-			character.anim_sprite.play("default")
-			transition_requested.emit("Normal")
-		else:
-			character.anim_sprite.play("高形态切换动画")
-			await character.anim_sprite.animation_finished
-			character.anim_sprite.play("高形态")
-			transition_requested.emit("HighJump")
+		character.anim_sprite.play("中形态切换动画")
+		await character.anim_sprite.animation_finished
+		character.anim_sprite.play("中形态")
+		transition_requested.emit("MiddleJump")
 	

@@ -1,13 +1,10 @@
 [gd_scene format=3 uid="uid://pbwqx2stft1k"]
 
-[ext_resource type="Script" uid="uid://7yuv5my66xff" path="res://object/enemy_2_base.gd" id="1_li2r7"]
-[ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://object/enemy_instance.gd" id="1_ljshq"]
+[ext_resource type="Script" uid="uid://7yuv5my66xff" path="res://script/enemy_2_base.gd" id="1_vk0q4"]
 [ext_resource type="Texture2D" uid="uid://b2rgsd355ggxq" path="res://art/形态类敌人-2.png" id="2_tk1hw"]
-[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://object/StateMachine.gd" id="3_7nsf5"]
+[ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://script/enemy_instance.gd" id="2_vk0q4"]
 [ext_resource type="Texture2D" uid="uid://bgr020tvpjxrt" path="res://art/形态类敌人-1.png" id="3_li2r7"]
 [ext_resource type="Texture2D" uid="uid://byrkqsyx7pylm" path="res://art/形态类敌人-3.png" id="4_jjx1r"]
-[ext_resource type="Script" uid="uid://dnur0crlaqicb" path="res://object/Enemy2_NormalState.gd" id="4_ljshq"]
-[ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://object/EnemyFreezeState.gd" id="5_okspp"]
 [ext_resource type="Texture2D" uid="uid://cpl7qkfl6nn2m" path="res://art/形态类敌人-4.png" id="5_vk0q4"]
 [ext_resource type="Texture2D" uid="uid://hksymwxy1lfv" path="res://art/形态类敌人-5.png" id="6_ne3l3"]
 [ext_resource type="Texture2D" uid="uid://dq1j532xgom7u" path="res://art/形态类敌人-6.png" id="7_dq34g"]
@@ -17,7 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://e725d6e8n117" path="res://art/形态类敌人-10.png" id="11_tie14"]
 [ext_resource type="Texture2D" uid="uid://7fnudjvyvrmo" path="res://art/形态类敌人-11.png" id="12_b5hgw"]
 [ext_resource type="Texture2D" uid="uid://b0cmuyf0qe31f" path="res://art/形态类敌人-12.png" id="13_5jign"]
+[ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://script/StateMachine.gd" id="15_vk0q4"]
+[ext_resource type="Script" uid="uid://dnur0crlaqicb" path="res://script/Enemy2_NormalState.gd" id="16_vk0q4"]
+[ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://script/EnemyFreezeState.gd" id="17_vk0q4"]
 [ext_resource type="Script" uid="uid://d4xbiv47a21o" path="res://script/enemy2_middle_jump.gd" id="18_jjx1r"]
+[ext_resource type="Script" uid="uid://mnqi1br6foj4" path="res://script/enemy2_high_jump.gd" id="19_vk0q4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_62kyf"]
 animations = [{
@@ -31,7 +32,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("13_5jign")
+"texture": ExtResource("7_dq34g")
 }],
 "loop": true,
 "name": &"中形态",
@@ -52,7 +53,20 @@ animations = [{
 }, {
 "duration": 0.2,
 "texture": ExtResource("7_dq34g")
+}],
+"loop": false,
+"name": &"中形态切换动画",
+"speed": 5.0
 }, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_5jign")
+}],
+"loop": true,
+"name": &"高形态",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 0.2,
 "texture": ExtResource("8_q0aoc")
 }, {
@@ -72,18 +86,21 @@ animations = [{
 "texture": ExtResource("13_5jign")
 }],
 "loop": false,
-"name": &"形态切换动画",
+"name": &"高形态切换动画",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkk3g"]
 size = Vector2(32, 32)
 
-[node name="Enemy2" type="Node2D" unique_id=463665746]
-script = ExtResource("1_li2r7")
+[node name="形态类怪物" type="Node2D" unique_id=463665746]
+script = ExtResource("1_vk0q4")
 
 [node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=187424754]
-script = ExtResource("1_ljshq")
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("2_vk0q4")
+typename = "形态类怪物"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyInstance" unique_id=1288836411]
 sprite_frames = SubResource("SpriteFrames_62kyf")
@@ -92,18 +109,19 @@ sprite_frames = SubResource("SpriteFrames_62kyf")
 shape = SubResource("RectangleShape2D_qkk3g")
 
 [node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=1261681124 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_7nsf5")
+script = ExtResource("15_vk0q4")
 initial_state = NodePath("Normal")
 
 [node name="Normal" type="Node" parent="EnemyInstance/StateMachine" unique_id=531478254]
-script = ExtResource("4_ljshq")
+script = ExtResource("16_vk0q4")
 speed = 100.0
 
 [node name="Freeze" type="Node" parent="EnemyInstance/StateMachine" unique_id=1376334648]
-script = ExtResource("5_okspp")
+script = ExtResource("17_vk0q4")
 consistenceFrame = 4.0
 
 [node name="MiddleJump" type="Node" parent="EnemyInstance/StateMachine" unique_id=1038410943]
 script = ExtResource("18_jjx1r")
 
 [node name="HighJump" type="Node" parent="EnemyInstance/StateMachine" unique_id=837736937]
+script = ExtResource("19_vk0q4")

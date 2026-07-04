@@ -58,13 +58,14 @@ initial_state = "Move_leftright"
 [node name="移动平台" parent="." unique_id=335580897 instance=ExtResource("3_b0kse")]
 position = Vector2(296, -88)
 
-[node name="Player2" parent="." unique_id=381143770 instance=ExtResource("1_okf0i")]
-position = Vector2(0, -44)
-
-[node name="Enemy2" parent="." unique_id=463665746 instance=ExtResource("4_urr70")]
+[node name="Player" parent="." unique_id=2063613206 instance=ExtResource("1_okf0i")]
+position = Vector2(1, -64)
 
 [node name="physical_object" parent="." unique_id=1206997064 instance=ExtResource("2_pa2i8")]
 position = Vector2(-59, -57)
+
+[node name="形态类怪物" parent="." unique_id=463665746 instance=ExtResource("4_urr70")]
+position = Vector2(72, -64)
 
 [node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=834165342]
 layer = 2
