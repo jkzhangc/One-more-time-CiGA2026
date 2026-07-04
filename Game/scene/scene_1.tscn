@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://bjkw0w631268n"]
+
+[ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="1_eucco"]
+[ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="2_jjve5"]
+[ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="3_2d3pm"]
+[ext_resource type="PackedScene" uid="uid://degatcchdorff" path="res://object/physical_object.tscn" id="4_7mhg8"]
+[ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="5_svcif"]
+[ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="6_uqsbj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tltjo"]
+size = Vector2(190, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cj4kn"]
+size = Vector3(1000, 20, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mnwbd"]
+shader = ExtResource("5_svcif")
+shader_parameter/is_active = false
+shader_parameter/mouse_pos = Vector2(-10000, -10000)
+shader_parameter/mouse_radius = 40.0
+shader_parameter/fixed_pos_1 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_2 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_3 = Vector2(-10000, -10000)
+shader_parameter/fixed_radius = 75.0
+shader_parameter/fixed_scale_1 = 1.0
+shader_parameter/fixed_scale_2 = 1.0
+shader_parameter/fixed_scale_3 = 1.0
+shader_parameter/border_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/border_width = 3.0
+
+[node name="Node2D" type="Node2D" unique_id=626944831]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=172380076]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D" unique_id=914113545]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=1208663384]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-405, 0)
+shape = SubResource("RectangleShape2D_tltjo")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/StaticBody2D" unique_id=1890392643]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-408, 2.5)
+scale = Vector2(0.19799997, 0.95)
+mesh = SubResource("BoxMesh_cj4kn")
+
+[node name="移动平台3" parent="." unique_id=1084164698 instance=ExtResource("1_eucco")]
+position = Vector2(-166, -122)
+initial_state = "Move_circumference"
+
+[node name="移动平台2" parent="." unique_id=1690406309 instance=ExtResource("1_eucco")]
+position = Vector2(179, -157)
+initial_state = "Move_leftright"
+
+[node name="移动平台" parent="." unique_id=2062047237 instance=ExtResource("1_eucco")]
+position = Vector2(296, -88)
+
+[node name="Player2" parent="." unique_id=2063613206 instance=ExtResource("2_jjve5")]
+position = Vector2(-447, -37)
+
+[node name="Enemy2" parent="." unique_id=463665746 instance=ExtResource("3_2d3pm")]
+position = Vector2(-177, -17)
+
+[node name="physical_object" parent="." unique_id=1206997064 instance=ExtResource("4_7mhg8")]
+position = Vector2(-59, -57)
+
+[node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=1374062828]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="GrayEffectLayer" unique_id=2141391895]
+material = SubResource("ShaderMaterial_mnwbd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Indicator" type="Sprite2D" parent="GrayEffectLayer" unique_id=726079133]
+texture = ExtResource("6_uqsbj")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=747736705]
+layer = 3
+
+[node name="Button" type="Button" parent="UI" unique_id=216751216]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "时间锚点(Q)"
+metadata/_edit_use_anchors_ = true

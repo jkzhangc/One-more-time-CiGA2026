@@ -1,0 +1,215 @@
+[gd_scene format=3 uid="uid://dm4wwvhfowcvc"]
+
+[ext_resource type="Script" uid="uid://bk5ogmcd4eji1" path="res://script/AnchorManager.gd" id="1_ag4gq"]
+[ext_resource type="Texture2D" uid="uid://bwctbklylai2r" path="res://art/门、宝箱、地等2项文件/背景/80763a6e-2733-486e-bdf1-55ef71d5119e.png" id="2_6f6jj"]
+[ext_resource type="PackedScene" uid="uid://coahwxlgfiws3" path="res://object/player.tscn" id="3_n2fjr"]
+[ext_resource type="Texture2D" uid="uid://btkuey4y6rytl" path="res://art/门、宝箱、地等2项文件/背景/地面/Layer 15.png" id="4_aggpi"]
+[ext_resource type="PackedScene" uid="uid://7n2212ud0f1s" path="res://object/终点.tscn" id="5_y5nnh"]
+[ext_resource type="PackedScene" uid="uid://du2inhfv5j1v2" path="res://scene/模板关卡2.tscn" id="6_eyoig"]
+[ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="7_xnhbt"]
+[ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="8_07lej"]
+[ext_resource type="PackedScene" uid="uid://dalvijlb8ahwy" path="res://object/door.tscn" id="9_eta67"]
+[ext_resource type="PackedScene" uid="uid://b7xokg0748xx6" path="res://object/board.tscn" id="10_swjaf"]
+[ext_resource type="PackedScene" uid="uid://dculo3tl7tqc3" path="res://object/Enemy3.tscn" id="11_db57s"]
+[ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="12_lndlv"]
+[ext_resource type="PackedScene" uid="uid://bth3krfldwjfw" path="res://object/宝箱.tscn" id="13_4cjkk"]
+[ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="14_6dyac"]
+[ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="15_oyj70"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uaeuu"]
+size = Vector2(321.375, 37.714844)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8kto"]
+size = Vector2(668.5, 67.42969)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3v0b"]
+size = Vector2(762.5, 67.42969)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbo14"]
+shader = ExtResource("7_xnhbt")
+shader_parameter/is_active = false
+shader_parameter/mouse_pos = Vector2(-10000, -10000)
+shader_parameter/mouse_radius = 40.0
+shader_parameter/fixed_pos_1 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_2 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_3 = Vector2(-10000, -10000)
+shader_parameter/fixed_radius = 75.0
+shader_parameter/fixed_scale_1 = 1.0
+shader_parameter/fixed_scale_2 = 1.0
+shader_parameter/fixed_scale_3 = 1.0
+shader_parameter/border_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/border_width = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0141t"]
+size = Vector2(3341.5, 124.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxd"]
+size = Vector2(222, 24.75)
+
+[node name="模板关卡1" type="Node2D" unique_id=700300208]
+script = ExtResource("1_ag4gq")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1515617940]
+z_index = -10
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D" unique_id=1491504465]
+position = Vector2(1365, -119)
+texture = ExtResource("2_6f6jj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1939504928]
+position = Vector2(-308, -119)
+texture = ExtResource("2_6f6jj")
+
+[node name="Player" parent="." unique_id=2063613206 instance=ExtResource("3_n2fjr")]
+position = Vector2(-785, -114)
+
+[node name="平台" type="Node2D" parent="." unique_id=102726873]
+
+[node name="平台2" type="StaticBody2D" parent="平台" unique_id=343246433]
+z_index = -1
+position = Vector2(-112, -147)
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="平台/平台2" unique_id=1961137369]
+position = Vector2(-656.00006, 107)
+scale = Vector2(0.20067817, 0.35625)
+texture = ExtResource("4_aggpi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台2" unique_id=10927627]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-657.5, 114.140625)
+shape = SubResource("RectangleShape2D_uaeuu")
+
+[node name="平台6" type="StaticBody2D" parent="平台" unique_id=1242798290]
+z_index = -1
+position = Vector2(-1929, -80)
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="平台/平台6" unique_id=2097957252]
+position = Vector2(1628.125, 218.75)
+scale = Vector2(0.43141183, 0.6406251)
+texture = ExtResource("4_aggpi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台6" unique_id=1560483933]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(1618.75, 230.28516)
+shape = SubResource("RectangleShape2D_b8kto")
+
+[node name="平台7" type="StaticBody2D" parent="平台" unique_id=1507178069]
+z_index = -1
+position = Vector2(-1929, -80)
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="平台/平台7" unique_id=401874647]
+position = Vector2(2641, 336)
+scale = Vector2(0.48319972, 0.6406251)
+texture = ExtResource("4_aggpi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台7" unique_id=1163426556]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(2649, 346)
+shape = SubResource("RectangleShape2D_x3v0b")
+
+[node name="终点" parent="." unique_id=1870043307 instance=ExtResource("5_y5nnh")]
+position = Vector2(855, 188)
+next_level = ExtResource("6_eyoig")
+
+[node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=2071483300]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="GrayEffectLayer" unique_id=1277177753]
+material = SubResource("ShaderMaterial_xbo14")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.0092218)
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Indicator" type="Sprite2D" parent="GrayEffectLayer" unique_id=292551563]
+texture = ExtResource("8_07lej")
+metadata/_edit_lock_ = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=245731201]
+layer = 3
+
+[node name="DeathZone" type="Area2D" parent="." unique_id=968315690]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=774837878]
+position = Vector2(468.25, 412)
+shape = SubResource("RectangleShape2D_0141t")
+
+[node name="机关" type="Node2D" parent="." unique_id=14403801]
+
+[node name="Door" parent="机关" unique_id=691006439 instance=ExtResource("9_eta67")]
+position = Vector2(849.00006, 78.00001)
+
+[node name="Board" parent="机关" unique_id=1118613711 instance=ExtResource("10_swjaf")]
+position = Vector2(-291, 95)
+
+[node name="冲撞类敌人" parent="机关" unique_id=1721056165 instance=ExtResource("11_db57s")]
+position = Vector2(-546, 89)
+
+[node name="形态类怪物" parent="机关" unique_id=463665746 instance=ExtResource("12_lndlv")]
+position = Vector2(-206, 96)
+
+[node name="宝箱" parent="机关" unique_id=1651352525 instance=ExtResource("13_4cjkk")]
+position = Vector2(-422, -203)
+mode = "内容2"
+
+[node name="宝箱2" parent="机关" unique_id=519503002 instance=ExtResource("13_4cjkk")]
+position = Vector2(-35, -137)
+mode = "内容2"
+
+[node name="移动平台左右1" parent="机关" unique_id=1084164698 instance=ExtResource("14_6dyac")]
+position = Vector2(-412, -144)
+initial_state = "Move_leftright"
+
+[node name="移动平台上下" parent="机关" unique_id=587148856 instance=ExtResource("14_6dyac")]
+position = Vector2(-35, -70)
+
+[node name="尖刺团" type="Node2D" parent="机关" unique_id=976761748]
+position = Vector2(-421, -260)
+
+[node name="尖刺柱4" parent="机关/尖刺团" unique_id=1072139384 instance=ExtResource("15_oyj70")]
+position = Vector2(626, 56)
+
+[node name="尖刺柱3" parent="机关/尖刺团" unique_id=712704409 instance=ExtResource("15_oyj70")]
+position = Vector2(660, 56)
+
+[node name="尖刺柱" parent="机关/尖刺团" unique_id=1524636449 instance=ExtResource("15_oyj70")]
+position = Vector2(528, 56)
+
+[node name="尖刺柱2" parent="机关/尖刺团" unique_id=1609222376 instance=ExtResource("15_oyj70")]
+position = Vector2(692, 56)
+
+[node name="尖刺柱5" parent="机关/尖刺团" unique_id=821788171 instance=ExtResource("15_oyj70")]
+position = Vector2(562, 56)
+
+[node name="尖刺柱6" parent="机关/尖刺团" unique_id=1844899734 instance=ExtResource("15_oyj70")]
+position = Vector2(594, 56)
+
+[node name="平台5" type="StaticBody2D" parent="机关/尖刺团" unique_id=236142430]
+z_index = -1
+position = Vector2(429, 360)
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="机关/尖刺团/平台5" unique_id=350918572]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(183, -229)
+shape = SubResource("RectangleShape2D_m5mxd")
+
+[connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
