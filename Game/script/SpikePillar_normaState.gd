@@ -15,7 +15,12 @@ func random_direction() -> Vector2:
 	
 
 func enter() -> void:
-	pass
+	var area2D = null
+	for child in character.get_children():
+		if child is Area2D:
+			area2D = child
+	if area2D:
+		area2D.get_children()[0].set_deferred("disabled", true)
 	
 
 func process_update(delta: float) -> void:

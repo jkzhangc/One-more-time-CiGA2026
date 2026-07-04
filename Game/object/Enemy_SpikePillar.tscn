@@ -35,7 +35,11 @@ size = Vector2(32, 20)
 
 [node name="尖刺柱" type="Node2D" unique_id=1721056165]
 
-[node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=2112780339]
+[node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=442326049]
+light_mask = 10
+visibility_layer = 10
+floor_block_on_wall = false
+platform_floor_layers = 4294967042
 script = ExtResource("1_5oq66")
 typename = "尖刺柱"
 
@@ -48,10 +52,13 @@ shape = SubResource("RectangleShape2D_4fefp")
 
 [node name="Area2D" type="Area2D" parent="EnemyInstance" unique_id=683790686]
 position = Vector2(0, -36)
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance/Area2D" unique_id=561000819]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_l2728")
+disabled = true
 debug_color = Color(0.99999994, 0.004542869, 0.086550035, 0.41960785)
 
 [node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=1622328813 node_paths=PackedStringArray("initial_state")]
@@ -67,3 +74,5 @@ script = ExtResource("6_hixao")
 [node name="Freeze" type="Node" parent="EnemyInstance/StateMachine" unique_id=1136029442]
 script = ExtResource("6_83exj")
 consistenceFrame = 4.0
+
+[connection signal="body_entered" from="EnemyInstance/Area2D" to="EnemyInstance" method="_on_spike_area_body_entered"]

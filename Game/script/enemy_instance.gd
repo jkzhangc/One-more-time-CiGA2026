@@ -35,3 +35,14 @@ func apply_anchor_state(duration: float) -> void:
 
 func apply_gray_state(duration: float) -> void:
 	apply_anchor_state(duration)
+
+
+# 尖刺柱的 Area2D 刺碰撞体检测到玩家时调用
+func _on_spike_area_body_entered(body: Node2D) -> void:
+	if not body.has_method("take_damage"):
+		return
+	# 刺中玩家（冻结在 Spike 状态时刺碰撞体保持开启，依然会受伤）
+	body.take_damage(1)
+	# 把玩家弹起来（站在刺上的效果）
+	if body is CharacterBody2D:
+		body.velocity.y = -400.0

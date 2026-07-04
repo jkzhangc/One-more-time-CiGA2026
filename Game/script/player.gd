@@ -239,25 +239,21 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 # --- 尖刺柱 ---
+# 伤害由尖刺柱自己的 Area2D（刺碰撞体）在 Spike 状态时触发
+# 玩家 Area2D 碰到 EnemyInstance 本体不造成伤害
+# 碰到冻结的尖刺柱柱子本体 → 追踪解冻伤害
 
 func _handle_spike_pillar_collision(body: Node2D, sm: StateMachine) -> void:
 	var current_name = sm.current_state.name
-	var last_name = sm.last_state.name if sm.last_state else ""
-	# 只有 Spike 状态才会伤害玩家
-	if current_name == "Spike":
-		print("尖刺柱处于 Spike 状态，玩家受伤！")
-		take_damage(1)
-		return
 
-	# Freeze 状态 以及 冻结之前不是Spike状态 → 安全，追踪解冻伤害
-	if current_name == "Freeze" && not last_name in "Spike":
+	if current_name == "Freeze":
 		print("尖刺柱已冻结，玩家安全通过")
 		if not _frozen_overlap.has(body):
 			_frozen_overlap[body] = true
 		return
 
-	# Normal 状态 → 安全（刺缩回）
-	print("尖刺柱处于 Normal 状态，玩家安全通过")
+	# Normal / Spike 状态碰到柱子本体 → 无伤害（伤害在刺 Area2D）
+	print("尖刺柱本体触碰，无伤害 (state=%s)" % current_name)
 
 
 # --- 形态类怪物 ---
