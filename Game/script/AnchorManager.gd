@@ -86,6 +86,8 @@ func _on_button_pressed() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == KEY_Q and event.pressed and not event.echo:
+		if not fixed_masks.is_empty():
+			return
 		toggle_indicator()
 	elif is_active and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var world_pos = get_global_mouse_position()
@@ -96,6 +98,7 @@ func toggle_indicator() -> void:
 	if not is_active and _uses_remaining <= 0:
 		_flash_no_uses_ui()
 		return
+		
 	is_active = not is_active
 	indicator.visible = is_active
 	button.modulate = Color.LIME_GREEN if is_active else Color.WHITE

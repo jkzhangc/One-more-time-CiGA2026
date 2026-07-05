@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b7xokg0748xx6" path="res://object/board.tscn" id="10_swjaf"]
 [ext_resource type="PackedScene" uid="uid://dculo3tl7tqc3" path="res://object/Enemy3.tscn" id="11_db57s"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="12_lndlv"]
-[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="13_4cjkk"]
+[ext_resource type="PackedScene" uid="uid://d38svmmkfh5e3" path="res://object/宝箱.tscn" id="13_4cjkk"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="14_6dyac"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="15_oyj70"]
 
@@ -51,7 +51,7 @@ shader_parameter/center_color = Color(0.85, 0.95, 1, 1)
 shader_parameter/center_glow_intensity = 0.12
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0141t"]
-size = Vector2(3341.5, 124.5)
+size = Vector2(3943, 129.25)
 
 [node name="模板关卡1" type="Node2D" unique_id=700300208]
 script = ExtResource("1_ag4gq")
@@ -160,7 +160,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=774837878]
-position = Vector2(468.25, 412)
+position = Vector2(167.5, 409.625)
 shape = SubResource("RectangleShape2D_0141t")
 
 [node name="机关" type="Node2D" parent="." unique_id=14403801]

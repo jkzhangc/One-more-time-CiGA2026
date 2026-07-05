@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://5xkyfr8obawg" path="res://art/ui等2项文件/ui/SkillMask.png" id="10_j5bo6"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="11_m5mxd"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="12_m5mxd"]
-[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="12_qtid4"]
+[ext_resource type="PackedScene" uid="uid://d38svmmkfh5e3" path="res://object/宝箱.tscn" id="12_qtid4"]
 [ext_resource type="PackedScene" uid="uid://kuouomxxlutd" path="res://object/Enemy_Saw.tscn" id="14_j5bo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxd"]

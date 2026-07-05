@@ -94,7 +94,7 @@ initial_state = NodePath("Normal")
 [node name="Normal" type="Node" parent="EnemyInstance/StateMachine" unique_id=1194749343]
 script = ExtResource("4_e272c")
 speed = 100.0
-distRange = 350.0
+distRange = 400.0
 
 [node name="Freeze" type="Node" parent="EnemyInstance/StateMachine" unique_id=1136029442]
 script = ExtResource("5_g1k7d")
