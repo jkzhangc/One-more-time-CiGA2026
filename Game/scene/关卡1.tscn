@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://du2inhfv5j1v2" path="res://scene/模板关卡2.tscn" id="7_acp8b"]
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="8_4unig"]
 [ext_resource type="Texture2D" uid="uid://be1vk1tjq3fdu" path="res://art/门、宝箱、地等2项文件/门、宝箱、地/Layer 7.png" id="8_o4sx7"]
-[ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="9_wijet"]
+[ext_resource type="Texture2D" uid="uid://5xkyfr8obawg" path="res://art/ui等2项文件/ui/SkillMask.png" id="10_fkk1m"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="13_wunud"]
 [ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="15_6oyam"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="16_pvr2g"]
@@ -206,7 +206,7 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Indicator" type="Sprite2D" parent="GrayEffectLayer" unique_id=292551563]
-texture = ExtResource("9_wijet")
+texture = ExtResource("10_fkk1m")
 metadata/_edit_lock_ = true
 
 [node name="DeathZone" type="Area2D" parent="." unique_id=968315690]

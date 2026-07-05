@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://vfvyl4qvrays"]
+[gd_scene format=3 uid="uid://cxprmsvcie507"]
 
 [ext_resource type="Script" uid="uid://bk5ogmcd4eji1" path="res://script/AnchorManager.gd" id="1_0141t"]
 [ext_resource type="Texture2D" uid="uid://bwctbklylai2r" path="res://art/门、宝箱、地等2项文件/背景/80763a6e-2733-486e-bdf1-55ef71d5119e.png" id="1_inkcr"]
@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://7n2212ud0f1s" path="res://object/终点.tscn" id="5_inkcr"]
 [ext_resource type="PackedScene" uid="uid://du2inhfv5j1v2" path="res://scene/模板关卡2.tscn" id="6_inkcr"]
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="7_7ry6p"]
-[ext_resource type="Texture2D" uid="uid://cfkyp8yxcw5y1" path="res://art/indicator.png" id="8_0141t"]
+[ext_resource type="Texture2D" uid="uid://5xkyfr8obawg" path="res://art/ui等2项文件/ui/SkillMask.png" id="10_j5bo6"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="11_m5mxd"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="12_m5mxd"]
-[ext_resource type="PackedScene" uid="uid://bth3krfldwjfw" path="res://object/宝箱.tscn" id="12_qtid4"]
+[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="12_qtid4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxd"]
 size = Vector2(174, 24.75)
@@ -40,6 +40,19 @@ shader_parameter/fixed_scale_2 = 1.0
 shader_parameter/fixed_scale_3 = 1.0
 shader_parameter/border_color = Color(0.2, 0.6, 1, 1)
 shader_parameter/border_width = 3.0
+shader_parameter/glow_color = Color(0.5, 0.8, 1, 1)
+shader_parameter/glow_width = 14.0
+shader_parameter/glow_intensity = 0.45
+shader_parameter/desaturate_factor = 0.65
+shader_parameter/inner_tint = Color(0.55, 0.78, 1, 1)
+shader_parameter/tint_strength = 0.28
+shader_parameter/ripple_color = Color(0.7, 0.9, 1, 1)
+shader_parameter/ripple_speed = 30.0
+shader_parameter/ripple_width_px = 2.5
+shader_parameter/ripple_alpha = 0.22
+shader_parameter/ripple_interval = 1.2
+shader_parameter/center_color = Color(0.85, 0.95, 1, 1)
+shader_parameter/center_glow_intensity = 0.12
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0141t"]
 size = Vector2(3341.5, 124.5)
@@ -176,13 +189,13 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Indicator" type="Sprite2D" parent="GrayEffectLayer" unique_id=292551563]
-texture = ExtResource("8_0141t")
+texture = ExtResource("10_j5bo6")
 metadata/_edit_lock_ = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=245731201]
 layer = 3
 
-[node name="Button" type="Button" parent="UI" unique_id=211295512]
+[node name="Button" type="Button" parent="UI" unique_id=1319617242]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

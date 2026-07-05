@@ -8,6 +8,7 @@ extends Node2D
 @export var mask_shrink_duration: float = 0.2
 @export var strobe_interval: float = 0.08
 @export var max_anchors: int = 3  # 锚点使用次数上限（初始次数 / 上限）
+@export var indicator_rotate_speed: float = 2.0  # 指示器旋转速度（弧度/秒）
 
 signal anchor_count_changed(current: int, max_count: int)
 
@@ -31,6 +32,8 @@ func _ready() -> void:
 	color_rect.material.set_shader_parameter("mouse_pos", Vector2(-10000, -10000))
 	color_rect.material.set_shader_parameter("mouse_radius", mouse_mask_radius)
 	color_rect.material.set_shader_parameter("fixed_radius", fixed_mask_radius)
+	# 强制覆盖场景里可能残留的旧 border_color 默认值
+	color_rect.material.set_shader_parameter("border_color", Color(0.65, 0.88, 1.0, 0.95))
 	# 初始化指示器
 	indicator.visible = false
 	indicator.centered = true
@@ -122,7 +125,7 @@ func _set_anchor_label_color(c: Color) -> void:
 	if _anchor_label:
 		_anchor_label.add_theme_color_override("font_color", c)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	# shader 激活条件：瞄准中 或 场上有未消失的固定锚点
 	var shader_active: bool = is_active or not fixed_masks.is_empty()
 	color_rect.material.set_shader_parameter("is_active", shader_active)
@@ -131,6 +134,8 @@ func _process(_delta: float) -> void:
 	if is_active:
 		_update_indicator_pos()
 		_update_mouse_shader_pos()
+		# 指示器持续旋转
+		indicator.rotate(indicator_rotate_speed * delta)
 
 func _update_indicator_pos() -> void:
 	indicator.position = get_viewport().get_mouse_position()
