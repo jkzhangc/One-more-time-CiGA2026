@@ -7,7 +7,7 @@ extends Node2D
 @export var mask_strobe_duration: float = 0.5
 @export var mask_shrink_duration: float = 0.2
 @export var strobe_interval: float = 0.08
-@export var max_anchors: int = 1
+@export var max_anchors: int = 3  # 锚点使用次数上限（初始次数 / 上限）
 
 signal anchor_count_changed(current: int, max_count: int)
 
@@ -18,13 +18,17 @@ signal anchor_count_changed(current: int, max_count: int)
 var is_active: bool = false
 var fixed_masks: Array[Dictionary] = []
 var _anchor_label: Label = null
-var _placed_count: int = 0  # 本次已放置的锚点数
+var _uses_remaining: int = 0  # 剩余可用次数，不随锚点消失自动恢复
+var _no_uses_flash_tween: Tween = null  # 防止频闪动画叠加
+const ANCHOR_LABEL_NORMAL_COLOR: Color = Color(0.6, 0.9, 1.0, 1.0)
+const ANCHOR_LABEL_WARN_COLOR: Color = Color(1.0, 0.3, 0.25, 1.0)
 
 
 func _ready() -> void:
 	button.pressed.connect(_on_button_pressed)
 	color_rect.scale = Vector2.ONE
 	color_rect.material.set_shader_parameter("is_active", false)
+	color_rect.material.set_shader_parameter("mouse_pos", Vector2(-10000, -10000))
 	color_rect.material.set_shader_parameter("mouse_radius", mouse_mask_radius)
 	color_rect.material.set_shader_parameter("fixed_radius", fixed_mask_radius)
 	# 初始化指示器
@@ -34,6 +38,7 @@ func _ready() -> void:
 		var texture_radius = indicator.texture.get_width() / 2.0
 		if texture_radius > 0:
 			indicator.scale = Vector2.ONE * (mouse_mask_radius / texture_radius) * indicator_scale_factor
+	_uses_remaining = max_anchors
 	_update_fixed_masks()
 	_create_anchor_count_ui()
 	_notify_anchor_count()
@@ -43,7 +48,7 @@ func _create_anchor_count_ui() -> void:
 	_anchor_label = Label.new()
 	_anchor_label.name = "AnchorCountLabel"
 	_anchor_label.add_theme_font_size_override("font_size", 16)
-	_anchor_label.add_theme_color_override("font_color", Color(0.6, 0.9, 1.0, 1))  # 冰蓝色
+	_anchor_label.add_theme_color_override("font_color", ANCHOR_LABEL_NORMAL_COLOR)
 	# 跟 Button 一样锚定在右下角，放在按钮上方
 	_anchor_label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
 	_anchor_label.offset_left = -120
@@ -55,16 +60,21 @@ func _create_anchor_count_ui() -> void:
 
 
 func _notify_anchor_count() -> void:
-	var remaining: int = max_anchors - _placed_count
-	anchor_count_changed.emit(remaining, max_anchors)
+	anchor_count_changed.emit(_uses_remaining, max_anchors)
 	if _anchor_label:
-		_anchor_label.text = "锚点: %d/%d" % [remaining, max_anchors]
+		_anchor_label.text = "锚点: %d/%d" % [_uses_remaining, max_anchors]
 
 
 func add_anchor_count(amount: int) -> void:
-	max_anchors += amount
+	_uses_remaining += amount
+	if _uses_remaining > max_anchors:
+		_uses_remaining = max_anchors
+	# 恢复次数时，停止可能正在播放的"无次数"频闪并还原颜色
+	if _no_uses_flash_tween and _no_uses_flash_tween.is_valid():
+		_no_uses_flash_tween.kill()
+	_set_anchor_label_color(ANCHOR_LABEL_NORMAL_COLOR)
 	_notify_anchor_count()
-	print("锚点上限增加 %d，当前上限: %d" % [amount, max_anchors])
+	print("锚点次数恢复 %d，剩余次数: %d/%d" % [amount, _uses_remaining, max_anchors])
 
 
 func _on_button_pressed() -> void:
@@ -79,14 +89,43 @@ func _input(event: InputEvent) -> void:
 		create_fixed_mask(world_pos)
 
 func toggle_indicator() -> void:
+	# 无剩余次数时，拒绝开启瞄准模式，播放 UI 频闪提示
+	if not is_active and _uses_remaining <= 0:
+		_flash_no_uses_ui()
+		return
 	is_active = not is_active
 	indicator.visible = is_active
 	button.modulate = Color.LIME_GREEN if is_active else Color.WHITE
-	color_rect.material.set_shader_parameter("is_active", is_active)
 	if is_active:
 		_update_indicator_pos()
+	else:
+		# 退出瞄准模式时把鼠标圈推到屏幕外，避免残留
+		color_rect.material.set_shader_parameter("mouse_pos", Vector2(-10000, -10000))
+
+
+func _flash_no_uses_ui() -> void:
+	# 如果已有频闪动画在播，先 kill 防止叠加
+	if _no_uses_flash_tween and _no_uses_flash_tween.is_valid():
+		_no_uses_flash_tween.kill()
+	_no_uses_flash_tween = create_tween()
+	const FLASH_INTERVAL: float = 0.08
+	const FLASH_COUNT: int = 6  # 6 次明暗交替 ≈ 0.48s
+	for _i in range(FLASH_COUNT):
+		_no_uses_flash_tween.tween_callback(_set_anchor_label_color.bind(ANCHOR_LABEL_WARN_COLOR))
+		_no_uses_flash_tween.tween_interval(FLASH_INTERVAL)
+		_no_uses_flash_tween.tween_callback(_set_anchor_label_color.bind(ANCHOR_LABEL_NORMAL_COLOR))
+		_no_uses_flash_tween.tween_interval(FLASH_INTERVAL)
+	_no_uses_flash_tween.tween_callback(_set_anchor_label_color.bind(ANCHOR_LABEL_NORMAL_COLOR))
+
+
+func _set_anchor_label_color(c: Color) -> void:
+	if _anchor_label:
+		_anchor_label.add_theme_color_override("font_color", c)
 
 func _process(_delta: float) -> void:
+	# shader 激活条件：瞄准中 或 场上有未消失的固定锚点
+	var shader_active: bool = is_active or not fixed_masks.is_empty()
+	color_rect.material.set_shader_parameter("is_active", shader_active)
 	_update_fixed_masks()
 	_detect_masks()
 	if is_active:
@@ -100,9 +139,10 @@ func _update_mouse_shader_pos() -> void:
 	color_rect.material.set_shader_parameter("mouse_pos", get_viewport().get_mouse_position())
 
 func create_fixed_mask(world_pos: Vector2) -> void:
-	if _placed_count >= max_anchors:
+	# 没有剩余次数 或 场上还有未消失的锚点，则不能释放
+	if _uses_remaining <= 0 or not fixed_masks.is_empty():
 		return
-		
+
 	var mask: Dictionary = {
 		"world_pos": world_pos,
 		"radius_scale": 0.0,
@@ -112,7 +152,7 @@ func create_fixed_mask(world_pos: Vector2) -> void:
 		"triggered": [],
 	}
 	fixed_masks.append(mask)
-	_placed_count += 1
+	_uses_remaining -= 1
 	_update_fixed_masks()
 	_notify_anchor_count()
 
@@ -137,6 +177,10 @@ func create_fixed_mask(world_pos: Vector2) -> void:
 			#print(child,child.get_children())
 			child.get_children()[3]._on_transition_requested("施法")
 
+	# 释放后立即关闭瞄准模式（取消 indicator 和按钮高亮）
+	if is_active:
+		toggle_indicator()
+
 func _apply_scale(value: float, mask: Dictionary) -> void:
 	mask["radius_scale"] = value
 	_update_fixed_masks()
@@ -145,7 +189,7 @@ func _remove_mask(mask: Dictionary) -> void:
 	for i in range(fixed_masks.size()):
 		if is_same(fixed_masks[i], mask):
 			fixed_masks.remove_at(i)
-			_placed_count -= 1
+			# 注意：锚点消失不恢复使用次数（必须通过宝箱恢复）
 			_notify_anchor_count()
 			break
 	_update_fixed_masks()
