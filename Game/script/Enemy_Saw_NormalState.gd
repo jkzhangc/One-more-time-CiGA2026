@@ -39,19 +39,33 @@ func physics_update(delta: float) -> void:
 	var next_along: float = pos_along + step
 
 	# 到达端点：夹到端点并反向，避免超调造成物理碰撞偏移
+	var bounced: bool = false
 	if direction > 0 and next_along >= max_distance:
 		var cur: Vector2 = character.global_position
 		character.global_position = start_pos + axis_vec * max_distance + (cur - start_pos - axis_vec * pos_along)
 		direction = -1
-		character.velocity = Vector2.ZERO
+		bounced = true
 	elif direction < 0 and next_along <= 0.0:
 		var cur: Vector2 = character.global_position
 		character.global_position = start_pos + (cur - start_pos - axis_vec * pos_along)
 		direction = 1
-		character.velocity = Vector2.ZERO
+		bounced = true
+
+	if bounced:
+		# 反弹这一帧沿运动轴速度置 0，但仍要走 move_and_slide 让平台承载/重力落地生效
+		if move_axis == Axis.HORIZONTAL:
+			character.velocity.x = 0.0
+		else:
+			character.velocity.y = 0.0
 	else:
 		character.velocity = axis_vec * direction * speed
-		character.move_and_slide()
+
+	# 水平锯需要重力才能贴在地面/平台上，继承平台速度
+	if move_axis == Axis.HORIZONTAL:
+		if not character.is_on_floor():
+			character.velocity += character.get_gravity() * delta
+
+	character.move_and_slide()
 
 	if _mat:
 		_angle += rotate_speed * delta
