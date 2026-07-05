@@ -19,6 +19,7 @@ var _hp_label: Label = null
 
 
 func _ready() -> void:
+	add_to_group("player")
 	$Area2D.body_exited.connect(_on_area_2d_body_exited)
 	_create_hp_ui()
 

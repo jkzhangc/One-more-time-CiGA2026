@@ -1,8 +1,8 @@
 extends Node2D
 @export var mask_duration: float = 3.0
-@export var mouse_mask_radius: float = 40.0
+@export var mouse_mask_radius: float = 75.0
 @export var fixed_mask_radius: float = 75.0
-@export_range(0.1, 2.0) var indicator_scale_factor: float = 1.9
+@export_range(0.1, 2.0) var indicator_scale_factor: float = 1
 @export var mask_expand_duration: float = 0.2
 @export var mask_strobe_duration: float = 0.5
 @export var mask_shrink_duration: float = 0.2
@@ -23,6 +23,7 @@ var _placed_count: int = 0  # 本次已放置的锚点数
 
 func _ready() -> void:
 	button.pressed.connect(_on_button_pressed)
+	color_rect.scale = Vector2.ONE
 	color_rect.material.set_shader_parameter("is_active", false)
 	color_rect.material.set_shader_parameter("mouse_radius", mouse_mask_radius)
 	color_rect.material.set_shader_parameter("fixed_radius", fixed_mask_radius)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="One-more-time-CiGA2026-Game"
-run/main_scene="uid://bkdq6y118d36y"
+run/main_scene="uid://do7n87pa3u8fr"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=720
 window/size/viewport_height=480
 window/stretch/mode="canvas_items"
+window/stretch/scale=1.5
 
 [editor_plugins]
 
