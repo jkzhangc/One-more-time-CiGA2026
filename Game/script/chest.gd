@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var is_opened: bool = false
 @export var mode: String = "内容1"
@@ -11,7 +11,7 @@ var anim_sprite: AnimatedSprite2D = null
 func _ready() -> void:
 	set_process_input(true)
 
-	anim_sprite = $StaticBody2D/AnimatedSprite2D as AnimatedSprite2D
+	anim_sprite = $AnimatedSprite2D as AnimatedSprite2D
 
 	# 创建提示文字
 	prompt_label = Label.new()
@@ -31,6 +31,12 @@ func _ready() -> void:
 	# 初始状态
 	if is_opened:
 		anim_sprite.play("开启状态")
+
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	move_and_slide()
 
 
 func _on_body_entered(body: Node2D) -> void:

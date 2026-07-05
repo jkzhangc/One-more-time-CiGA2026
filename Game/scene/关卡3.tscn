@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b7xokg0748xx6" path="res://object/board.tscn" id="10_swjaf"]
 [ext_resource type="PackedScene" uid="uid://dculo3tl7tqc3" path="res://object/Enemy3.tscn" id="11_db57s"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="12_lndlv"]
-[ext_resource type="PackedScene" uid="uid://bth3krfldwjfw" path="res://object/宝箱.tscn" id="13_4cjkk"]
+[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="13_4cjkk"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="14_6dyac"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="15_oyj70"]
 
@@ -174,10 +174,12 @@ position = Vector2(-546, 89)
 position = Vector2(-206, 96)
 
 [node name="宝箱" parent="机关" unique_id=1651352525 instance=ExtResource("13_4cjkk")]
+z_index = 3
 position = Vector2(-422, -203)
 mode = "内容2"
 
 [node name="宝箱2" parent="机关" unique_id=519503002 instance=ExtResource("13_4cjkk")]
+z_index = 3
 position = Vector2(-35, -137)
 mode = "内容2"
 
