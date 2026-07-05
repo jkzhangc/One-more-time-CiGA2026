@@ -14,6 +14,12 @@ func _ready() -> void:
 	if bg_texture:
 		$Background.texture = bg_texture
 
+	# 将场景中的 AudioStreamPlayer 交给全局 GlobalAudio 播放（场景切换不断）
+	var scene_player: AudioStreamPlayer = $AudioStreamPlayer
+	if scene_player and scene_player.stream:
+		GlobalAudio.play_music(scene_player.stream)
+		scene_player.stop()
+
 	# 连接按钮信号
 	$UI/Panel/VBoxContainer/StartButton.pressed.connect(_on_start_game)
 	$UI/Panel/VBoxContainer/CreditsButton.pressed.connect(_on_show_credits)

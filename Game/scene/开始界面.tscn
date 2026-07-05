@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://o4vj4gbbfnb7" path="res://script/开始界面.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://p25ma6ft62b2" path="res://art/开始界面背景.png" id="2_bg"]
 [ext_resource type="PackedScene" uid="uid://do7n87pa3u8fr" path="res://scene/关卡1.tscn" id="2_gocrg"]
+[ext_resource type="AudioStream" uid="uid://dhxx7fbi4hi35" path="res://music/背景音乐1.mp3" id="4_r51p7"]
 
 [node name="开始界面" type="Node2D" unique_id=1066685319]
 script = ExtResource("1_menu")
@@ -67,3 +68,6 @@ custom_minimum_size = Vector2(200, 44)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "退出游戏"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=760161246]
+stream = ExtResource("4_r51p7")

@@ -22,6 +22,10 @@ window/size/viewport_height=480
 window/stretch/mode="canvas_items"
 window/stretch/scale=1.25
 
+[autoload]
+
+GlobalAudio="*res://script/GlobalAudio.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray()
