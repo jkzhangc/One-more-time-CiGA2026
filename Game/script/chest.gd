@@ -110,6 +110,37 @@ const BOMB_DELAY: float = 2.0
 func _trap_bomb() -> void:
 	print("触发炸弹！2秒后爆炸！")
 
+	# 创建炸弹可视化容器
+	var bomb_visual = Node2D.new()
+	bomb_visual.name = "BombVisual"
+	bomb_visual.position = global_position
+	bomb_visual.z_index = 100  # 确保在背景之上显示
+	get_tree().current_scene.add_child(bomb_visual)
+
+	# 危险区域圆圈（地面上的红色范围指示）
+	var circle_sprite = Sprite2D.new()
+	circle_sprite.name = "DangerCircle"
+	circle_sprite.texture = _create_circle_texture(
+		BOMB_RADIUS,
+		Color(1.0, 0.12, 0.08, 0.25),   # 内部填充：半透明红色
+		Color(1.0, 0.25, 0.1, 0.9),       # 边框：明显红色
+		3.0                                  # 边框宽度
+	)
+	circle_sprite.centered = true
+	bomb_visual.add_child(circle_sprite)
+
+	# 中央炸弹图标
+	var bomb_icon = Label.new()
+	bomb_icon.name = "BombIcon"
+	bomb_icon.text = "💣"
+	bomb_icon.add_theme_font_size_override("font_size", 24)
+	bomb_icon.position = Vector2(-12, -12)
+	bomb_icon.z_index = 1  # 相对父节点偏移
+	bomb_visual.add_child(bomb_icon)
+
+	# 播放炸弹音效
+	_play_bomb_sound()
+
 	# 创建炸弹检测区域
 	var bomb_area = Area2D.new()
 	bomb_area.name = "BombArea"
@@ -121,18 +152,24 @@ func _trap_bomb() -> void:
 	var circle = CircleShape2D.new()
 	circle.radius = BOMB_RADIUS
 	collision_shape.shape = circle
-	collision_shape.debug_color = Color(1, 0.2, 0.1, 0.4)
 	bomb_area.add_child(collision_shape)
 
 	get_tree().current_scene.add_child(bomb_area)
 
-	# 闪烁警告效果
+	# 闪烁警告效果（圆圈 + 图标一起闪）
 	var flash_count = 0
 	while flash_count < int(BOMB_DELAY / 0.15):
-		bomb_area.visible = not bomb_area.visible
+		circle_sprite.visible = not circle_sprite.visible
+		bomb_icon.visible = not bomb_icon.visible
 		await get_tree().create_timer(0.15).timeout
 		flash_count += 1
-	bomb_area.visible = true
+	# 最后保持可见
+	circle_sprite.visible = true
+	bomb_icon.visible = true
+
+	# 爆炸前圆圈变红（短暂预警）
+	circle_sprite.modulate = Color(1.0, 0.15, 0.05, 1.0)
+	await get_tree().create_timer(0.1).timeout
 
 	# 爆炸：检测范围内的玩家
 	var bodies = bomb_area.get_overlapping_bodies()
@@ -146,6 +183,37 @@ func _trap_bomb() -> void:
 
 	# 清理
 	bomb_area.queue_free()
+	bomb_visual.queue_free()
+
+
+func _create_circle_texture(radius: float, fill_color: Color, border_color: Color, border_width: float = 3.0) -> ImageTexture:
+	var size: int = int(radius * 2 + border_width * 2 + 4)
+	var image := Image.create(size, size, false, Image.FORMAT_RGBA8)
+	image.fill(Color(0, 0, 0, 0))
+
+	var center := Vector2(size / 2.0, size / 2.0)
+	for x in range(size):
+		for y in range(size):
+			var dist := Vector2(x - center.x, y - center.y).length()
+			if dist <= radius + border_width:
+				if dist >= radius - border_width:
+					# 边框像素
+					image.set_pixel(x, y, border_color)
+				elif dist <= radius:
+					# 内部填充
+					image.set_pixel(x, y, fill_color)
+
+	return ImageTexture.create_from_image(image)
+
+
+func _play_bomb_sound() -> void:
+	var audio := AudioStreamPlayer.new()
+	audio.name = "BombSound"
+	audio.stream = load("res://sound/炸弹.mp3")
+	audio.autoplay = false
+	audio.finished.connect(audio.queue_free)
+	get_tree().current_scene.add_child(audio)
+	audio.play()
 
 
 func _spawn_explosion_particles() -> void:

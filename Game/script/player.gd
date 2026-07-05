@@ -252,7 +252,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		"电锯":
 			_handle_saw_collision(body, enemyStateMachine)
 			return
-
+			
+		"压力板":
+			return
 		_:
 			_handle_default_collision(body, enemyStateMachine)
 

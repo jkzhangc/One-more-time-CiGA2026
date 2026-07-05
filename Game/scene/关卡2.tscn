@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cxprmsvcie507"]
+[gd_scene format=3 uid="uid://vfvyl4qvrays"]
 
 [ext_resource type="Script" uid="uid://bk5ogmcd4eji1" path="res://script/AnchorManager.gd" id="1_0141t"]
 [ext_resource type="Texture2D" uid="uid://bwctbklylai2r" path="res://art/门、宝箱、地等2项文件/背景/80763a6e-2733-486e-bdf1-55ef71d5119e.png" id="1_inkcr"]

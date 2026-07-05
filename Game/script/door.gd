@@ -1,29 +1,71 @@
 extends Node2D
 
-var _triggered: bool = false
+## 门 —— 支持"未开启"和"开启"两个状态
+## 可通过压力板信号、或玩家走进 Area2D 来触发打开
+##
+## 连接方式：在编辑器中把压力板的 pressed 信号连接到门的 open() 方法
+
+signal door_opened
+signal door_closed
+
+@export var is_open: bool = false        # 初始是否已开启
+@export var is_victory_door: bool = false  # 是否为通关终点门
+
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _blocker: StaticBody2D = $StaticBody2D
 
 
 func _ready() -> void:
 	$Area2D.body_entered.connect(_on_body_entered)
+	if is_open:
+		_apply_open_state()
+	else:
+		_apply_closed_state()
+
+
+## 开门（供外部信号连接）
+func open() -> void:
+	if is_open:
+		return
+	is_open = true
+	_apply_open_state()
+	door_opened.emit()
+	print("门已开启")
+
+
+## 关门（供外部信号连接）
+func close() -> void:
+	if not is_open:
+		return
+	is_open = false
+	_apply_closed_state()
+	door_closed.emit()
+	print("门已关闭")
+
+
+func _apply_open_state() -> void:
+	if anim:
+		anim.play("open")
+	if _blocker:
+		_blocker.collision_layer = 0  # 禁用碰撞，玩家可通过
+
+
+func _apply_closed_state() -> void:
+	if anim:
+		anim.play("default")
+	if _blocker:
+		_blocker.collision_layer = 8  # 恢复碰撞（杂项层，阻挡玩家）
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if _triggered:
-		return
 	if not body.has_method("take_damage"):
 		return
 
-	_triggered = true
-	print("玩家进入门！恭喜通关！")
-
-	# 切换门动画
-	if anim:
-		anim.play("open")
-
-	# 稍作停顿后显示通关 UI
-	await get_tree().create_timer(0.5).timeout
-	_show_victory_ui()
+	# 如果是通关终点门且已开启 → 显示胜利 UI
+	if is_victory_door and is_open:
+		print("玩家通过终点门！恭喜通关！")
+		await get_tree().create_timer(0.5).timeout
+		_show_victory_ui()
 
 
 func _show_victory_ui() -> void:
@@ -65,3 +107,12 @@ func _show_victory_ui() -> void:
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_board_pressed() -> void:
+	print("开启门")
+	open()
+
+
+func _on_board_released() -> void:
+	close()

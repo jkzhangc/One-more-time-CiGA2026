@@ -8,8 +8,8 @@ var located_direction = Vector2(0.0,0.0)
 
 func random_direction() -> Vector2:
 	return Vector2((randi() % 3) * 1.0 - 1.0,0.0);
-	
-	
+
+
 func _ready() -> void:
 	self.position = get_parent().position
 	get_parent().position = Vector2(0.0,0.0)
@@ -20,11 +20,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(other : Node2D) -> void:
-	if other.get_parent().name == "Player":
-		pass
-	
-	if other.get_parent().name == "Board":
-		other.transition("Triggered");
+	# 碰撞检测由各自的 Area2D 处理（如压力板检测敌人/玩家、玩家检测敌人等）
+	pass
 
 func _get_state_machine() -> StateMachine:
 	for child in get_children():
@@ -58,4 +55,4 @@ func _on_spike_area_body_entered(body: Node2D) -> void:
 	body.take_damage(1)
 	# 把玩家弹起来（站在刺上的效果）
 	if body is CharacterBody2D:
-		body.velocity.y = -400.0		
+		body.velocity.y = -400.0

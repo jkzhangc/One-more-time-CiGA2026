@@ -33,7 +33,6 @@ script = ExtResource("1_k77ac")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1628984575]
 sprite_frames = SubResource("SpriteFrames_k77ac")
-animation = &"open"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=573353686]
 collision_mask = 2

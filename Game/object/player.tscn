@@ -101,9 +101,7 @@ visibility_layer = 4
 position = Vector2(-4, -14)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_o1wbr")
-animation = &"施法"
-frame = 1
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=597629648]
 position = Vector2(0, 2)
@@ -112,6 +110,7 @@ shape = SubResource("RectangleShape2D_onh3l")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=759915741]
 light_mask = 15
 visibility_layer = 31
+zoom = Vector2(0.6, 0.6)
 position_smoothing_speed = 50.0
 rotation_smoothing_speed = 50.0
 

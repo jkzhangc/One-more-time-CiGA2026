@@ -56,6 +56,10 @@ mode = "内容2"
 position = Vector2(-308, -119)
 texture = ExtResource("1_inkcr")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=220716528]
+position = Vector2(-1976, -120)
+texture = ExtResource("1_inkcr")
+
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("2_inse3")]
 position = Vector2(631, -25)
 

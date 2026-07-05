@@ -45,20 +45,29 @@ shader_parameter/border_color = Color(0.2, 0.6, 1, 1)
 shader_parameter/border_width = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0141t"]
-size = Vector2(3341.5, 124.5)
+size = Vector2(5000, 124.5)
 
 [node name="模板关卡1" type="Node2D" unique_id=700300208]
 script = ExtResource("1_x3v0b")
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1515617940]
+[node name="背景" type="Parallax2D" parent="." unique_id=1515617940]
 z_index = -10
+scroll_offset = Vector2(2, 64)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D" unique_id=1491504465]
+[node name="Sprite2D2" type="Sprite2D" parent="背景" unique_id=1491504465]
 position = Vector2(1368, -118)
 texture = ExtResource("2_orxj0")
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1939504928]
-position = Vector2(-308, -119)
+[node name="Sprite2D" type="Sprite2D" parent="背景" unique_id=1939504928]
+position = Vector2(-304, -118)
+texture = ExtResource("2_orxj0")
+
+[node name="Sprite2D3" type="Sprite2D" parent="背景" unique_id=1040680030]
+position = Vector2(-1976, -118)
+texture = ExtResource("2_orxj0")
+
+[node name="Sprite2D4" type="Sprite2D" parent="背景" unique_id=1509077140]
+position = Vector2(3040, -118)
 texture = ExtResource("2_orxj0")
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("3_6xgn3")]
@@ -160,7 +169,7 @@ position = Vector2(1667.25, 230.28516)
 shape = SubResource("RectangleShape2D_x3v0b")
 
 [node name="终点" parent="." unique_id=1870043307 instance=ExtResource("6_q6evy")]
-position = Vector2(1786, 213)
+position = Vector2(1864, 212)
 next_level = ExtResource("7_acp8b")
 
 [node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=2071483300]
@@ -211,10 +220,10 @@ shape = SubResource("RectangleShape2D_0141t")
 position = Vector2(1860, 64.99999)
 
 [node name="Board" parent="机关" unique_id=1118613711 instance=ExtResource("11_cnoj0")]
-position = Vector2(1522, 192)
+position = Vector2(1522, 218)
 
 [node name="冲撞类敌人" parent="机关" unique_id=1721056165 instance=ExtResource("12_x7q66")]
-position = Vector2(1364, 190)
+position = Vector2(1364, 198)
 
 [node name="形态类怪物" parent="机关" unique_id=463665746 instance=ExtResource("13_wunud")]
 position = Vector2(392, 132)
@@ -250,3 +259,7 @@ position = Vector2(-10, 86)
 initial_state = "Move_leftright"
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
+[connection signal="door_closed" from="机关/Door" to="终点" method="_on_door_door_closed"]
+[connection signal="door_opened" from="机关/Door" to="终点" method="_on_door_door_opened"]
+[connection signal="pressed" from="机关/Board" to="机关/Door" method="_on_board_pressed"]
+[connection signal="released" from="机关/Board" to="机关/Door" method="_on_board_released"]

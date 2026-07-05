@@ -4,12 +4,22 @@ extends Node2D
 
 var _completed: bool = false
 var _ui_canvas: CanvasLayer = null
-
+signal open 
+signal close 
 
 func _ready() -> void:
 	$Area2D.body_entered.connect(_on_body_entered)
+	$Area2D.monitoring = false
+	hide()
 
+func _open() -> void:
+	$Area2D.monitoring = true
+	show()
 
+func _close() -> void:
+	$Area2D.monitoring = false
+	hide()
+	
 func _on_body_entered(body: Node2D) -> void:
 	if _completed:
 		return
@@ -82,3 +92,11 @@ func _on_next_level_pressed() -> void:
 		return
 	print("进入下一关")
 	get_tree().change_scene_to_packed(next_level)
+
+
+func _on_door_door_opened() -> void:
+	_open() # Replace with function body.
+
+
+func _on_door_door_closed() -> void:
+	_close() # Replace with function body.
