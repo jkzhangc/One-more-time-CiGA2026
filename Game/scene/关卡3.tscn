@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b7xokg0748xx6" path="res://object/board.tscn" id="10_swjaf"]
 [ext_resource type="PackedScene" uid="uid://dculo3tl7tqc3" path="res://object/Enemy3.tscn" id="11_db57s"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="12_lndlv"]
-[ext_resource type="PackedScene" uid="uid://d38svmmkfh5e3" path="res://object/宝箱.tscn" id="13_4cjkk"]
+[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="13_4cjkk"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="14_6dyac"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="15_oyj70"]
 
@@ -169,10 +169,10 @@ shape = SubResource("RectangleShape2D_0141t")
 position = Vector2(-1228, -194)
 
 [node name="Board" parent="机关" unique_id=1118613711 instance=ExtResource("10_swjaf")]
-position = Vector2(-318, 90)
+position = Vector2(-345, 94)
 
 [node name="冲撞类敌人" parent="机关" unique_id=1721056165 instance=ExtResource("11_db57s")]
-position = Vector2(-546, 89)
+position = Vector2(-584, 88)
 
 [node name="形态类怪物" parent="机关" unique_id=463665746 instance=ExtResource("12_lndlv")]
 position = Vector2(-237, 80)
