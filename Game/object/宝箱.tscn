@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="bth3krfldwjfw"]
+[gd_scene format=3 uid="uid://d38svmmkfh5e3"]
 
-[ext_resource type="Texture2D" uid="ci2g36i3l54d6" path="res://art/宝箱-未开启.png" id="1_0yodo"]
-[ext_resource type="Texture2D" uid="3p7ag2ialm0k" path="res://art/宝箱-已开启.png" id="2_wd3hb"]
-[ext_resource type="Script" uid="bxr7k8md3f2a1" path="res://script/chest.gd" id="3_chest"]
+[ext_resource type="Texture2D" uid="uid://ci2g36i3l54d6" path="res://art/宝箱-未开启.png" id="1_0yodo"]
+[ext_resource type="Texture2D" uid="uid://3p7ag2ialm0k" path="res://art/宝箱-已开启.png" id="2_wd3hb"]
+[ext_resource type="Script" uid="uid://bxr7k8md3f2a1" path="res://script/chest.gd" id="3_chest"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_of3u6"]
 animations = [{
@@ -35,6 +35,7 @@ visibility_layer = 2
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("3_chest")
+bomb_weight = 2.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1293576331]
 light_mask = 2

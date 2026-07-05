@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
 @export var is_opened: bool = false
-@export var mode: String = "内容1"
+@export var reward_weight: float = 1.0   # 奖励（锚点+1）的权重
+@export var bomb_weight: float = 1.0     # 炸弹陷阱的权重
 
 var player_in_range: bool = false
 var prompt_label: Label = null
@@ -65,13 +66,13 @@ func _open_chest() -> void:
 	prompt_label.visible = false
 	print("宝箱已打开！")
 
-	match mode:
-		"内容1":
-			_reward_extra_anchor()
-		"内容2":
-			_trap_bomb()
-		_:
-			print("未知宝箱模式: %s" % mode)
+	# 加权随机选择奖励或炸弹
+	var total := reward_weight + bomb_weight
+	var roll := randf() * total
+	if roll < reward_weight:
+		_reward_extra_anchor()
+	else:
+		_trap_bomb()
 
 
 # --- 内容1：奖励时间锚点次数+1 ---
@@ -144,9 +145,6 @@ func _trap_bomb() -> void:
 	bomb_icon.z_index = 1  # 相对父节点偏移
 	bomb_visual.add_child(bomb_icon)
 
-	# 播放炸弹音效
-	_play_bomb_sound()
-
 	# 创建炸弹检测区域
 	var bomb_area = Area2D.new()
 	bomb_area.name = "BombArea"
@@ -183,7 +181,8 @@ func _trap_bomb() -> void:
 		if body.has_method("take_damage"):
 			print("炸弹爆炸！玩家在范围内，扣 1 滴血")
 			body.take_damage(1)
-
+	# 播放炸弹音效
+	_play_bomb_sound()
 	# 爆炸粒子
 	_spawn_explosion_particles()
 
