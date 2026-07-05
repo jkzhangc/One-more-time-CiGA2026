@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://7n2212ud0f1s" path="res://object/终点.tscn" id="5_inkcr"]
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="7_7ry6p"]
 [ext_resource type="PackedScene" uid="uid://dm4wwvhfowcvc" path="res://scene/关卡3.tscn" id="7_j5bo6"]
-[ext_resource type="Texture2D" uid="uid://be1vk1tjq3fdu" path="res://art/门、宝箱、地等2项文件/门、宝箱、地/Layer 7.png" id="8_7wa7w"]
+[ext_resource type="Texture2D" uid="uid://bakt2jinvsoqe" path="res://art/旗子和机关/Layer 3.png" id="8_7wa7w"]
 [ext_resource type="Texture2D" uid="uid://5xkyfr8obawg" path="res://art/ui等2项文件/ui/SkillMask.png" id="10_j5bo6"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="11_m5mxd"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="12_m5mxd"]
-[ext_resource type="PackedScene" uid="uid://d38svmmkfh5e3" path="res://object/宝箱.tscn" id="12_qtid4"]
+[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="12_qtid4"]
 [ext_resource type="PackedScene" uid="uid://kuouomxxlutd" path="res://object/Enemy_Saw.tscn" id="14_j5bo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxd"]
@@ -60,6 +60,7 @@ shader_parameter/center_glow_intensity = 0.12
 size = Vector2(3341.5, 124.5)
 
 [node name="模板关卡1" type="Node2D" unique_id=700300208]
+position = Vector2(8, 2)
 script = ExtResource("1_0141t")
 
 [node name="背景" type="Parallax2D" parent="." unique_id=383625202]
@@ -85,7 +86,7 @@ position = Vector2(2665, -123)
 texture = ExtResource("1_inkcr")
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("2_inse3")]
-position = Vector2(-695, 33)
+position = Vector2(-602, 91)
 
 [node name="平台" type="Node2D" parent="." unique_id=102726873]
 
@@ -186,9 +187,9 @@ shape = SubResource("RectangleShape2D_xo7rh")
 position = Vector2(877, -364)
 next_level = ExtResource("7_j5bo6")
 
-[node name="Sprite2D" type="Sprite2D" parent="终点" unique_id=951200663]
-position = Vector2(24.999985, -1)
-scale = Vector2(0.28595316, 0.2244898)
+[node name="Sprite2D2" type="Sprite2D" parent="终点" unique_id=1275929641]
+position = Vector2(16.999996, -37.49998)
+scale = Vector2(0.28467157, 0.29527548)
 texture = ExtResource("8_7wa7w")
 
 [node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=2071483300]
@@ -242,7 +243,7 @@ position = Vector2(220, 123)
 position = Vector2(-37, 50)
 
 [node name="移动平台左右1" parent="机关" unique_id=1084164698 instance=ExtResource("5_77ltu")]
-position = Vector2(-372, 59)
+position = Vector2(-287, 59)
 initial_state = "Move_leftright"
 
 [node name="总的尖刺柱" type="Node2D" parent="机关" unique_id=1864133462]
@@ -268,7 +269,8 @@ position = Vector2(667, -274)
 initial_state = "Move_circumference"
 
 [node name="电锯" parent="机关" unique_id=318734010 instance=ExtResource("14_j5bo6")]
-position = Vector2(624, -314)
+position = Vector2(628, -314)
+max_distance = 100.0
 contact_direction = 1
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
