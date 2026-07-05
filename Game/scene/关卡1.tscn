@@ -31,6 +31,18 @@ size = Vector2(765.5, 67.42969)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xbo14"]
 shader = ExtResource("8_4unig")
+shader_parameter/is_active = false
+shader_parameter/mouse_pos = Vector2(-10000, -10000)
+shader_parameter/mouse_radius = 40.0
+shader_parameter/fixed_pos_1 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_2 = Vector2(-10000, -10000)
+shader_parameter/fixed_pos_3 = Vector2(-10000, -10000)
+shader_parameter/fixed_radius = 75.0
+shader_parameter/fixed_scale_1 = 1.0
+shader_parameter/fixed_scale_2 = 1.0
+shader_parameter/fixed_scale_3 = 1.0
+shader_parameter/border_color = Color(0.2, 0.6, 1, 1)
+shader_parameter/border_width = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0141t"]
 size = Vector2(3341.5, 124.5)
@@ -209,6 +221,8 @@ position = Vector2(392, 132)
 
 [node name="尖刺柱" parent="机关" unique_id=1524636449 instance=ExtResource("14_3bfac")]
 position = Vector2(688, 38)
+spike_show_rate = Vector2(1, 1)
+spike_hied_rate = Vector2(1, 1)
 
 [node name="尖刺柱2" parent="机关" unique_id=1609222376 instance=ExtResource("14_3bfac")]
 position = Vector2(875, 37)
