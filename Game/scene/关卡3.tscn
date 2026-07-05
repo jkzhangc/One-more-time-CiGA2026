@@ -12,12 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://b7xokg0748xx6" path="res://object/board.tscn" id="10_swjaf"]
 [ext_resource type="PackedScene" uid="uid://dculo3tl7tqc3" path="res://object/Enemy3.tscn" id="11_db57s"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="12_lndlv"]
-[ext_resource type="PackedScene" uid="uid://d38svmmkfh5e3" path="res://object/宝箱.tscn" id="13_4cjkk"]
+[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="13_4cjkk"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="14_6dyac"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="15_oyj70"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uaeuu"]
-size = Vector2(321.375, 37.714844)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8kto"]
 size = Vector2(691.5, 67)
@@ -82,25 +79,9 @@ position = Vector2(2665, -123)
 texture = ExtResource("2_6f6jj")
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("3_n2fjr")]
-position = Vector2(-785, -114)
+position = Vector2(-847, -94)
 
 [node name="平台" type="Node2D" parent="." unique_id=102726873]
-
-[node name="平台2" type="StaticBody2D" parent="平台" unique_id=343246433]
-z_index = -1
-position = Vector2(-112, -147)
-collision_mask = 6
-
-[node name="Sprite2D" type="Sprite2D" parent="平台/平台2" unique_id=1961137369]
-position = Vector2(-656.00006, 107)
-scale = Vector2(0.20067817, 0.35625)
-texture = ExtResource("4_aggpi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台2" unique_id=10927627]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(-657.5, 114.140625)
-shape = SubResource("RectangleShape2D_uaeuu")
 
 [node name="平台6" type="StaticBody2D" parent="平台" unique_id=1242798290]
 z_index = -1
@@ -124,18 +105,18 @@ position = Vector2(-1929, -80)
 collision_mask = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="平台/平台7" unique_id=401874647]
-position = Vector2(2641, 336)
+position = Vector2(920, 56.00006)
 scale = Vector2(0.48319972, 0.6406251)
 texture = ExtResource("4_aggpi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台7" unique_id=1163426556]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(2649, 346)
+position = Vector2(912, 68)
 shape = SubResource("RectangleShape2D_x3v0b")
 
 [node name="终点" parent="." unique_id=1870043307 instance=ExtResource("5_y5nnh")]
-position = Vector2(855, 188)
+position = Vector2(-1215, -59)
 next_level = ExtResource("6_eyoig")
 "初始是否隐藏" = true
 is_final_level = true
@@ -185,52 +166,40 @@ shape = SubResource("RectangleShape2D_0141t")
 [node name="机关" type="Node2D" parent="." unique_id=14403801]
 
 [node name="Door" parent="机关" unique_id=691006439 instance=ExtResource("9_eta67")]
-position = Vector2(849.00006, 78.00001)
+position = Vector2(-1228, -194)
 
 [node name="Board" parent="机关" unique_id=1118613711 instance=ExtResource("10_swjaf")]
-position = Vector2(-291, 95)
+position = Vector2(-318, 90)
 
 [node name="冲撞类敌人" parent="机关" unique_id=1721056165 instance=ExtResource("11_db57s")]
 position = Vector2(-546, 89)
 
 [node name="形态类怪物" parent="机关" unique_id=463665746 instance=ExtResource("12_lndlv")]
-position = Vector2(-178, 94)
+position = Vector2(-237, 80)
 
 [node name="宝箱" parent="机关" unique_id=1651352525 instance=ExtResource("13_4cjkk")]
 z_index = 3
-position = Vector2(-422, -203)
+position = Vector2(-410, -207)
 
 [node name="宝箱2" parent="机关" unique_id=519503002 instance=ExtResource("13_4cjkk")]
 z_index = 3
-position = Vector2(-35, -137)
+position = Vector2(-108, -164)
 
 [node name="移动平台左右1" parent="机关" unique_id=1084164698 instance=ExtResource("14_6dyac")]
-position = Vector2(-412, -144)
+position = Vector2(-397, -138)
 initial_state = "Move_leftright"
 
 [node name="移动平台上下" parent="机关" unique_id=587148856 instance=ExtResource("14_6dyac")]
-position = Vector2(-35, -70)
+position = Vector2(-104, -94)
 
 [node name="尖刺团" type="Node2D" parent="机关" unique_id=976761748]
-position = Vector2(-421, -260)
+position = Vector2(-1618, -124)
 
 [node name="尖刺柱4" parent="机关/尖刺团" unique_id=1072139384 instance=ExtResource("15_oyj70")]
 position = Vector2(626, 56)
 
-[node name="尖刺柱3" parent="机关/尖刺团" unique_id=712704409 instance=ExtResource("15_oyj70")]
-position = Vector2(660, 56)
-
-[node name="尖刺柱" parent="机关/尖刺团" unique_id=1524636449 instance=ExtResource("15_oyj70")]
-position = Vector2(528, 56)
-
-[node name="尖刺柱2" parent="机关/尖刺团" unique_id=1609222376 instance=ExtResource("15_oyj70")]
-position = Vector2(692, 56)
-
-[node name="尖刺柱5" parent="机关/尖刺团" unique_id=821788171 instance=ExtResource("15_oyj70")]
-position = Vector2(562, 56)
-
 [node name="尖刺柱6" parent="机关/尖刺团" unique_id=1844899734 instance=ExtResource("15_oyj70")]
-position = Vector2(594, 56)
+position = Vector2(665, 58)
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
 [connection signal="door_opened" from="机关/Door" to="终点" method="_on_door_door_opened"]
