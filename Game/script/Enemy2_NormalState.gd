@@ -28,8 +28,8 @@ func physics_update(delta: float) -> void:
 	character.move_and_slide()
 	frameCount += delta
 
-	if frameCount > 3.0:
-		frameCount -= 3.0;
+	if frameCount > 1.0:
+		frameCount -= 1.0;
 		character.anim_sprite.play("中形态切换动画")
 		await character.anim_sprite.animation_finished
 		character.anim_sprite.play("中形态")

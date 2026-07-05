@@ -27,8 +27,8 @@ func physics_update(delta: float) -> void:
 	character.move_and_slide()
 	frameCount += delta
 
-	if frameCount > 3.0:
-		frameCount -= 3.0;
+	if frameCount > 1.0:
+		frameCount -= 1.0;
 		character.mode = 1
 		character.anim_sprite.play_backwards("高形态切换动画")
 		await character.anim_sprite.animation_finished
