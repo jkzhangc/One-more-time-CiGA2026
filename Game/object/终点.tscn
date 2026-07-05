@@ -24,6 +24,7 @@ size = Vector2(80, 143.5)
 script = ExtResource("1_fpi3d")
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=1746586759]
+visible = false
 material = SubResource("CanvasItemMaterial_fme7q")
 position = Vector2(-13, -2)
 amount = 10
@@ -41,6 +42,7 @@ anim_offset_max = 0.1089
 anim_offset_curve = SubResource("Curve_y6yqo")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=220997363]
+visible = false
 material = SubResource("CanvasItemMaterial_fme7q")
 amount = 10
 emission_shape = 1
@@ -57,6 +59,7 @@ anim_offset_max = 0.1089
 anim_offset_curve = SubResource("Curve_y6yqo")
 
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="." unique_id=1428922724]
+visible = false
 material = SubResource("CanvasItemMaterial_fme7q")
 position = Vector2(12, -2)
 amount = 10

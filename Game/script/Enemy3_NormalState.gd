@@ -20,7 +20,7 @@ func random_direction() -> Vector2:
 
 
 func enter() -> void:
-	character.velocity = direction * speed;
+	character.velocity = Vector2.ZERO
 	_reverse_timer = 0.0
 	_update_sprite_flip()
 
@@ -43,12 +43,12 @@ func physics_update(delta: float) -> void:
 	character.move_and_slide()
 
 	# 每 reverse_interval 秒反转移动方向
-	_reverse_timer += delta
-	if _reverse_timer >= reverse_interval:
-		_reverse_timer = 0.0
-		direction.x = -direction.x
-		character.velocity = direction * speed
-		_update_sprite_flip()
+	#_reverse_timer += delta
+	#if _reverse_timer >= reverse_interval:
+		#_reverse_timer = 0.0
+		#direction.x = -direction.x
+		#character.velocity = direction * speed
+		#_update_sprite_flip()
 
 	var player: Node2D = _get_player()
 	if not player:
@@ -60,6 +60,8 @@ func physics_update(delta: float) -> void:
 	var on_same_level: bool = abs(d.y) < y_tolerance
 	if dist < distRange + 1e-7 and on_same_level:
 		if character.anim_sprite:
+			var sprite: AnimatedSprite2D = character.get_node_or_null("AnimatedSprite2D")
+			sprite.flip_h = character.located_direction.x < 0
 			character.anim_sprite.play("冲刺预备")
 			await character.anim_sprite.animation_finished
 			character.anim_sprite.play("冲刺")

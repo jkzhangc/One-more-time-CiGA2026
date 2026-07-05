@@ -194,7 +194,7 @@ position = Vector2(-291, 95)
 position = Vector2(-546, 89)
 
 [node name="形态类怪物" parent="机关" unique_id=463665746 instance=ExtResource("12_lndlv")]
-position = Vector2(-206, 96)
+position = Vector2(-178, 94)
 
 [node name="宝箱" parent="机关" unique_id=1651352525 instance=ExtResource("13_4cjkk")]
 z_index = 3
