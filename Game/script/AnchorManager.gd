@@ -1,6 +1,6 @@
 extends Node2D
 @export var mask_duration: float = 3.0
-@export var mouse_mask_radius: float = 75.0
+@export var mouse_mask_radius: float = 45.0
 @export var fixed_mask_radius: float = 75.0
 @export_range(0.1, 2.0) var indicator_scale_factor: float = 1
 @export var mask_expand_duration: float = 0.2
