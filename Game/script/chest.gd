@@ -65,7 +65,7 @@ func _open_chest() -> void:
 	anim_sprite.play("开启状态")
 	prompt_label.visible = false
 	print("宝箱已打开！")
-
+	_play_openchest_sound()
 	# 加权随机选择奖励或炸弹
 	var total := reward_weight + bomb_weight
 	var roll := randf() * total
@@ -220,6 +220,14 @@ func _play_bomb_sound() -> void:
 	get_tree().current_scene.add_child(audio)
 	audio.play()
 
+func _play_openchest_sound() -> void:
+	var audio := AudioStreamPlayer.new()
+	audio.name = "OpenChestSound"
+	audio.stream = load("res://sound/打开宝箱.mp3")
+	audio.autoplay = false
+	audio.finished.connect(audio.queue_free)
+	get_tree().current_scene.add_child(audio)
+	audio.play()
 
 func _spawn_explosion_particles() -> void:
 	var particles = CPUParticles2D.new()

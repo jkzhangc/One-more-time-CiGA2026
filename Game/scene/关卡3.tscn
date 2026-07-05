@@ -20,7 +20,7 @@
 size = Vector2(321.375, 37.714844)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8kto"]
-size = Vector2(668.5, 67.42969)
+size = Vector2(691.5, 67)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3v0b"]
 size = Vector2(762.5, 67.42969)
@@ -56,21 +56,29 @@ shader_parameter/center_glow_intensity = 0.12
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0141t"]
 size = Vector2(3341.5, 124.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxd"]
-size = Vector2(222, 24.75)
-
 [node name="模板关卡1" type="Node2D" unique_id=700300208]
 script = ExtResource("1_ag4gq")
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1515617940]
+[node name="背景" type="Parallax2D" parent="." unique_id=1345423496]
 z_index = -10
+texture_repeat = 2
+scale = Vector2(2, 2)
+scroll_offset = Vector2(-5, -43)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D" unique_id=1491504465]
-position = Vector2(1365, -119)
+[node name="Sprite2D" type="Sprite2D" parent="背景" unique_id=1375669685]
+position = Vector2(-680, -122)
 texture = ExtResource("2_6f6jj")
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1939504928]
-position = Vector2(-308, -119)
+[node name="Sprite2D2" type="Sprite2D" parent="背景" unique_id=1187812871]
+position = Vector2(992, -122)
+texture = ExtResource("2_6f6jj")
+
+[node name="Sprite2D3" type="Sprite2D" parent="背景" unique_id=172830739]
+position = Vector2(-2352, -122)
+texture = ExtResource("2_6f6jj")
+
+[node name="Sprite2D4" type="Sprite2D" parent="背景" unique_id=182796092]
+position = Vector2(2665, -123)
 texture = ExtResource("2_6f6jj")
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("3_n2fjr")]
@@ -107,7 +115,7 @@ texture = ExtResource("4_aggpi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台6" unique_id=1560483933]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(1618.75, 230.28516)
+position = Vector2(1630.25, 230.5)
 shape = SubResource("RectangleShape2D_b8kto")
 
 [node name="平台7" type="StaticBody2D" parent="平台" unique_id=1507178069]
@@ -223,17 +231,6 @@ position = Vector2(562, 56)
 
 [node name="尖刺柱6" parent="机关/尖刺团" unique_id=1844899734 instance=ExtResource("15_oyj70")]
 position = Vector2(594, 56)
-
-[node name="平台5" type="StaticBody2D" parent="机关/尖刺团" unique_id=236142430]
-z_index = -1
-position = Vector2(429, 360)
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="机关/尖刺团/平台5" unique_id=350918572]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(183, -229)
-shape = SubResource("RectangleShape2D_m5mxd")
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
 [connection signal="door_opened" from="机关/Door" to="终点" method="_on_door_door_opened"]

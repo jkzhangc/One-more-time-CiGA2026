@@ -47,6 +47,7 @@ animation = &"close"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=258783696]
 position = Vector2(3, -1.5)
 shape = SubResource("RectangleShape2D_p76u6")
+disabled = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=1144744525 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_uch4l")

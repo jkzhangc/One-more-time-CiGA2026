@@ -30,9 +30,9 @@ func process_update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	if not character.is_on_floor():
-		character.velocity += character.get_gravity() * delta
-	character.move_and_slide()
+	#if not character.is_on_floor():
+		#character.velocity += character.get_gravity() * delta
+	#character.move_and_slide()
 	frameCount += delta
 
 	if frameCount > spike_hide_time:

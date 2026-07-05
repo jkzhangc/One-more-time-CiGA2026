@@ -75,7 +75,7 @@ func _on_show_credits() -> void:
 
 	# 制作人员名单内容
 	var credits_text = Label.new()
-	credits_text.text = "策划：橙籽狸 / 昀墨魇莲离 / mash1ro\n程序：剑客 / 一只程序 / OTT \n美术：繁星点点\n音效：来自网络"
+	credits_text.text = "策划：橙籽狸 / 昀墨魇莲离 / mash1ro\n程序：剑客 / Ricky / OTT \n美术：繁星点点\n音效&音乐：来自网络"
 	credits_text.add_theme_font_size_override("font_size", 18)
 	credits_text.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9, 1))
 	credits_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

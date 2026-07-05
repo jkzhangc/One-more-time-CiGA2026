@@ -15,16 +15,16 @@ run/main_scene="res://scene/开始界面.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalAudio="*res://script/GlobalAudio.gd"
+
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=480
 window/stretch/mode="canvas_items"
 window/stretch/scale=1.25
-
-[autoload]
-
-GlobalAudio="*res://script/GlobalAudio.gd"
 
 [editor_plugins]
 

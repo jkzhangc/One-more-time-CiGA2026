@@ -37,6 +37,10 @@ func _ready() -> void:
 			if child.name == "Move_leftright":
 				child.speed = leftrightspeed
 				child.frameCount = leftrightframeCountmax
+			if child.name == "Move_circumference":
+				child.radius = circumferenceradius
+				child.speed = circumferencespeed
+				child.center = circumferencecenter
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

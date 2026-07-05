@@ -12,8 +12,8 @@ func _ready() -> void:
 	_player = AudioStreamPlayer.new()
 	_player.name = "BGMusic"
 	_player.bus = "Master"
+	_player.finished.connect(_on_player_finished)
 	add_child(_player)
-
 	if music_stream:
 		play_music(music_stream)
 
@@ -29,6 +29,10 @@ func play_music(stream: AudioStream) -> void:
 
 func stop_music() -> void:
 	_player.stop()
+
+
+func _on_player_finished() -> void:
+	_player.play()
 
 
 func set_volume_db(db: float) -> void:

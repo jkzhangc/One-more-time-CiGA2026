@@ -49,6 +49,7 @@ typename = "尖刺柱"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyInstance" unique_id=417405732]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_6sdh1")
+animation = &"尖刺状态"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=1570007641]
 position = Vector2(-2, 12.5)

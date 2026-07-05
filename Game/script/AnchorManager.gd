@@ -216,8 +216,8 @@ func _remove_mask(mask: Dictionary) -> void:
 			# 注意：锚点消失不恢复使用次数（必须通过宝箱恢复）
 			_notify_anchor_count()
 			break
-	_play_thaw_sound()
 	_update_fixed_masks()
+	_play_thaw_sound()
 
 func _update_fixed_masks() -> void:
 	var default_pos := Vector2(-10000, -10000)

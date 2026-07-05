@@ -7,6 +7,11 @@ const JUMP_VELOCITY = -400.0
 const MAX_HP = 3
 const INVULNERABLE_TIME = 1.5  # 受伤后无敌时间（秒）
 
+# --- UI 坐标（可在编辑器中调整）---
+@export_group("UI 坐标", "ui_")
+@export var ui_hp_hearts_position: Vector2 = Vector2(12, 12)   # HP 心形容器位置
+@export var ui_reset_button_position: Vector2 = Vector2(12, 52) # 重置按钮位置
+
 signal hit
 signal hp_changed(current_hp: int, max_hp: int)
 signal died
@@ -15,7 +20,7 @@ var current_hp: int = MAX_HP
 var is_invulnerable: bool = false
 var _dying: bool = false  # 防止重复死亡
 var _frozen_overlap: Dictionary = {}  # 玩家正在重叠的已冻结敌人 body → true
-var _hp_label: Label = null
+var _hp_hearts: Array[TextureRect] = []
 
 
 func _ready() -> void:
@@ -34,29 +39,45 @@ func _create_hp_ui() -> void:
 	canvas.layer = 100
 	canvas.name = "HpCanvas"
 
-	var label = Label.new()
-	label.name = "HpLabel"
-	label.add_theme_font_size_override("font_size", 28)
-	label.position = Vector2(12, 12)
-	label.add_theme_color_override("font_color", Color(1, 0.3, 0.3, 1))  # 红色爱心
+	# HP 心形图像容器
+	var hearts_container = HBoxContainer.new()
+	hearts_container.name = "HeartsContainer"
+	hearts_container.position = ui_hp_hearts_position
+	hearts_container.add_theme_constant_override("separation", 4)
+	canvas.add_child(hearts_container)
 
-	canvas.add_child(label)
+	var full_tex: Texture2D = load("res://art/ui等2项文件/ui/Layer 1.png")
+	var empty_tex: Texture2D = load("res://art/ui等2项文件/ui/Layer 2.png")
+
+	for i in range(MAX_HP):
+		var heart = TextureRect.new()
+		heart.name = "Heart%d" % i
+		heart.texture = full_tex if i < current_hp else empty_tex
+		heart.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		heart.custom_minimum_size = Vector2(32, 32)
+		hearts_container.add_child(heart)
+		_hp_hearts.append(heart)
+
+	# 重置按钮
+	var reset_btn = TextureButton.new()
+	reset_btn.name = "ResetButton"
+	reset_btn.texture_normal = load("res://art/ui等2项文件/ui/Layer 10.png")
+	reset_btn.stretch_mode = TextureButton.STRETCH_KEEP_CENTERED
+	reset_btn.custom_minimum_size = Vector2(40, 40)
+	reset_btn.position = ui_reset_button_position
+	reset_btn.pressed.connect(func(): get_tree().reload_current_scene())
+	canvas.add_child(reset_btn)
+
 	add_child(canvas)
-
-	_hp_label = label
-	_update_hp_display()
 
 
 func _update_hp_display() -> void:
-	if not _hp_label:
+	if _hp_hearts.is_empty():
 		return
-	var hearts = ""
+	var full_tex: Texture2D = load("res://art/ui等2项文件/ui/Layer 1.png")
+	var empty_tex: Texture2D = load("res://art/ui等2项文件/ui/Layer 2.png")
 	for i in range(MAX_HP):
-		if i < current_hp:
-			hearts += "♥ "
-		else:
-			hearts += "♡ "
-	_hp_label.text = hearts
+		_hp_hearts[i].texture = full_tex if i < current_hp else empty_tex
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
@@ -96,19 +117,17 @@ func die() -> void:
 	if _dying:
 		return
 	_dying = true
+	$StateMachine._on_transition_requested("die")
 	print("玩家死亡！")
+	
 
-	# 1. 隐藏玩家 + 禁用碰撞
-	hide()
-	$CollisionShape2D.set_deferred("disabled", true)
-
-	# 2. 生成死亡粒子
+	# 生成死亡粒子
 	_spawn_death_particles()
 
-	# 3. 画面渐黑过渡
+	# 画面渐黑过渡
 	await _fade_to_black(0.6)
 
-	# 4. 重载场景（自动重置所有状态）
+	# 重载场景（自动重置所有状态）
 	get_tree().reload_current_scene()
 
 

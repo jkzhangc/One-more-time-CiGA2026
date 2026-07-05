@@ -7,12 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://cveoestprckab" path="res://art/门、宝箱、地等2项文件/背景/地面/Layer 26.png" id="4_3ojte"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="5_77ltu"]
 [ext_resource type="PackedScene" uid="uid://7n2212ud0f1s" path="res://object/终点.tscn" id="5_inkcr"]
-[ext_resource type="PackedScene" uid="uid://du2inhfv5j1v2" path="res://scene/模板关卡2.tscn" id="6_inkcr"]
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="7_7ry6p"]
+[ext_resource type="PackedScene" uid="uid://dm4wwvhfowcvc" path="res://scene/关卡3.tscn" id="7_j5bo6"]
+[ext_resource type="Texture2D" uid="uid://be1vk1tjq3fdu" path="res://art/门、宝箱、地等2项文件/门、宝箱、地/Layer 7.png" id="8_7wa7w"]
 [ext_resource type="Texture2D" uid="uid://5xkyfr8obawg" path="res://art/ui等2项文件/ui/SkillMask.png" id="10_j5bo6"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="11_m5mxd"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="12_m5mxd"]
-[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="12_qtid4"]
+[ext_resource type="PackedScene" uid="uid://d38svmmkfh5e3" path="res://object/宝箱.tscn" id="12_qtid4"]
 [ext_resource type="PackedScene" uid="uid://kuouomxxlutd" path="res://object/Enemy_Saw.tscn" id="14_j5bo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxd"]
@@ -61,15 +62,26 @@ size = Vector2(3341.5, 124.5)
 [node name="模板关卡1" type="Node2D" unique_id=700300208]
 script = ExtResource("1_0141t")
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1515617940]
+[node name="背景" type="Parallax2D" parent="." unique_id=383625202]
 z_index = -10
+texture_repeat = 2
+scale = Vector2(2, 2)
+scroll_offset = Vector2(-5, -43)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D" unique_id=1491504465]
-position = Vector2(1368, -118)
+[node name="Sprite2D" type="Sprite2D" parent="背景" unique_id=970883741]
+position = Vector2(-680, -122)
 texture = ExtResource("1_inkcr")
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1939504928]
-position = Vector2(-308, -119)
+[node name="Sprite2D2" type="Sprite2D" parent="背景" unique_id=1148939443]
+position = Vector2(992, -122)
+texture = ExtResource("1_inkcr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="背景" unique_id=580903088]
+position = Vector2(-2352, -122)
+texture = ExtResource("1_inkcr")
+
+[node name="Sprite2D4" type="Sprite2D" parent="背景" unique_id=1014131938]
+position = Vector2(2665, -123)
 texture = ExtResource("1_inkcr")
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("2_inse3")]
@@ -172,7 +184,12 @@ shape = SubResource("RectangleShape2D_xo7rh")
 
 [node name="终点" parent="." unique_id=1870043307 instance=ExtResource("5_inkcr")]
 position = Vector2(877, -364)
-next_level = ExtResource("6_inkcr")
+next_level = ExtResource("7_j5bo6")
+
+[node name="Sprite2D" type="Sprite2D" parent="终点" unique_id=951200663]
+position = Vector2(24.999985, -1)
+scale = Vector2(0.28595316, 0.2244898)
+texture = ExtResource("8_7wa7w")
 
 [node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=2071483300]
 layer = 2
@@ -220,7 +237,6 @@ shape = SubResource("RectangleShape2D_0141t")
 
 [node name="宝箱2" parent="机关" unique_id=519503002 instance=ExtResource("12_qtid4")]
 position = Vector2(220, 123)
-mode = "内容2"
 
 [node name="形态类怪物" parent="机关" unique_id=463665746 instance=ExtResource("11_m5mxd")]
 position = Vector2(-37, 50)

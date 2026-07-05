@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ca1ni6wubnllt" path="res://art/Player_walk_2.png" id="9_hf241"]
 [ext_resource type="Texture2D" uid="uid://bx6kt43vjq07q" path="res://art/Player_使用锚点时间.png" id="10_r7m1a"]
 [ext_resource type="Script" uid="uid://clobr5obv5p07" path="res://script/施法.gd" id="15_hkwkf"]
+[ext_resource type="Script" uid="uid://boy0orc08w2de" path="res://script/playerdie.gd" id="16_sw1d2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o1wbr"]
 animations = [{
@@ -23,7 +24,7 @@ animations = [{
 "texture": ExtResource("2_akims")
 }],
 "loop": true,
-"name": &"dei",
+"name": &"die",
 "speed": 5.0
 }, {
 "frames": [{
@@ -101,7 +102,7 @@ visibility_layer = 4
 position = Vector2(-4, -14)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_o1wbr")
-animation = &"idle"
+animation = &"die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=597629648]
 position = Vector2(0, 2)
@@ -110,7 +111,7 @@ shape = SubResource("RectangleShape2D_onh3l")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=759915741]
 light_mask = 15
 visibility_layer = 31
-zoom = Vector2(0.6, 0.6)
+zoom = Vector2(0.7, 0.7)
 position_smoothing_speed = 50.0
 rotation_smoothing_speed = 50.0
 
@@ -131,6 +132,9 @@ jump_velocity = -550.0
 
 [node name="施法" type="Node" parent="StateMachine" unique_id=1593950503]
 script = ExtResource("15_hkwkf")
+
+[node name="die" type="Node" parent="StateMachine" unique_id=404555436]
+script = ExtResource("16_sw1d2")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1452118209]
 light_mask = 4
