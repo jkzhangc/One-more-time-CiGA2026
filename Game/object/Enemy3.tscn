@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cb6hmf4h4mfb8" path="res://script/enemy3_rush.gd" id="6_w2mri"]
 [ext_resource type="Texture2D" uid="uid://cgubunbqrkluo" path="res://art/ui等2项文件/怪物/怪物2/Layer 3.png" id="7_o6ijv"]
 [ext_resource type="Script" uid="uid://csb4vedr8iopm" path="res://script/enemy3_locate.gd" id="7_tfef5"]
+[ext_resource type="Texture2D" uid="uid://btk17gqpwqhu8" path="res://art/ui等2项文件/怪物/怪物2/Layer 8.png" id="8_mfsic"]
 [ext_resource type="Script" uid="uid://4ncuxcjm0d7s" path="res://script/enemy3_area_trigger.gd" id="8_tfef5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2fmte"]
@@ -45,6 +46,14 @@ animations = [{
 "loop": false,
 "name": &"冲刺预备",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_mfsic")
+}],
+"loop": false,
+"name": &"冻结",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_warp8"]
@@ -65,6 +74,7 @@ typename = "冲撞类敌人"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyInstance" unique_id=1336488555]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_2fmte")
+animation = &"冲刺"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=1570007641]
 position = Vector2(2.5, -1.5)

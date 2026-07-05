@@ -15,13 +15,18 @@ func random_direction() -> Vector2:
 	
 
 func enter() -> void:
-	pass
+	for child in character.get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", true)
+			if child.name == "收缩碰撞体":
+				child.set_deferred("disabled", false)
 	
 
 func process_update(delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
+	character.anim_sprite.play("default")
 	# Add the gravity.
 	if not character.is_on_floor():
 		character.velocity += character.get_gravity() * delta
@@ -30,8 +35,5 @@ func physics_update(delta: float) -> void:
 
 	if frameCount > 1.0:
 		frameCount -= 1.0;
-		character.anim_sprite.play("中形态切换动画")
-		await character.anim_sprite.animation_finished
-		character.anim_sprite.play("中形态")
 		transition_requested.emit("MiddleJump")
 	

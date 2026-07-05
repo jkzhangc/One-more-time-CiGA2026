@@ -17,7 +17,7 @@ func process_update(delta :float) -> void:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		transition_requested.emit("Walk")
 		return
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_pressed("jump") && character.is_on_floor():
 		transition_requested.emit("Jump")
 		
 func physics_update(delta: float) -> void:

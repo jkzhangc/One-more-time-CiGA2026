@@ -13,7 +13,7 @@ func process_update(delta :float) -> void:
 	if is_zero_approx(input_axis):
 		transition_requested.emit("Idle")
 	
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_pressed("jump") && character.is_on_floor():
 		transition_requested.emit("Jump")
 		
 func physics_update(delta: float) -> void:

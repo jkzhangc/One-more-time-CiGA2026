@@ -1,8 +1,7 @@
 extends State
 
-@export var spike_show_rate: Vector2 = Vector2(0.0,10.0);
+@export var spike_show_time: float = 1.0;
 
-var random_float: float = 0.0;
 var frameCount: float = 0.0;
 
 
@@ -15,7 +14,6 @@ func enter() -> void:
 	if area2D and area2D.get_child_count() > 0:
 		area2D.get_child(0).set_deferred("disabled", true)
 	frameCount = 0.0
-	random_float = 0.0
 	if character.anim_sprite:
 		character.anim_sprite.play("default")
 
@@ -24,15 +22,13 @@ func process_update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	if random_float <= 0.0:
-		random_float = randf_range(spike_show_rate.x, spike_show_rate.y)
 
 	if not character.is_on_floor():
 		character.velocity += character.get_gravity() * delta
 	character.move_and_slide()
 	frameCount += delta;
 
-	if frameCount > random_float:
+	if frameCount > spike_show_time:
 		frameCount = 0.0
 		if character.anim_sprite:
 			character.anim_sprite.play("尖刺状态")

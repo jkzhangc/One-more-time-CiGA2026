@@ -9,6 +9,11 @@ var frameCount = 0.0;
 func enter() -> void:
 	character.velocity = character.located_direction * speed;
 	frameCount = 0.0;
+	var sprite: AnimatedSprite2D = character.get_node_or_null("AnimatedSprite2D")
+	if sprite:
+		sprite.play("冲刺")
+		# 根据冲锋方向水平翻转图像
+		sprite.flip_h = character.located_direction.x < 0
 	
 func exit() -> void:
 	pass

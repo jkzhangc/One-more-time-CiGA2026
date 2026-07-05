@@ -1,19 +1,13 @@
 [gd_scene format=3 uid="uid://pbwqx2stft1k"]
 
 [ext_resource type="Script" uid="uid://7yuv5my66xff" path="res://script/enemy_2_base.gd" id="1_vk0q4"]
-[ext_resource type="Texture2D" uid="uid://b2rgsd355ggxq" path="res://art/形态类敌人-2.png" id="2_tk1hw"]
 [ext_resource type="Script" uid="uid://8vs8e8i2lx3f" path="res://script/enemy_instance.gd" id="2_vk0q4"]
-[ext_resource type="Texture2D" uid="uid://bgr020tvpjxrt" path="res://art/形态类敌人-1.png" id="3_li2r7"]
-[ext_resource type="Texture2D" uid="uid://byrkqsyx7pylm" path="res://art/形态类敌人-3.png" id="4_jjx1r"]
-[ext_resource type="Texture2D" uid="uid://cpl7qkfl6nn2m" path="res://art/形态类敌人-4.png" id="5_vk0q4"]
-[ext_resource type="Texture2D" uid="uid://hksymwxy1lfv" path="res://art/形态类敌人-5.png" id="6_ne3l3"]
-[ext_resource type="Texture2D" uid="uid://dq1j532xgom7u" path="res://art/形态类敌人-6.png" id="7_dq34g"]
-[ext_resource type="Texture2D" uid="uid://d1uhsrlnvgmwn" path="res://art/形态类敌人-7.png" id="8_q0aoc"]
-[ext_resource type="Texture2D" uid="uid://bpsool251wlwn" path="res://art/形态类敌人-8.png" id="9_ml4hp"]
-[ext_resource type="Texture2D" uid="uid://dx8y3cph1xt5h" path="res://art/形态类敌人-9.png" id="10_6xscr"]
-[ext_resource type="Texture2D" uid="uid://e725d6e8n117" path="res://art/形态类敌人-10.png" id="11_tie14"]
-[ext_resource type="Texture2D" uid="uid://7fnudjvyvrmo" path="res://art/形态类敌人-11.png" id="12_b5hgw"]
-[ext_resource type="Texture2D" uid="uid://b0cmuyf0qe31f" path="res://art/形态类敌人-12.png" id="13_5jign"]
+[ext_resource type="Texture2D" uid="uid://cshu1r2gwba06" path="res://art/形态怪/Layer 3.png" id="3_ne3l3"]
+[ext_resource type="Texture2D" uid="uid://6qg2q5w4axun" path="res://art/形态怪/Layer 4.png" id="4_fchwi"]
+[ext_resource type="Texture2D" uid="uid://w7lguh4xuikm" path="res://art/形态怪/Layer 9.png" id="5_58f0t"]
+[ext_resource type="Texture2D" uid="uid://rpusfft1bhwp" path="res://art/形态怪/Layer 5.png" id="6_5ocsy"]
+[ext_resource type="Texture2D" uid="uid://cajx8fffbwclb" path="res://art/形态怪/Layer 8.png" id="6_8j2mv"]
+[ext_resource type="Texture2D" uid="uid://djj37i122bm8o" path="res://art/形态怪/Layer 6.png" id="9_ne3l3"]
 [ext_resource type="Script" uid="uid://dqa1l8wa25b21" path="res://script/StateMachine.gd" id="15_vk0q4"]
 [ext_resource type="Script" uid="uid://dnur0crlaqicb" path="res://script/Enemy2_NormalState.gd" id="16_vk0q4"]
 [ext_resource type="Script" uid="uid://0bru00rl3ifi" path="res://script/EnemyFreezeState.gd" id="17_vk0q4"]
@@ -24,7 +18,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_tk1hw")
+"texture": ExtResource("3_ne3l3")
 }],
 "loop": true,
 "name": &"default",
@@ -32,66 +26,53 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_dq34g")
+"texture": ExtResource("4_fchwi")
 }],
 "loop": true,
 "name": &"中形态",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.2,
-"texture": ExtResource("3_li2r7")
-}, {
-"duration": 0.2,
-"texture": ExtResource("4_jjx1r")
-}, {
-"duration": 0.2,
-"texture": ExtResource("5_vk0q4")
-}, {
-"duration": 0.2,
-"texture": ExtResource("6_ne3l3")
-}, {
-"duration": 0.2,
-"texture": ExtResource("7_dq34g")
+"duration": 1.0,
+"texture": ExtResource("5_58f0t")
 }],
-"loop": false,
-"name": &"中形态切换动画",
+"loop": true,
+"name": &"中形态冻结",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("13_5jign")
+"texture": ExtResource("6_8j2mv")
+}],
+"loop": true,
+"name": &"收缩形态冻结",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_5ocsy")
 }],
 "loop": true,
 "name": &"高形态",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.2,
-"texture": ExtResource("8_q0aoc")
-}, {
-"duration": 0.2,
-"texture": ExtResource("9_ml4hp")
-}, {
-"duration": 0.2,
-"texture": ExtResource("10_6xscr")
-}, {
-"duration": 0.2,
-"texture": ExtResource("11_tie14")
-}, {
-"duration": 0.2,
-"texture": ExtResource("12_b5hgw")
-}, {
-"duration": 0.2,
-"texture": ExtResource("13_5jign")
+"duration": 1.0,
+"texture": ExtResource("9_ne3l3")
 }],
-"loop": false,
-"name": &"高形态切换动画",
+"loop": true,
+"name": &"高形态冻结",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkk3g"]
-size = Vector2(32, 32)
+size = Vector2(45, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58f0t"]
+size = Vector2(56, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j2mv"]
+size = Vector2(135, 48)
 
 [node name="形态类怪物" type="Node2D" unique_id=463665746]
 script = ExtResource("1_vk0q4")
@@ -103,10 +84,23 @@ script = ExtResource("2_vk0q4")
 typename = "形态类怪物"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyInstance" unique_id=1288836411]
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_62kyf")
+animation = &"中形态冻结"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=854017101]
+[node name="收缩碰撞体" type="CollisionShape2D" parent="EnemyInstance" unique_id=854017101]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_qkk3g")
+
+[node name="中形态碰撞体" type="CollisionShape2D" parent="EnemyInstance" unique_id=1102730516]
+position = Vector2(-2, 11)
+shape = SubResource("RectangleShape2D_58f0t")
+disabled = true
+
+[node name="高形态碰撞体" type="CollisionShape2D" parent="EnemyInstance" unique_id=2024865049]
+position = Vector2(-0.5, 10)
+shape = SubResource("RectangleShape2D_8j2mv")
+disabled = true
 
 [node name="StateMachine" type="Node" parent="EnemyInstance" unique_id=1261681124 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("15_vk0q4")

@@ -15,4 +15,6 @@ func process_update(_delta :float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
-	pass
+	if not character.is_on_floor():
+		character.velocity += character.get_gravity() * _delta
+	character.move_and_slide()

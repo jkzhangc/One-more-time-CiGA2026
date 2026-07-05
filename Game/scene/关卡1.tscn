@@ -62,14 +62,14 @@ script = ExtResource("1_x3v0b")
 
 [node name="背景" type="Parallax2D" parent="." unique_id=1515617940]
 z_index = -10
-scroll_offset = Vector2(2, 64)
-
-[node name="Sprite2D2" type="Sprite2D" parent="背景" unique_id=1491504465]
-position = Vector2(1177, 700)
-texture = ExtResource("2_orxj0")
+scroll_offset = Vector2(-5, -43)
 
 [node name="Sprite2D" type="Sprite2D" parent="背景" unique_id=1939504928]
-position = Vector2(-681, -119)
+position = Vector2(-680, -122)
+texture = ExtResource("2_orxj0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="背景" unique_id=1491504465]
+position = Vector2(992, -122)
 texture = ExtResource("2_orxj0")
 
 [node name="Sprite2D3" type="Sprite2D" parent="背景" unique_id=1040680030]
@@ -77,7 +77,7 @@ position = Vector2(-2352, -122)
 texture = ExtResource("2_orxj0")
 
 [node name="Sprite2D4" type="Sprite2D" parent="背景" unique_id=1509077140]
-position = Vector2(3040, -118)
+position = Vector2(2665, -123)
 texture = ExtResource("2_orxj0")
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("3_6xgn3")]

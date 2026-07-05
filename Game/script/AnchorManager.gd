@@ -142,12 +142,30 @@ func _update_indicator_pos() -> void:
 
 func _update_mouse_shader_pos() -> void:
 	color_rect.material.set_shader_parameter("mouse_pos", get_viewport().get_mouse_position())
+	
+func _play_freeze_sound() -> void:
+	var audio := AudioStreamPlayer.new()
+	audio.name = "FreezeSound"
+	audio.stream = load("res://sound/冰冻.mp3")
+	audio.autoplay = false
+	audio.finished.connect(audio.queue_free)
+	get_tree().current_scene.add_child(audio)
+	audio.play()
+
+func _play_thaw_sound() -> void:
+	var audio := AudioStreamPlayer.new()
+	audio.name = "ThawSound"
+	audio.stream = load("res://sound/解冻.mp3")
+	audio.autoplay = false
+	audio.finished.connect(audio.queue_free)
+	get_tree().current_scene.add_child(audio)
+	audio.play()
 
 func create_fixed_mask(world_pos: Vector2) -> void:
 	# 没有剩余次数 或 场上还有未消失的锚点，则不能释放
 	if _uses_remaining <= 0 or not fixed_masks.is_empty():
 		return
-
+	
 	var mask: Dictionary = {
 		"world_pos": world_pos,
 		"radius_scale": 0.0,
@@ -177,6 +195,7 @@ func create_fixed_mask(world_pos: Vector2) -> void:
 	tween.tween_callback(_apply_scale.bind(1.0, mask))
 	tween.tween_method(_apply_scale.bind(mask), 1.0, 0.0, mask_shrink_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	tween.tween_callback(_remove_mask.bind(mask))
+	_play_freeze_sound()
 	for child in get_children():
 		if child.name == "Player":
 			#print(child,child.get_children())
@@ -197,6 +216,7 @@ func _remove_mask(mask: Dictionary) -> void:
 			# 注意：锚点消失不恢复使用次数（必须通过宝箱恢复）
 			_notify_anchor_count()
 			break
+	_play_thaw_sound()
 	_update_fixed_masks()
 
 func _update_fixed_masks() -> void:

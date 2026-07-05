@@ -24,8 +24,10 @@ func physics_update(delta: float) -> void:
 	
 	if character.is_on_floor():
 		if not is_zero_approx(character.velocity.x):
+			character._play_jump_sound()
 			transition_requested.emit("Walk")
 		else:
+			character._play_jump_sound()
 			transition_requested.emit("Idle")
 
 

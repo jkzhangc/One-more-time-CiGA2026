@@ -109,8 +109,18 @@ func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
 
 
+func _play_opendoor_sound() -> void:
+	var audio := AudioStreamPlayer.new()
+	audio.name = "OpendoorSound"
+	audio.stream = load("res://sound/开门.mp3")
+	audio.autoplay = false
+	audio.finished.connect(audio.queue_free)
+	get_tree().current_scene.add_child(audio)
+	audio.play()
+
 func _on_board_pressed() -> void:
 	print("开启门")
+	_play_opendoor_sound()
 	open()
 
 

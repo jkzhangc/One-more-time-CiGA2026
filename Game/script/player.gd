@@ -75,8 +75,10 @@ func take_damage(amount: int) -> void:
 	_update_hp_display()
 
 	if current_hp <= 0:
+		_play_die_sound()
 		die()
 	else:
+		_play_hit_sound()
 		_start_invulnerability()
 
 
@@ -306,6 +308,7 @@ func _handle_morph_enemy_collision(body: Node2D, sm: StateMachine) -> void:
 
 	if was_jump_state:
 		print("形态类怪物冻结在跳跃状态 (last=%s)，弹起！" % last_name)
+		_play_bounce_sound()
 		if last_name in "MiddleJump":
 			velocity.y = -300.0
 		elif last_name in "HighJump":
@@ -349,3 +352,43 @@ func start(pos):
 	show()
 	$CollisionShape2D.disabled = false
 	$StateMachine._on_transition_requested("Idle")
+
+
+# --- 播放音效 ---
+
+# 播放受伤音效
+func _play_hit_sound() -> void:
+	var audio := AudioStreamPlayer.new()
+	audio.name = "HitSound"
+	audio.stream = load("res://sound/受伤.mp3")
+	audio.autoplay = false
+	audio.finished.connect(audio.queue_free)
+	get_tree().current_scene.add_child(audio)
+	audio.play()
+	
+func _play_die_sound() -> void:
+	var audio := AudioStreamPlayer.new()
+	audio.name = "DieSound"
+	audio.stream = load("res://sound/死亡.mp3")
+	audio.autoplay = false
+	audio.finished.connect(audio.queue_free)
+	get_tree().current_scene.add_child(audio)
+	audio.play()
+	
+func _play_jump_sound() -> void:
+	var audio := AudioStreamPlayer.new()
+	audio.name = "JumpSound"
+	audio.stream = load("res://sound/跳跃.mp3")
+	audio.autoplay = false
+	audio.finished.connect(audio.queue_free)
+	get_tree().current_scene.add_child(audio)
+	audio.play()
+	
+func _play_bounce_sound() -> void:
+	var audio := AudioStreamPlayer.new()
+	audio.name = "BounceSound"
+	audio.stream = load("res://sound/机关花弹跳.mp3")
+	audio.autoplay = false
+	audio.finished.connect(audio.queue_free)
+	get_tree().current_scene.add_child(audio)
+	audio.play()

@@ -14,6 +14,12 @@ func random_direction() -> Vector2:
 	
 
 func enter() -> void:
+	character.anim_sprite.play("中形态")
+	for child in character.get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", true)
+			if child.name == "中形态碰撞体":
+				child.set_deferred("disabled", false)
 	pass
 	
 
@@ -31,13 +37,7 @@ func physics_update(delta: float) -> void:
 		frameCount -= 1.0;
 		if character.mode == 1:
 			character.mode = 0
-			character.anim_sprite.play_backwards("中形态切换动画")
-			await character.anim_sprite.animation_finished
-			character.anim_sprite.play("default")
 			transition_requested.emit("Normal")
 		else:
-			character.anim_sprite.play("高形态切换动画")
-			await character.anim_sprite.animation_finished
-			character.anim_sprite.play("高形态")
 			transition_requested.emit("HighJump")
 	

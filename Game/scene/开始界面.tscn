@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bj2bmynrutcsw"]
+
+[ext_resource type="Script" uid="uid://o4vj4gbbfnb7" path="res://script/开始界面.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://p25ma6ft62b2" path="res://art/开始界面背景.png" id="2_bg"]
+[ext_resource type="PackedScene" uid="uid://do7n87pa3u8fr" path="res://scene/关卡1.tscn" id="2_gocrg"]
+
+[node name="开始界面" type="Node2D" unique_id=1066685319]
+script = ExtResource("1_menu")
+first_level = ExtResource("2_gocrg")
+bg_texture = ExtResource("2_bg")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1746401920]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_bg")
+centered = false
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=541409479]
+layer = 3
+
+[node name="Panel" type="Panel" parent="UI" unique_id=1767956007]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -120.0
+offset_right = 130.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel" unique_id=752672678]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="UI/Panel/VBoxContainer" unique_id=349209265]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_font_sizes/font_size = 28
+text = "时 律 行 者"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="UI/Panel/VBoxContainer" unique_id=509990713]
+custom_minimum_size = Vector2(200, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "开始游戏"
+
+[node name="CreditsButton" type="Button" parent="UI/Panel/VBoxContainer" unique_id=1166620042]
+custom_minimum_size = Vector2(200, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "制作人员"
+
+[node name="QuitButton" type="Button" parent="UI/Panel/VBoxContainer" unique_id=1038405826]
+custom_minimum_size = Vector2(200, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "退出游戏"
