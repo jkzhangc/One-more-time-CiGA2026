@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var next_level: PackedScene  # 下一关的场景
+@export var 初始是否隐藏: bool 
 
 var _completed: bool = false
 var _ui_canvas: CanvasLayer = null
@@ -9,8 +10,9 @@ signal close
 
 func _ready() -> void:
 	$Area2D.body_entered.connect(_on_body_entered)
-	$Area2D.monitoring = false
-	hide()
+	if 初始是否隐藏:
+		$Area2D.monitoring = false
+		hide()
 
 func _open() -> void:
 	$Area2D.monitoring = true

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dculo3tl7tqc3" path="res://object/Enemy3.tscn" id="12_x7q66"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="13_wunud"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="14_3bfac"]
-[ext_resource type="PackedScene" uid="uid://bth3krfldwjfw" path="res://object/宝箱.tscn" id="15_6oyam"]
+[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="15_6oyam"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="16_pvr2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxd"]

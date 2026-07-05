@@ -41,7 +41,8 @@ script = ExtResource("1_402q6")
 light_mask = 10
 visibility_layer = 10
 floor_block_on_wall = false
-platform_floor_layers = 4294967042
+platform_floor_layers = 4294967044
+platform_wall_layers = 9
 script = ExtResource("1_5oq66")
 typename = "尖刺柱"
 

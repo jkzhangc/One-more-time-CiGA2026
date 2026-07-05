@@ -116,6 +116,7 @@ shape = SubResource("RectangleShape2D_x3v0b")
 [node name="终点" parent="." unique_id=1870043307 instance=ExtResource("5_y5nnh")]
 position = Vector2(855, 188)
 next_level = ExtResource("6_eyoig")
+"初始是否隐藏" = true
 
 [node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=2071483300]
 layer = 2
@@ -223,3 +224,5 @@ position = Vector2(183, -229)
 shape = SubResource("RectangleShape2D_m5mxd")
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
+[connection signal="door_opened" from="机关/Door" to="终点" method="_on_door_door_opened"]
+[connection signal="pressed" from="机关/Board" to="机关/Door" method="_on_board_pressed"]
