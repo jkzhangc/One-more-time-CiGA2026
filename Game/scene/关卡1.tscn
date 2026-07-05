@@ -83,7 +83,7 @@ position = Vector2(2665, -123)
 texture = ExtResource("2_orxj0")
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("3_6xgn3")]
-position = Vector2(-2572, 177)
+position = Vector2(504, -422)
 
 [node name="平台" type="Node2D" parent="." unique_id=102726873]
 
@@ -137,7 +137,7 @@ shape = SubResource("RectangleShape2D_uaeuu")
 
 [node name="平台6" type="StaticBody2D" parent="平台" unique_id=1242798290]
 z_index = -1
-position = Vector2(50, 194)
+position = Vector2(-63, 176)
 collision_mask = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="平台/平台6" unique_id=2097957252]
@@ -169,7 +169,7 @@ shape = SubResource("RectangleShape2D_3ojte")
 
 [node name="平台8" type="StaticBody2D" parent="平台" unique_id=1063199481]
 z_index = -1
-position = Vector2(98, 42)
+position = Vector2(1, 23)
 collision_mask = 6
 
 [node name="Sprite2D2" type="Sprite2D" parent="平台/平台8" unique_id=609140318]
@@ -184,7 +184,7 @@ position = Vector2(159, -145)
 shape = SubResource("RectangleShape2D_kq5yn")
 
 [node name="终点" parent="." unique_id=1870043307 instance=ExtResource("6_q6evy")]
-position = Vector2(820, -328)
+position = Vector2(611, -349)
 next_level = ExtResource("7_fkk1m")
 
 [node name="Sprite2D2" type="Sprite2D" parent="终点" unique_id=1413437154]
@@ -236,11 +236,12 @@ initial_state = "Move_leftright"
 position = Vector2(-1962, 14)
 
 [node name="移动平台转圈" parent="机关" unique_id=161385446 instance=ExtResource("16_pvr2g")]
-position = Vector2(10, -199)
+position = Vector2(-86, -207)
+leftrightframeCountmax = 3.0
 initial_state = "Move_circumference"
 
 [node name="形态类怪物2" parent="机关" unique_id=206611661 instance=ExtResource("13_wunud")]
-position = Vector2(260, -136)
+position = Vector2(158, -174)
 
 [node name="移动平台左右3" parent="机关" unique_id=2019057090 instance=ExtResource("16_pvr2g")]
 position = Vector2(-354, -96)

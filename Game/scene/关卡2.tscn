@@ -86,7 +86,7 @@ position = Vector2(2665, -123)
 texture = ExtResource("1_inkcr")
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("2_inse3")]
-position = Vector2(-602, 91)
+position = Vector2(816, -421)
 
 [node name="平台" type="Node2D" parent="." unique_id=102726873]
 
