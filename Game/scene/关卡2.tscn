@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cxprmsvcie507"]
+[gd_scene format=3 uid="uid://vfvyl4qvrays"]
 
 [ext_resource type="Script" uid="uid://bk5ogmcd4eji1" path="res://script/AnchorManager.gd" id="1_0141t"]
 [ext_resource type="Texture2D" uid="uid://bwctbklylai2r" path="res://art/门、宝箱、地等2项文件/背景/80763a6e-2733-486e-bdf1-55ef71d5119e.png" id="1_inkcr"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="11_m5mxd"]
 [ext_resource type="PackedScene" uid="uid://cplibwxwb752n" path="res://object/Enemy_SpikePillar.tscn" id="12_m5mxd"]
 [ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="12_qtid4"]
+[ext_resource type="PackedScene" uid="uid://kuouomxxlutd" path="res://object/Enemy_Saw.tscn" id="14_j5bo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxd"]
 size = Vector2(174, 24.75)
@@ -249,5 +250,9 @@ position = Vector2(236, -128)
 [node name="移动平台绕圈" parent="机关" unique_id=747224408 instance=ExtResource("5_77ltu")]
 position = Vector2(667, -274)
 initial_state = "Move_circumference"
+
+[node name="电锯" parent="机关" unique_id=318734010 instance=ExtResource("14_j5bo6")]
+position = Vector2(624, -314)
+contact_direction = 1
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]

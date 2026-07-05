@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://be1vk1tjq3fdu" path="res://art/门、宝箱、地等2项文件/门、宝箱、地/Layer 7.png" id="8_o4sx7"]
 [ext_resource type="Texture2D" uid="uid://5xkyfr8obawg" path="res://art/ui等2项文件/ui/SkillMask.png" id="10_fkk1m"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="13_wunud"]
-[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="15_6oyam"]
+[ext_resource type="PackedScene" uid="uid://d38svmmkfh5e3" path="res://object/宝箱.tscn" id="15_6oyam"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="16_pvr2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ojte"]
@@ -224,7 +224,6 @@ position = Vector2(-1313, 118)
 
 [node name="宝箱" parent="机关" unique_id=1651352525 instance=ExtResource("15_6oyam")]
 position = Vector2(-963, -45)
-mode = "内容2"
 
 [node name="移动平台左右1" parent="机关" unique_id=1084164698 instance=ExtResource("16_pvr2g")]
 position = Vector2(-2194, 130)
