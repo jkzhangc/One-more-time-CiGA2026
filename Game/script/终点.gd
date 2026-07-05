@@ -3,7 +3,7 @@ extends Node2D
 @export var next_level: PackedScene  # 下一关的场景
 @export var 初始是否隐藏: bool
 @export var is_final_level: bool = false  # 是否为最终关
-@export var main_menu_scene: PackedScene  # 主菜单场景（最终关返回用）
+@export_file("*.tscn") var main_menu_scene_path: String  # 主菜单场景路径（用字符串避免循环依赖）
 
 var _completed: bool = false
 var _ui_canvas: CanvasLayer = null
@@ -111,11 +111,11 @@ func _on_next_level_pressed() -> void:
 
 
 func _on_return_to_menu_pressed() -> void:
-	if not main_menu_scene:
-		print("错误：未设置 main_menu_scene 主菜单场景！")
+	if main_menu_scene_path.is_empty():
+		print("错误：未设置 main_menu_scene_path 主菜单场景路径！")
 		return
 	print("回到主菜单")
-	get_tree().change_scene_to_packed(main_menu_scene)
+	get_tree().change_scene_to_file(main_menu_scene_path)
 
 
 func _on_door_door_opened() -> void:

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://btkuey4y6rytl" path="res://art/门、宝箱、地等2项文件/背景/地面/Layer 15.png" id="4_aggpi"]
 [ext_resource type="PackedScene" uid="uid://7n2212ud0f1s" path="res://object/终点.tscn" id="5_y5nnh"]
 [ext_resource type="PackedScene" uid="uid://du2inhfv5j1v2" path="res://scene/模板关卡2.tscn" id="6_eyoig"]
-[ext_resource type="PackedScene" uid="uid://bj2bmynrutcsw" path="res://scene/开始界面.tscn" id="7_6f6jj"]
+
 [ext_resource type="Shader" uid="uid://4tahfhrk358v" path="res://shader/bw_mask.gdshader" id="7_xnhbt"]
 [ext_resource type="Texture2D" uid="uid://5xkyfr8obawg" path="res://art/ui等2项文件/ui/SkillMask.png" id="8_ag4gq"]
 [ext_resource type="PackedScene" uid="uid://dalvijlb8ahwy" path="res://object/door.tscn" id="9_eta67"]
@@ -121,7 +121,7 @@ position = Vector2(-1215, -59)
 next_level = ExtResource("6_eyoig")
 "初始是否隐藏" = true
 is_final_level = true
-main_menu_scene = ExtResource("7_6f6jj")
+main_menu_scene_path = "res://scene/开始界面.tscn"
 
 [node name="GrayEffectLayer" type="CanvasLayer" parent="." unique_id=2071483300]
 layer = 2
