@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bakt2jinvsoqe" path="res://art/旗子和机关/Layer 3.png" id="8_fkk1m"]
 [ext_resource type="Texture2D" uid="uid://5xkyfr8obawg" path="res://art/ui等2项文件/ui/SkillMask.png" id="10_fkk1m"]
 [ext_resource type="PackedScene" uid="uid://pbwqx2stft1k" path="res://object/Enemy2.tscn" id="13_wunud"]
-[ext_resource type="PackedScene" path="res://object/宝箱.tscn" id="15_6oyam"]
+[ext_resource type="PackedScene" uid="uid://d38svmmkfh5e3" path="res://object/宝箱.tscn" id="15_6oyam"]
 [ext_resource type="PackedScene" uid="uid://bnq5w86yxbvl8" path="res://object/移动平台.tscn" id="16_pvr2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ojte"]
@@ -244,12 +244,10 @@ position = Vector2(260, -136)
 
 [node name="移动平台左右3" parent="机关" unique_id=2019057090 instance=ExtResource("16_pvr2g")]
 position = Vector2(-354, -96)
-leftrightframeCountmax = 3.0
 initial_state = "Move_leftright"
 
 [node name="移动平台左右2" parent="机关" unique_id=2141220873 instance=ExtResource("16_pvr2g")]
 position = Vector2(-680, -96)
-leftrightframeCountmax = 3.0
 initial_state = "Move_leftright"
 
 [node name="Control" type="Control" parent="." unique_id=1209543074]

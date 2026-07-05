@@ -33,10 +33,10 @@ func _ready() -> void:
 		for child in machine.get_children():
 			if child.name == "Move_updown":
 				child.speed = updownspeed
-				child.frameCount = updownframeCountmax
+				child.frameCountmax = updownframeCountmax
 			if child.name == "Move_leftright":
 				child.speed = leftrightspeed
-				child.frameCount = leftrightframeCountmax
+				child.frameCountmax = leftrightframeCountmax
 			if child.name == "Move_circumference":
 				child.radius = circumferenceradius
 				child.speed = circumferencespeed
