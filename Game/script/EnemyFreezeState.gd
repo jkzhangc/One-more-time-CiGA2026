@@ -14,7 +14,7 @@ func enter() -> void:
 	if sprite:
 		sprite.speed_scale = 0.0
 		print(character.name,"被冻结了")
-		if character.get_parent().name == "形态类怪物":
+		if character.get_parent().name.contains("形态类怪物"):
 			if character.get_node("StateMachine").last_state.name == "Normal":
 				sprite.play("收缩形态冻结")
 			if character.get_node("StateMachine").last_state.name == "MiddleJump":

@@ -159,16 +159,16 @@ func _trap_bomb() -> void:
 	bomb_area.add_child(collision_shape)
 
 	get_tree().current_scene.add_child(bomb_area)
-
+	circle_sprite.visible = false
 	# 闪烁警告效果（圆圈 + 图标一起闪）
 	var flash_count = 0
 	while flash_count < int(BOMB_DELAY / 0.15):
-		circle_sprite.visible = not circle_sprite.visible
+		#circle_sprite.visible = not circle_sprite.visible
 		bomb_icon.visible = not bomb_icon.visible
 		await get_tree().create_timer(0.15).timeout
 		flash_count += 1
 	# 最后保持可见
-	circle_sprite.visible = true
+	circle_sprite.visible = false
 	bomb_icon.visible = true
 
 	# 爆炸前圆圈变红（短暂预警）
@@ -184,7 +184,7 @@ func _trap_bomb() -> void:
 	# 播放炸弹音效
 	_play_bomb_sound()
 	# 爆炸粒子
-	_spawn_explosion_particles()
+	_spawn_explosion_particles(bomb_visual.position)
 
 	# 清理
 	bomb_area.queue_free()
@@ -229,9 +229,9 @@ func _play_openchest_sound() -> void:
 	get_tree().current_scene.add_child(audio)
 	audio.play()
 
-func _spawn_explosion_particles() -> void:
+func _spawn_explosion_particles(position) -> void:
 	var particles = CPUParticles2D.new()
-	particles.position = global_position
+	particles.position = position
 	particles.one_shot = true
 	particles.explosiveness = 1.0
 	particles.amount = 32

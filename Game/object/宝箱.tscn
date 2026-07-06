@@ -32,8 +32,7 @@ radius = 55.0
 [node name="宝箱" type="CharacterBody2D" unique_id=1926730259]
 light_mask = 2
 visibility_layer = 2
-collision_layer = 8
-collision_mask = 9
+collision_layer = 16
 script = ExtResource("3_chest")
 bomb_weight = 2.0
 

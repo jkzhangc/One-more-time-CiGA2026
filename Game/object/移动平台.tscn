@@ -14,13 +14,14 @@ size = Vector2(160, 64)
 
 [node name="移动平台" type="Node2D" unique_id=1084164698]
 script = ExtResource("1_37tj6")
+updownframeCountmax = 2.0
 initial_state = "Move_updown"
 
 [node name="EnemyInstance" type="CharacterBody2D" parent="." unique_id=1577116506]
 z_index = -1
 collision_mask = 0
 slide_on_ceiling = false
-platform_floor_layers = 4294967040
+platform_floor_layers = 4294901760
 platform_wall_layers = 1
 script = ExtResource("2_37tj6")
 typename = "移动平台"

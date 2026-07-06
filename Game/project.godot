@@ -78,6 +78,7 @@ act={
 2d_physics/layer_3="敌人"
 2d_navigation/layer_3="UI"
 2d_physics/layer_4="杂项物体"
+2d_physics/layer_5="玩家能穿过的物体"
 
 [physics]
 
