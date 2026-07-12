@@ -29,10 +29,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fefp"]
-size = Vector2(156, 21)
+size = Vector2(138, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2728"]
-size = Vector2(154.5, 24)
+size = Vector2(138, 24)
 
 [node name="尖刺柱" type="Node2D" unique_id=1721056165]
 script = ExtResource("1_402q6")
@@ -52,7 +52,7 @@ sprite_frames = SubResource("SpriteFrames_6sdh1")
 animation = &"尖刺状态"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance" unique_id=1570007641]
-position = Vector2(-2, 12.5)
+position = Vector2(-1, 12.5)
 shape = SubResource("RectangleShape2D_4fefp")
 
 [node name="Area2D" type="Area2D" parent="EnemyInstance" unique_id=683790686]
@@ -61,7 +61,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyInstance/Area2D" unique_id=561000819]
-position = Vector2(-2.25, 26)
+position = Vector2(-1, 26)
 shape = SubResource("RectangleShape2D_l2728")
 disabled = true
 debug_color = Color(0.99999994, 0.004542869, 0.086550035, 0.41960785)

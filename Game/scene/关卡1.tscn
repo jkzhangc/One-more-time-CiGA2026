@@ -18,7 +18,7 @@
 size = Vector2(238, 24.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uaeuu"]
-size = Vector2(321.375, 37.714844)
+size = Vector2(319.1875, 37.714844)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3v0b"]
 size = Vector2(765.5, 67.42969)
@@ -116,7 +116,7 @@ texture = ExtResource("5_f4csa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台2" unique_id=10927627]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-2532.5, 197.14063)
+position = Vector2(-2531.4063, 197.14063)
 shape = SubResource("RectangleShape2D_uaeuu")
 
 [node name="平台" type="StaticBody2D" parent="平台" unique_id=779864089]
@@ -229,7 +229,7 @@ position = Vector2(-963, -45)
 bomb_weight = 0.0
 
 [node name="移动平台左右1" parent="机关" unique_id=1084164698 instance=ExtResource("16_pvr2g")]
-position = Vector2(-2194, 130)
+position = Vector2(-2238, 130)
 initial_state = "Move_leftright"
 
 [node name="移动平台上下" parent="机关" unique_id=1206464803 instance=ExtResource("16_pvr2g")]
@@ -248,7 +248,7 @@ position = Vector2(-354, -96)
 initial_state = "Move_leftright"
 
 [node name="移动平台左右2" parent="机关" unique_id=2141220873 instance=ExtResource("16_pvr2g")]
-position = Vector2(-680, -96)
+position = Vector2(-685, -96)
 initial_state = "Move_leftright"
 
 [node name="Control" type="Control" parent="." unique_id=1209543074]

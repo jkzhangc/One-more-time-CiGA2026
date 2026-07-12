@@ -16,17 +16,14 @@
 [ext_resource type="PackedScene" uid="uid://d38svmmkfh5e3" path="res://object/宝箱.tscn" id="12_qtid4"]
 [ext_resource type="PackedScene" uid="uid://kuouomxxlutd" path="res://object/Enemy_Saw.tscn" id="14_j5bo6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxd"]
-size = Vector2(174, 24.75)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xo7rh"]
-size = Vector2(122, 20.375)
+size = Vector2(125, 20.375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ojte"]
-size = Vector2(235, 24.75)
+size = Vector2(165.75, 24.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uaeuu"]
-size = Vector2(316, 40.07129)
+size = Vector2(322, 40.07129)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xbo14"]
 shader = ExtResource("7_7ry6p")
@@ -69,11 +66,11 @@ scale = Vector2(2, 2)
 scroll_offset = Vector2(-5, -43)
 
 [node name="Sprite2D" type="Sprite2D" parent="背景" unique_id=970883741]
-position = Vector2(-680, -122)
+position = Vector2(-682.5, -122)
 texture = ExtResource("1_inkcr")
 
 [node name="Sprite2D2" type="Sprite2D" parent="背景" unique_id=1148939443]
-position = Vector2(992, -122)
+position = Vector2(989.5, -122)
 texture = ExtResource("1_inkcr")
 
 [node name="Sprite2D3" type="Sprite2D" parent="背景" unique_id=580903088]
@@ -85,20 +82,9 @@ position = Vector2(2665, -123)
 texture = ExtResource("1_inkcr")
 
 [node name="Player" parent="." unique_id=2063613206 instance=ExtResource("2_inse3")]
-position = Vector2(-639, 84)
+position = Vector2(-558, -2)
 
 [node name="平台" type="Node2D" parent="." unique_id=102726873]
-
-[node name="平台5" type="StaticBody2D" parent="平台" unique_id=236142430]
-z_index = -1
-position = Vector2(4, 92)
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台5" unique_id=350918572]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(146, -113)
-shape = SubResource("RectangleShape2D_m5mxd")
 
 [node name="平台4" type="StaticBody2D" parent="平台" unique_id=902071030]
 z_index = -1
@@ -106,30 +92,30 @@ position = Vector2(2, 46)
 collision_mask = 6
 
 [node name="Sprite2D2" type="Sprite2D" parent="平台/平台4" unique_id=1325358763]
-position = Vector2(-60.62506, 40)
+position = Vector2(-94, 41)
 scale = Vector2(0.4114424, 0.61627907)
 texture = ExtResource("4_3ojte")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台4" unique_id=1617616577]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-63, 40)
+position = Vector2(-94.5, 35)
 shape = SubResource("RectangleShape2D_xo7rh")
 
 [node name="平台3" type="StaticBody2D" parent="平台" unique_id=2028733433]
 z_index = -1
-position = Vector2(-16, 83)
+position = Vector2(-124, 81)
 collision_mask = 6
 
 [node name="Sprite2D2" type="Sprite2D" parent="平台/平台3" unique_id=442971865]
-position = Vector2(425.99994, -219)
-scale = Vector2(0.7664577, 0.61627907)
+position = Vector2(638.59375, -315)
+scale = Vector2(0.5229232, 0.5406976)
 texture = ExtResource("4_3ojte")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台3" unique_id=1966443168]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(430, -222)
+position = Vector2(637.125, -315)
 shape = SubResource("RectangleShape2D_3ojte")
 
 [node name="平台2" type="StaticBody2D" parent="平台" unique_id=343246433]
@@ -138,17 +124,15 @@ position = Vector2(2, 46)
 collision_mask = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="平台/平台2" unique_id=1961137369]
-position = Vector2(-656.00006, 107)
-scale = Vector2(0.20067817, 0.35625)
+position = Vector2(-656.00006, 98.25)
+scale = Vector2(0.20067817, 0.24687502)
 texture = ExtResource("2_inkcr")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="平台/平台2" unique_id=10927627]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-657.5, 114.140625)
+position = Vector2(-656, 109)
 shape = SubResource("RectangleShape2D_uaeuu")
-metadata/_edit_lock_ = true
 
 [node name="平台" type="StaticBody2D" parent="平台" unique_id=779864089]
 z_index = -1
@@ -207,6 +191,7 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Indicator" type="Sprite2D" parent="GrayEffectLayer" unique_id=292551563]
+visible = false
 texture = ExtResource("10_j5bo6")
 metadata/_edit_lock_ = true
 
@@ -235,32 +220,41 @@ shape = SubResource("RectangleShape2D_0141t")
 
 [node name="机关" type="Node2D" parent="." unique_id=14403801]
 
+[node name="电锯2" parent="机关" unique_id=1646926418 instance=ExtResource("14_j5bo6")]
+position = Vector2(-695, 133)
+max_distance = 100.0
+speed = 70.0
+contact_direction = 1
+
 [node name="宝箱2" parent="机关" unique_id=519503002 instance=ExtResource("12_qtid4")]
 position = Vector2(199, 124)
 
-[node name="形态类怪物" parent="机关" unique_id=463665746 instance=ExtResource("11_m5mxd")]
-position = Vector2(-37, 50)
+[node name="形态类怪物" parent="机关" unique_id=524730148 instance=ExtResource("11_m5mxd")]
+position = Vector2(-77, 32)
 
 [node name="移动平台左右1" parent="机关" unique_id=1084164698 instance=ExtResource("5_77ltu")]
-position = Vector2(-287, 59)
+position = Vector2(-380, 43)
+leftrightframeCountmax = 3.5
+leftrightspeed = 100.0
 initial_state = "Move_leftright"
 
 [node name="总的尖刺柱" type="Node2D" parent="机关" unique_id=1864133462]
-position = Vector2(-19, 32)
-
-[node name="尖刺柱" parent="机关/总的尖刺柱" unique_id=1524636449 instance=ExtResource("12_m5mxd")]
-position = Vector2(104, -128)
+position = Vector2(-26, -2)
 
 [node name="尖刺柱3" parent="机关/总的尖刺柱" unique_id=712704409 instance=ExtResource("12_m5mxd")]
-position = Vector2(182, -126)
+position = Vector2(360, -228)
 
-[node name="移动平台绕圈" parent="机关" unique_id=747224408 instance=ExtResource("5_77ltu")]
-position = Vector2(667, -274)
+[node name="移动平台+电锯" type="Node2D" parent="机关" unique_id=1090618952]
+position = Vector2(4, -31)
+
+[node name="移动平台绕圈" parent="机关/移动平台+电锯" unique_id=747224408 instance=ExtResource("5_77ltu")]
+position = Vector2(112, -86)
 initial_state = "Move_circumference"
 
-[node name="电锯" parent="机关" unique_id=318734010 instance=ExtResource("14_j5bo6")]
-position = Vector2(628, -314)
-max_distance = 100.0
+[node name="电锯" parent="机关/移动平台+电锯" unique_id=318734010 instance=ExtResource("14_j5bo6")]
+position = Vector2(70, -116)
+max_distance = 80.0
+speed = 80.0
 contact_direction = 1
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
